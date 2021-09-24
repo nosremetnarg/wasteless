@@ -24,6 +24,7 @@
         <div class="main-calculator-section">
 
           <div class="packedMeals grid">
+            <img class="icon milk" src="/Assets/milk.png" alt="">
             <p>Packed meals / Deli</p>
             <p class='slider subinformation'>% of total revenue</p>
             <input type="range" min="0" max="100" value="0" step="1" class="slider packedMeals" id="packedMeals" name="packedMeals" 
@@ -40,7 +41,9 @@
           </div>
 
           <div class="bakery grid">
+            <img class="icon milk" src="/Assets/milk.png" alt="">
             <p>Bakery</p>
+            
             <p class='slider subinformation'>% of total revenue</p>
             <input type="range" min="0" max="100" value="0" step="1" class="slider bakery" id="bakery" name="bakery" 
               oninput="bakeryOutput.value=bakery.value">
@@ -56,7 +59,8 @@
           </div>
 
           <div class="frozenFoods grid">
-            <p>Frozen Foods</p>
+            <img class="icon milk" src="/Assets/milk.png" alt="">
+            <p>Frozen Foods</p>         
             <p class='slider subinformation'>% of total revenue</p>
             <input type="range" min="0" max="100" value="0" step="1" class="slider frozenFood" id="frozenFood" name="frozenFood" 
               oninput="frozenFoodOutput.value=frozenFood.value">
@@ -72,7 +76,9 @@
           </div>
 
           <div class="seafood grid">
+            <img class="icon milk" src="/Assets/milk.png" alt="">
             <p>Seafood</p>
+            
             <p class='slider subinformation'>% of total revenue</p>
             <input type="range" min="0" max="100" value="0" step="1" class="slider seafood" id="seafood" name="seafood" 
               oninput="seafoodOutput.value=seafood.value">
@@ -89,7 +95,9 @@
           </div>
 
           <div class="fruitsAndVegetables grid">
+            <img class="icon milk" src="/Assets/milk.png" alt="">
             <p>Fruits & Vegetables</p>
+            
             <p class='slider subinformation'>% of total revenue</p>
             <input type="range" min="0" max="100" value="0" step="1" class="slider fruitAndVegetables" id="fruitAndVegetables" name="fruitAndVegetables" 
               oninput="fruitAndVegetablesOutput.value=fruitAndVegetables.value">
@@ -106,7 +114,9 @@
           </div>
 
           <div class="dairy grid">
+            <img class="icon milk" src="/Assets/milk.png" alt="">
             <p>Dairy</p>
+            
             <p class='slider subinformation'>% of total revenue</p>
             <input type="range" min="0" max="100" value="0" step="1" class="slider dairy" id="dairy" name="dairy" 
               oninput="dairyOutput.value=dairy.value">
@@ -123,7 +133,9 @@
           </div>
 
           <div class="meatAndPoultry grid">
+            <img class="icon milk" src="/Assets/milk.png" alt="">
             <p>Meat & Poultry</p>
+            
             <p class='slider subinformation'>% of total revenue</p>
             <input type="range" min="0" max="100" value="0" step="1" class="slider meatAndPoultry" id="meatAndPoultry" name="meatAndPoultry" 
               oninput="meatAndPoultryOutput.value=meatAndPoultry.value">
@@ -140,6 +152,7 @@
           </div>
 
           <div class="dryFood grid">
+            <img class="icon milk invisible" src="/Assets/milk.png" alt="">
             <p>Dry foods and other products</p>
             <p class='slider subinformation'>% of store</p>
             <input type="range" min="0" max="100" value="0" step="1" class="slider dryFoods" id="dryFoods" name="dryFoods" 
@@ -168,7 +181,7 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        width: 60vw;
+        width: 70vw;
         margin: 0 auto;
         padding: 10px;
         border-radius: 10px;
@@ -178,7 +191,10 @@
         
       }
       .header-section { width: 100%; }
-      .slider { width: 75%; }
+      .slider { 
+        width: 50%; 
+        margin: 2px 0px;
+      }
       .revenueOutput { color: grey; }
       
       .main-calculator-section {
@@ -194,7 +210,14 @@
       .grid {
         width: 50%;
         float: left;
+        padding-bottom: 20px; 
       }
+
+      img { float: left; }
+      .icon {  
+        padding: 20px 10px 56px 0px;
+        }
+        .invisible { opacity: 0;}
 
       .simulatebtn button {
         color: white;
@@ -207,7 +230,7 @@
       }
 
       .simulatebtn { 
-        width: 60.5vw; 
+        width: 70.5vw; 
         display: flex;
         align-items: flex-end;
         justify-content: center;

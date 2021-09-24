@@ -1,0 +1,795 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2577
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 AppleColorEmoji;\f2\fnil\fcharset0 LucidaGrande;
+}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww18760\viewh12060\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!-- /templates/page.liquid -->\
+\
+\
+<div class="grid">\
+  <div class="grid__item large--five-sixths push--large--one-twelfth">\
+\
+    <div class="cover-intro">\
+    </div>\
+     <h1 class="header-title">Calcul\'e1 el impacto ambiental de la menstruaci\'f3n</h1>\
+    \
+    <h4 class="header-subtitle">Seleccion\'e1 la cantidad de toallitas y/o tampones que utiliz\'e1s, y conocer\'e1s el impacto que tiene tu per\'edodo menstrual y <span class="sp-st">lo que le pod\'e9s ahorrar al planeta usando productos reutilizables</span>.</h4>\
+\
+<div class="calculator">\
+\
+<form id="calculadorImpacto">\
+\
+  <div class="sliders-intro">\
+    <div class="prod-intro">\
+      <div class="prod-row">\
+        <div class="prod-tit">\
+  <label for="toallitas">Toallitas utilizadas por per\'edodo</label> \
+        </div>\
+        <div class="prod-iconumber">\
+          <img class="prod-icon" src="https://cdn.shopify.com/s/files/1/0265/3719/7677/files/Toalla_azul.png?v=1621030358" alt="toallita basura asana copa menstrual">\
+  <output id="toallitasOutput" name="toallitasOutput" for="toallitas.value" class="outputNr">22</output>\
+        </div>\
+      </div>\
+  <input type="range" min="0" max="35" value="22" step="1" class="slider products" id="toallitas" name="toallitas" oninput="toallitasOutput.value=toallitas.value">\
+    </div>\
+  \
+     <div class="prod-intro">\
+     <div class="prod-row">\
+               <div class="prod-tit">\
+  <label for="tampones">Tampones utilizados por per\'edodo</label> \
+       </div>\
+       <div class="prod-iconumber">\
+       <img class="prod-icon" src="https://cdn.shopify.com/s/files/1/0265/3719/7677/files/Tampon_azul.png?v=1621030356" alt="tampon basura asana copa menstrual">\
+	  <output id="tamponesOutput" name="tamponesOutput" for="tampones.value" class="outputNr">0</output>\
+       </div>\
+       </div>\
+  <input type="range" min="0" max="35" value="0" step="1" class="slider products" id="tampones" name="tampones" oninput="tamponesOutput.value=tampones.value">\
+  </div>\
+  </div>\
+  \
+  <div>\
+    <p class="p-average-u">En promedio, una persona utiliza 22 productos por per\'edodo.</p>\
+  </div>\
+  <div class="strong-text">\
+  <label for="grupo">Calcular impacto para</label>\
+    <input class="grupoInput" type="text" value="1" id="grupo" name="grupo" onClick="this.setSelectionRange(0, this.value.length)" autocomplete="off"><span> persona(s)</span>\
+  </div>\
+\
+<!--   BOTON CALCULADOR -->\
+  <a href="#anchor">\
+  <input type="button" value="CALCULAR IMPACTO" onClick="calc()" name="button" class="butImpacto" id="calculador">\
+  </a>\
+  \
+  <div id="showDiv1" class="showDiv">\
+  <!-- Rounded switch -->\
+  <div class="switch-row">\
+    <div class="switch-text switch-left">\
+      <span class="switch-lg">por a\'f1o</span>\
+    </div>\
+    <div style="switch-center">\
+	<label class="switch">\
+    <input type="checkbox" id="total" Checked onClick="calc()">\
+    <span class="slider round"></span>\
+  	</label>\
+    </div>\
+    <div class="switch-text switch-right">\
+      <span class="switch-lg">total</span><span class="switch-sm">durante los 40 a\'f1os de vida menstrual</span>\
+    </div>\
+  </div>\
+  </div>\
+  \
+  \
+  <div id="showDiv2" class="showDiv">\
+  <div class="resultDiv">\
+    <div class="resultSing">\
+  <img class="iconRes"src="https://cdn.shopify.com/s/files/1/0265/3719/7677/files/TamponToalla.png?v=1621275077" alt="toallita tampon copa menstrual asana">\
+    <h3 class="h3-title">Productos desechados</h3>\
+    <span class="anchor" id="anchor"></span>\
+  <span  class="resultado" id="resCantidad"></span>\
+      <span class="labelRes" id="labCantidad"></span>\
+  </div>\
+  <hr class="divider">\
+  \
+  <div class="resultSing">\
+  <img class="iconRes"src="https://cdn.shopify.com/s/files/1/0265/3719/7677/files/Tacho.png?v=1621274693" alt="basura generada menstrual copa menstrual asana">\
+    <h3 class="h3-title">Basura Generada</h3>\
+  <span  class="resultado" id="resBasura"></span>\
+      <span class="labelRes" id="labBasura"></span>\
+  <p class="resultado-p percent">de los cuales un <span class="resultado percent" id="percentPlastic"></span><br>son pl\'e1sticos no biodegradables.</p>\
+  <img class="iconRes"src="https://cdn.shopify.com/s/files/1/0265/3719/7677/files/Bolsa.png?v=1621274693" alt="bolsas plasticas contaminacion copa menstrual asana">    \
+    <p class="resultado-eq">Esto es equivalente a desechar<br><span style="font-weight:700;" id="resBolsas"></span> <span style="font-weight:700;">bolsas pl\'e1sticas</span>\
+   </div>\
+  <hr class="divider">\
+    \
+    \
+  <div class="resultSing">\
+  <img class="iconRes"src="https://cdn.shopify.com/s/files/1/0265/3719/7677/files/PrintCO2.png?v=1621274693" alt="basura generada menstrual copa menstrual asana">\
+    <h3 class="h3-title">Huella de Carbono</h3>\
+  <span  class="resultado carbono" id="resCO2"></span>\
+      <span class="labelRes" id="labBasura"></span>\
+  <img class="iconRes"src="https://cdn.shopify.com/s/files/1/0265/3719/7677/files/Auto.png?v=1621274693" alt="auto huella carbono contaminacion copa menstrual asana">    \
+  <p class="resultado-eq">equivalente a lo que genera un auto al recorrer <span id="resAuto"></span>\
+   </div>\
+  <hr class="divider">\
+    \
+    \
+    <div class="resultSing">\
+  <img class="iconRes"src="https://cdn.shopify.com/s/files/1/0265/3719/7677/files/agua_copa_menstrual.png?v=1621280357" alt="basura generada menstrual copa menstrual asana">\
+    <h3 class="h3-title">Consumo de H\uc0\u8322 O</h3>\
+  <span  class="resultado" id="resAgua"></span>\
+  <span class="labelDes">requeridos para la fabricaci\'f3n de estos productos descartables, principalmente</span> <strong>pl\'e1stico, celulosa, y algod\'f3n</strong>\
+   </div>\
+\
+    <hr class="divider div-saving">  \
+    <h1>Adem\'e1s...</h1>\
+	<img class="iconRes"src="https://cdn.shopify.com/s/files/1/0265/3719/7677/files/ahorro_copa_menstrual.png?v=1621283854" alt="gasto economico menstrual copa menstrual asana">\
+    <h3 class="h3-title pink-title">Estos productos cuestan</h3>\
+    <span class="resultado pink-title" style="margin-bottom:12px;" id="resCosto"></span>\
+	<span class="labelRes pink-title" id="labCosto"></span>\
+    <p class="resultado-p pink-title"> <span class="resultado percent pink-title" id="resAhorro"></span> usando productos reutilizables como la copa menstrual</p>\
+  \
+    </div>\
+  </div>\
+</form>\
+  \
+	<div id="showDiv3" class="showDiv contagiar-div" style="margin-top:1em;">\
+      \
+      <h1>Contagiemos las ganas de cuidar nuestro 
+\f1 \uc0\u55356 \u57102 
+\f0 </h1>\
+  <a href="#" target ="blank" id="compartirImpacto">\
+  <button class="btn btnWapp">\
+    <img class="imgWapp" src="https://cdn.shopify.com/s/files/1/0265/3719/7677/files/wapp_white.png?v=1598569998" alt="whatsapp asana copa menstrual comparti tu impacto">\
+    Compart\'ed tu resultado por WhatsApp!</button>\
+  </a>\
+  </div>\
+    \
+    \
+  </div>\
+    \
+    \
+    \
+    <div class="consid-div">\
+<!--       <div class="consid-header">\
+        Consideraciones para el c\'e1lculo\
+      </div>\
+      <div class="consid-sub">\
+        <ul class="consid-ul">\
+          <li>Una persona tiene en promedio 13 per\'edodos menstruales por a\'f1o, y 40 a\'f1os de menstruaci\'f3n desde la menarca hasta la menopausia</li>\
+          <li>Si bien la copa menstrual puede durar m\'e1s de 10 a\'f1os, se considera una vida \'fatil promedio de 5 a\'f1os, a un precio de $1500</li>\
+          <li>Las toallitas o protectores descartables est\'e1n realizados mayormente por pl\'e1stico y celulosa. El peso promedio de la basura generada por cada unidad se aproxima a 15g</li>\
+          <li>Los tampones descartables est\'e1n realizados mayormente por algodon y pl\'e1stico. El peso promedio de la basura generada por cada unidad se aproxima a 5g</li>\
+          <li>Las bolsas pl\'e1sticas se toman a un peso promedio de 5g</li>\
+          <li>Para el c\'e1lculo de la huella de carbono, se aproxima a 0.0004818 kgCO2/unidad generado por la toallita y tamp\'f3n de igual medida. Un auto genera 0.123 kgCO2/km (Fuente: <a href="https://www.bbc.com/future/article/20200317-climate-change-cut-carbon-emissions-from-your-commute" target="_blank">BBC</a>)</li>\
+          <li>Para el c\'e1lculo del agua requerida para la fabricaci\'f3n, se aproxima a 0.18litros/g para el pl\'e1stico, 15 litros/g para el algod\'f3n, y de 1.5 litros/g para la celulosa (Fuente: <a href="https://waterfootprint.org/media/downloads/VanOel-Hoekstra-2012-WaterFootprintPaper_1.pdf" target="_blank">Waterfootprint.org)</a></li>\
+          <li>El precio unitario promedio de una toallita se toma a $13 (Precios Cuidados) y $17.50 para el tam\'f3n, actualizado el 5/5/2021 (Fuente de referencia: <a href="https://www.walmart.com.ar/" target="_blank">Walmart Argentina)</a></li>\
+        </ul>\
+      </div> -->\
+	\
+         \
+    \{% section 'elegi-test-rapido' %\}\
+      \
+       <p class="related_header">Te puede interesar:</p>\
+      <a class="blog_title" href="https://asanacup.com/blogs/news-1/cuanta-basura-generamos" target="_blank">\'bfCu\'e1nta basura ahorramos con la copa menstrual?</a>\
+      <a class="blog_title" href="https://asanacup.com/blogs/news-1/sabes-cuanto-ahorras-con-asana" target="_blank">\'bfCu\'e1nto puedo ahorrar usando la copita?</a>      \
+    </div>\
+ \
+    \
+</div>\
+\
+\
+\
+<script type="text/javascript">\
+  function calc() \{\
+      \
+      \
+    var form = document.getElementById('calculadorImpacto');\
+    var to = parseInt(form.toallitas.value);\
+    var ta = parseInt(form.tampones.value);\
+    var gr = parseInt(form.grupo.value);\
+//Avoid doble cero    \
+    if ( to + ta > 0 ) \{\
+        \
+//cantidades\
+    var resCantidadAn = parseInt((to + ta) * gr * 13).toLocaleString();\
+    var resCantidadVi = parseInt((((to + ta) * gr) * 13) * 40).toLocaleString();\
+\
+//basura kg    \
+    var resBasuraAn = parseInt(((0.015 * to) + (0.005 * ta)) * gr * 13).toLocaleString();\
+    var resBasuraVi = parseInt((((0.015 * to + 0.005 * ta) * gr) * 13) * 40).toLocaleString();\
+//basura bolsas    \
+    var resBolsasAn = parseInt(((0.015 * to) + (0.005 * ta)) * gr * 13 * (((0.5 * to) + (0.1 * ta)) / (to + ta)) / 0.005).toLocaleString();\
+    var resBolsasVi = parseInt(((0.015 * to) + (0.005 * ta)) * gr * 13 * (((0.5 * to) + (0.1 * ta)) / (to + ta)) / 0.005 * 40).toLocaleString();\
+    var percentPlastic = parseInt(((0.5 * to) + (0.1 * ta)) / (to + ta) * 100 );   \
+    \
+//Huella Carbono\
+    \
+     var resCO2An = parseFloat(((to + ta) * 13 * 40 ) * 5.3 / 11000 * gr).toFixed(1).toLocaleString();\
+     var resCO2Vi = parseInt(((to + ta) * 13 * 40 ) * 5.3 / 11000 * gr * 40).toLocaleString();\
+//Auto    \
+     var resAutoAn = parseInt(((to + ta) * 13 * 40 * 5.3 / 11000 * gr) / 0.123).toLocaleString();\
+     var resAutoVi = parseInt( ((to + ta) * 13 * 40 ) * 5.3 / 11000 * gr * 40 / 0.123).toLocaleString();\
+//Agua\
+     var resAguaAn = parseInt(((15 * to) + (13.5 * ta)) * gr * 13).toLocaleString();\
+     var resAguaVi = parseInt( ((15 * to) + (13.5 * ta)) * gr * 13 * 40).toLocaleString();\
+\
+//Economia\
+\
+     var resCostoAn = parseInt(((12.5 * to) + (17.5 * ta)) * gr * 13).toLocaleString();\
+     var resCostoVi = (parseInt(((12.5 * to) + (17.5 * ta)) * gr * 13)  * 40).toLocaleString();\
+    \
+//ahorroPercentual\
+     var ahorroAn = parseInt((resCostoAn - (1499/5)) / resCostoAn * 100);\
+     var ahorroVi = parseInt(((resCostoVi - (1499*10)) / resCostoVi) * 100);\
+//ahorroNeto    \
+        var resAhorroAn = parseInt(((12.5 * to) + (17.5 * ta)) * gr * 13 - 300).toLocaleString();\
+     var resAhorroVi = (parseInt(((12.5 * to) + (17.5 * ta)) * gr * 13 - 300) * 40).toLocaleString();\
+    \
+   if ($('#total').is(":checked")) \{\
+      document.getElementById('resCantidad').innerHTML = resCantidadVi\
+      document.getElementById('labCantidad').innerHTML = 'unidades totales'\
+      document.getElementById('resBasura').innerHTML = resBasuraVi\
+      document.getElementById('labBasura').innerHTML = 'kg totales'\
+      document.getElementById('resBolsas').innerHTML = resBolsasVi\
+      document.getElementById('resCO2').innerHTML = resCO2Vi + ' kgCO\'b2'\
+      document.getElementById('resAuto').innerHTML = resAutoVi + ' km'\
+      document.getElementById('resAgua').innerHTML = resAguaVi + ' lts.'\
+      document.getElementById('resCosto').innerHTML = '$' + resCostoVi\
+      document.getElementById('labCosto').innerHTML = ' de los cuales pod\'e9s ahorr\'e1r m\'e1s de '\
+           document.getElementById('resAhorro').innerHTML = '$' + resAhorroVi\
+	\} else \{\
+      document.getElementById('resCantidad').innerHTML = resCantidadAn\
+      document.getElementById('labCantidad').innerHTML = 'unidades x a\'f1o'\
+      document.getElementById('resBasura').innerHTML = resBasuraAn\
+      document.getElementById('resBolsas').innerHTML = resBolsasAn\
+      document.getElementById('labBasura').innerHTML = 'kg x a\'f1o'\
+      document.getElementById('resCO2').innerHTML = resCO2An + ' kgCO\'b2'\
+      document.getElementById('resAuto').innerHTML = resAutoAn + ' km'\
+      document.getElementById('resAgua').innerHTML = resAguaAn + ' lts.'\
+	  document.getElementById('resCosto').innerHTML = '$' + resCostoAn\
+      document.getElementById('labCosto').innerHTML = ' x a\'f1o, de los cuales pod\'e9s ahorr\'e1r m\'e1s de '\
+     document.getElementById('resAhorro').innerHTML = '$' + resAhorroAn\
+    \}\
+\
+    document.getElementById('percentPlastic').innerHTML = percentPlastic + '%';\
+    \
+	  var element = document.getElementById("showDiv1")\
+	  element.classList.add("addShow")\
+\
+      var element = document.getElementById("showDiv2")\
+	  element.classList.add("addShow")\
+\
+      var element = document.getElementById("showDiv3")\
+	  element.classList.add("addShow")\
+      \
+    \
+	var compartirURL = 'https://api.whatsapp.com/send?text=Hola%21%20Acabo%20de%20calcular%20la%20huella%20ambiental%20de%20mi%20menstruaci%C3%B3n%2C%20y%20quer%C3%ADa%20compartirte%20el%20impacto%20que%20tiene%20en%20el%20%F0%9F%8C%8E%20y%20as%C3%AD%20dimensionar%20todo%20lo%20que%20evitar%C3%ADamos%20si%20usar%C3%A1mos%20productos%20reutilizables%20como%20la%20Copa%20Menstrual%20%E2%99%BB%EF%B8%8F%0AEn%20mi%20caso%2C%20durante%20mi%20vida%20menstrual%2C%20generar%C3%ADa%20' + resBasuraVi + '%20kg%20de%20basura%20%F0%9F%9A%AE%20producida%20por%20m%C3%A1s%20de%20'+ resCantidadVi + '%20productos%20descartables%20de%20pl%C3%A1stico%20no%20biodegradable%20equivalente%20a%20' + resBolsasVi + '%20bolsitas%20pl%C3%A1sticas%21%0ATambi%C3%A9n%20generar%C3%ADa%20una%20huella%20de%20carbono%20equivalente%20a%20manejar%20un%20%F0%9F%9A%97%F0%9F%92%A8%20por%20'+ resAutoVi + '%20km%20y%20consumir%C3%ADa%20' + resAguaVi +'%20lts.%20de%20agua%20%F0%9F%92%A7para%20la%20fabricaci%C3%B3n%20de%20estos%20productos.%0A%0ATe%20invito%20a%20calcular%20tu%20huella%20menstrual%20en%20este%20link%20%F0%9F%92%9A%0Ahttps%3A%2F%2Fasanacup.com%2Fcalculador';\
+	document.getElementById('compartirImpacto').href = compartirURL;\
+    \} else \{\
+         window.alert("Wow! Parece ser que no usas productos descartables! GRACIAS por cuidar nuestro planeta 
+\f1 \uc0\u9851 \u65039 
+\f0  
+\f1 \uc0\u55357 \u56474 
+\f0  Ayudanos a concientizar a aquellas personas a tu alrededor compartiendo este link!")\
+    \}  \
+  \}\
+  //prevent enter to enter form\
+  $('form input').keydown(function (e) \{\
+    if (e.keyCode == 13) \{\
+        e.preventDefault();\
+        return false;\
+    \}\
+\});\
+\
+  function stopCalc() \{\
+    clearInterval(interval);\
+  \}\
+  \
+</script>\
+\
+\
+\
+\
+\
+\
+<style>\
+    \{%unless template == 'index'%\}\
+    \
+     .header-wrapper\{\
+       background:white;\
+    \}\
+    \
+    \{%endunless%\}\
+    \
+    .header-wrapper\{\
+    position: fixed;\
+    z-index: 1;\
+    width: 100%;\
+    \}\
+    \
+    \
+    .header-wrapper.hero__header.darkHeader \{\
+    background: #FFFFFF;\
+\
+\}\
+    .header-wrapper.hero__header.darkHeader a\{\
+    \}\
+\
+/*   h2,h3,h4,p\{\
+  color:rgb(57,57,56) !important;\
+    font-weight:400;\
+  \} */\
+  \
+  .cover-intro\{\
+    background-image: url("https://cdn.shopify.com/s/files/1/0265/3719/7677/files/basura_contaminacion_waste_copa_menstrual.jpg?v=1621024760");\
+    background-repeat: no-repeat;\
+    background-position: center;\
+    background-size: cover;\
+    display: flex;\
+    flex-direction: row;\
+    align-items: center;\
+    text-align: center;\
+    height: 42vh;\
+    margin: -15px;\
+  \}\
+  \
+  .header-title\{\
+	text-align: center;\
+    color:#FFF !important;\
+    background-color:#04b5c7;\
+	margin:10px -15px;\
+    padding: 3% 5%;\
+    font-size: 18px;\
+  \}\
+  \
+  .header-subtitle\{\
+	width: 83%;\
+    margin: 1em auto;\
+    text-align: center;\
+  \}\
+  \
+  .sp-st\{\
+  font-weight:700;\
+  \}  \
+  \
+  .calculator\{\
+  	width:100%;\
+    align-items: center;\
+    text-align: center;\
+    margin: 0 auto;\
+    justify-content: center;\
+  \}  \
+  \
+  .sliders-intro\{\
+    display:flex;\
+	flex-wrap: wrap;\
+    justify-content: space-between;\
+  \}\
+  \
+  .prod-intro\{\
+	width: 50%;\
+    padding: 0 1em;\
+  \}\
+  .prod-tit\{\
+    text-align:left;\
+  \}\
+  \
+  .prod-tit label\{\
+    font-size:13px;\
+    font-weight:600;\
+  \}\
+  \
+  .prod-row\{\
+  display:flex;\
+  align-items:baseline;\
+  justify-content: space-between;\
+  \}\
+  \
+  .prod-iconumber\{\
+	width:30%;\
+    justify-content: flex-end;\
+    color:#04b5c7;\
+  \}\
+  \
+  .prod-icon\{\
+	width: 55px;\
+    position: relative;\
+    top:12px;\
+  \}\
+  \
+  .resultado\{\
+    font-weight: 700;\
+    font-size: 52px;\
+    color:#04b5c7;\
+    display:block;\
+	padding: 0 10px;\
+    margin: 0 auto;\
+    line-height:65px;\
+  \}\
+  \
+  .resultado-eq\{\
+    font-weight: 700;\
+    font-size: 18px;\
+    color: #04b5c7 !important;\
+    line-height:23px;\
+  \}\
+  \
+  .labelRes\{\
+	display:block;\
+    margin-top: -7px;\
+    font-weight:500;\
+  \}\
+  \
+  .labelDes\{\
+    margin-top: -7px;\
+    font-weight:500;\
+  \}\
+  \
+  .strong-text label,span\{\
+  font-weight:600;\
+  \}\
+  \
+  .switch-row\{\
+	display: flex;\
+	position:sticky;\
+    top: 5rem;\
+    background-color: white;\
+    padding: 19px 0 5px;\
+    border-bottom: 1px solid #BFF5AD;\
+  \}\
+  \
+  \
+  .switch-center\{\
+  flex: 1;\
+  display: flex;\
+  justify-content: center;\
+  \}\
+  \
+  .switch-text\{\
+	width:35%;\
+  \}\
+  \
+  .switch-left\{\
+    margin-left: auto;\
+    padding-right: 12px;\
+    text-align: right;\
+  \}\
+  \
+  .switch-right\{\
+	margin-right: auto;\
+	padding-left: 12px;\
+    display: inline-flex\
+\}\
+  \}\
+  \
+  .switch-lg\{\
+      font-size: 15px !important;\
+    font-weight: 600 !important;\
+  \}\
+  \
+  .switch-sm\{\
+  font-weight:400;\
+    font-size:10px;\
+    padding-left: 7px;\
+    line-height: 11px;\
+  \}\
+  \
+  .percent\{\
+/* 	display:inline-block; */\
+	color: #04b5c7 !important;\
+    font-weight:600;\
+  \}\
+  \
+  \
+  .resultado-p\{\
+    line-height:20px;\
+    margin-top:22px;\
+  \}\
+  \
+  .bolsas\{\
+  display:inline-block;\
+  \}\
+  \
+  .iconRes\{\
+  width:100px;\
+    margin-bottom:-20px;\
+  \}\
+  \
+  .carbono\{\
+  font-size:43px;\
+  \}\
+ .divider \{\
+   margin:1em auto;\
+   background-color:#4e5151;\
+   width: 90%;\
+   max-width: 349px;\
+   border:none;\
+   height:1px;\
+  \}\
+  \
+  .div-saving\{\
+  color:#963a9f;\
+  \}\
+  \
+\
+  .p-average-u\{\
+  font-size:11px;\
+    text-align:center;\
+	font-style: italic;\
+    margin-top:5px;\
+    \
+  \}\
+  \
+  .slidecontainer \{\
+  width: 100%; /* Width of the outside container */\
+\}\
+  \
+  .anchor\{\
+    display: block;\
+    position: relative;\
+    top: -300px;\
+    visibility: hidden;\
+  \}\
+  \
+  .h3-title\{\
+	font-size:20px;\
+    font-weight:600;\
+    margin-bottom: -8px;\
+  \}\
+  \
+  .pink-title\{\
+  color:#963a9f !important;\
+  font-weight: 600;\
+  \}\
+\
+  .showDiv\{\
+  display:none;\
+  \}\
+  \
+  .addShow\{\
+    display:contents;\
+  \}\
+\
+/* The slider itself */\
+.slider	 \{\
+  -webkit-appearance: none;  /* Override default CSS styles */\
+  appearance: none;\
+  width: 100%; /* Full-width */\
+  height: 30px; /* Specified height */\
+  background: lightgrey; /* Grey background */\
+  outline: none; /* Remove outline */\
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */\
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */\
+  transition: opacity .2s;\
+  border-radius: 20px;\
+  margin-top:-6px;\
+\}\
+\
+/* Mouse-over effects */\
+.slider:hover \{\
+  opacity: 1; /* Fully shown on mouse-over */\
+\}\
+\
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */\
+.slider::-webkit-slider-thumb \{\
+  -webkit-appearance: none; /* Override default look */\
+  appearance: none;\
+  width: 25px; /* Set a specific slider handle width */\
+  height: 25px; /* Slider handle height */\
+  background: #04b5c7; /* Green background */\
+  cursor: pointer; /* Cursor on hover */\
+  border-radius:15px;\
+\}\
+\
+.slider::-moz-range-thumb \{\
+  width: 25px; /* Set a specific slider handle width */\
+  height: 25px; /* Slider handle height */\
+  background: #BFF5AD; /* Green background */\
+  cursor: pointer; /* Cursor on hover */\
+\}\
+  \
+  .butImpacto\{\
+    border-radius: 30px;\
+    color: #04b5c7;\
+    background: #BFF5AD;\
+    font-weight: 700;\
+    margin:1em;\
+    color: rgb(57,57,56);\
+    padding: 8px 16px;\
+  \}\
+  \
+  .grupoInput\{\
+	width:90px;\
+    text-align:center;\
+    font-size: 21px;\
+    font-weight: 700;\
+    padding: 2px;\
+    margin: 9px;\
+    color:#04b5c7;\
+  \}\
+  \
+  .outputNr\{\
+  font-size:34px;\
+    font-weight:700;\
+  \}\
+  \
+  .btnWapp\{\
+    color: #fff;\
+    border-radius: 49px;\
+    max-width: 259px;\
+    font-size: 15px;\
+    display: flex;\
+    margin: 2em auto;\
+    text-align: left;\
+    align-items: center;\
+\}\
+\
+  .imgWapp\{\
+    max-width: 100%;\
+    width: 28px;\
+    margin-right: 10px;\
+  \}\
+  \
+/*   Second Slider type */\
+  \
+    /* The switch - the box around the slider */\
+.switch \{\
+  position: relative;\
+  display: inline-block;\
+  width: 60px;\
+  height: 34px;\
+\}\
+\
+/* Hide default HTML checkbox */\
+.switch input \{\
+  opacity: 0;\
+  width: 0;\
+  height: 0;\
+\}\
+\
+/* The slider */\
+.slider.round \{\
+  position: absolute;\
+  cursor: pointer;\
+  top: 0;\
+  left: 0;\
+  right: 0;\
+  bottom: 0;\
+  background-color: #BFF5AD;\
+  -webkit-transition: .4s;\
+  transition: .4s;\
+\}\
+\
+.slider.round:before \{\
+  position: absolute;\
+  content: "";\
+  height: 25px;\
+  width: 25px;\
+  left: 4px;\
+  bottom: 2px;\
+  background-color: rgb(57,57,56);\
+  -webkit-transition: .4s;\
+  transition: .4s;\
+\}\
+\
+input:checked + .slider.round \{\
+  background-color: #BFF5AD;\
+\}\
+\
+input:focus + .slider.round \{\
+  box-shadow: 0 0 1px #2196F3;\
+\}\
+\
+input:checked + .slider.round:before \{\
+  -webkit-transform: translateX(26px);\
+  -ms-transform: translateX(26px);\
+  transform: translateX(26px);\
+\}\
+\
+/* Rounded sliders */\
+.slider.round \{\
+  border-radius: 34px;\
+\}\
+\
+.slider.round:before \{\
+  border-radius: 50%;\
+\}\
+  \
+  #resCosto\{\
+  font-size:35px;\
+  \}\
+  #resAhorro\{\
+  margin-top:-23px;\
+  \}\
+  \
+  \
+  @media only screen and (max-width:650px)\{\
+    .sliders-intro\{\
+    width:100%;\
+    \}\
+    \
+    .prod-intro\{\
+    width:100%;\
+    \}\
+    ..prod-tit label\{\
+    font-size:12px;\
+    \}\
+    .prod-iconumber\{\
+    margin-right:-10px;\
+    \}\
+    .prod-icon\{\
+    width:44px;\
+    \}\
+    .strong-text\{\
+    font-size:12px;\
+    \}\
+  \}\
+  \
+  .consid-div\{\
+  margin:4em 0;\
+  \}\
+  .consid-header\{\
+    border-bottom: 1px solid #04b5c7;\
+    margin-bottom: 13px;\
+    font-size: 1.2em;\
+    font-weight: 500;\
+    color: #04b5c7;\
+  \}\
+  .consid-sub\{\
+      padding-bottom:1em;\
+  \}\
+  \
+  .consid-sub a\{\
+    color:#a5489c;\
+  \
+  \}\
+  .consid-ul\{\
+    list-style: none;\
+  \}\
+\
+  .consid-ul li:before \{\
+    content: '
+\f2 \uc0\u10003 
+\f0 ';\
+    margin: 10px;\
+    color:#04b5c7;\
+  \}\
+\
+  .contagiar-div\{\
+    padding-top:2em;\
+  \}\
+  \
+  .related_header\{\
+    color:#04b5c7 !important;\
+    font-weight:500;\
+    margin:0;\
+    padding-top:2em;\
+  \}\
+  \
+    \
+  .blog_title\{\
+    color:#a446a1 !important;\
+    font-weight:600;\
+    text-decoration:underline;\
+    display:block;\
+    margin-top:4px;\
+    line-height: normal;\
+  \}\
+  \
+  </style>\
+\
+\
+  <script> \
+    \
+  $(window).scroll(function() \{    \
+    var scroll = $(window).scrollTop();\
+    if (scroll >= 700) \{\
+        $(".hero__header").addClass("darkHeader");\
+    \} else \{\
+        $(".hero__header").removeClass("darkHeader");\
+    \}\
+\});\
+  </script>}

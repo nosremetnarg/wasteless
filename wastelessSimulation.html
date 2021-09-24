@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- wasteless simulations -->
+    <div id="simulation-wrapper" class="simulation-wrapper">
+
+      <div class="header-section">
+        <p>Whats your Total Annual Revenue(gross)?</p>
+        
+        <input type="range" min="0" max="5000000000" value="0" step="1" class="slider totalRevenue" id="totalRevenue" name="totalRevenue" 
+        oninput="revenueOutput.value=totalRevenue.value">
+        <span>$</span>
+        <output id="revenueOutput" name="revenueOutput" for="revenueOutput.value"
+        class="revenueOutput">0</output>
+
+        <p>Out of the total revenue, how much each of the following represent and what's their waste %?</p>
+      </div>
+
+        <div class="main-calculator-section">
+
+          <div class="packedMeals">
+            <p>Packed meals / Deli</p>
+            <p class='slider subinformation'>% of total revenue</p>
+            <input type="range" min="0" max="100" value="0" step="1" class="slider packedMeals" id="packedMeals" name="packedMeals" 
+              oninput="packedMealsOutput.value=packedMeals.value">
+
+            <output id="packedMealsOutput" name="packedMealsOutput" for="packedMealsOutput.value"
+            class="packedMealsOutput">0</output><span>%</span>
+
+            <p class='slider subinformation'>Waste %</p>
+            <input type="range" min="0" max="100" value="0" step="1" class="slider packedMeals" id="packedMealsWaste" name="packedMealsWaste" 
+              oninput="packedMealsOutputWaste.value=packedMealsWaste.value">
+            <output id="packedMealsOutputWaste" name="packedMealsOutputWaste" for="packedMealsOutputWaste.value"
+            class="packedMeals">0</output><span>%</span>
+          </div>
+
+          <div class="bakery">
+            <p>Bakery</p>
+            <p class='slider subinformation'>% of total revenue</p>
+            <input type="range" min="0" max="100" value="0" step="1" class="slider bakery" id="bakery" name="bakery" 
+              oninput="bakeryOutput.value=bakery.value">
+
+            <output id="bakeryOutput" name="bakeryOutput" for="bakeryOutput.value"
+            class="bakeryOutput">0</output><span>%</span>
+
+            <p class='slider subinformation'>Waste %</p>
+            <input type="range" min="0" max="100" value="0" step="1" class="slider bakeryWaste" id="bakeryWaste" name="bakeryWaste" 
+              oninput="bakeryOutputWaste.value=bakeryWaste.value">
+            <output id="bakeryOutputWaste" name="bakeryOutputWaste" for="bakeryOutputWaste.value"
+            class="bakeryOutputWaste">0</output><span>%</span>
+          </div>
+
+          <div class="frozenFoods">
+            <p>Frozen Foods</p>
+            <p class='slider subinformation'>% of total revenue</p>
+            <input type="range" min="0" max="100" value="0" step="1" class="slider frozenFood" id="frozenFood" name="frozenFood" 
+              oninput="frozenFoodOutput.value=frozenFood.value">
+
+            <output id="frozenFoodOutput" name="frozenFoodOutput" for="frozenFoodOutput.value"
+            class="frozenFoodOutput">0</output><span>%</span>
+
+            <p class='slider subinformation'>Waste %</p>
+            <input type="range" min="0" max="100" value="0" step="1" class="slider frozenFoodWaste" id="frozenFoodWaste" name="frozenFoodWaste" 
+              oninput="frozenFoodOutputWaste.value=frozenFoodWaste.value">
+            <output id="frozenFoodOutputWaste" name="frozenFoodOutputWaste" for="frozenFoodOutputWaste.value"
+            class="frozenFoodOutputWaste">0</output><span>%</span>
+          </div>
+
+          <div class="">
+            <p>Seafood</p>
+          </div>
+
+          <div class="">
+            <p>Fruits & Vegetables</p>
+          </div>
+
+          <div class="">
+            <p>Dairy</p>
+          </div>
+
+          <div class="">
+            <p>Meat & Poultry</p>
+          </div>
+
+          <div class="">
+            <p>Dry foods and other products</p>
+          </div>
+        
+        </div>
+
+      </div>
+     
+    </div>
+
+    <style>
+      #simulation-wrapper {
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 60vw;
+        margin: 0 auto;
+        padding: 10px;
+        border-radius: 10px;
+      }
+      body {
+        background-color: black;
+        
+      }
+      .header-section { width: 100%; }
+      .slider { width: 75%; }
+      .revenueOutput { color: grey; }
+      
+      .main-calculator-section {
+        text-align: left;  
+        width: 100%;
+      }
+
+      .subinformation { 
+        font-size: 14px;
+        color: grey;
+      }
+
+    </style>
+
+    <script>
+
+    </script>
+  </body>
+</html>

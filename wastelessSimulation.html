@@ -24,7 +24,7 @@
         <div class="main-calculator-section">
 
           <div class="packedMeals grid">
-            <img class="icon milk" src="/Assets/milk.png" alt="">
+            <img class="icon milk" src="/Assets/bread.png" alt="">
             <p>Packed meals / Deli</p>
             <p class='slider subinformation'>% of total revenue</p>
             <input type="range" min="0" max="100" value="0" step="1" class="slider packedMeals" id="packedMeals" name="packedMeals" 
@@ -59,7 +59,7 @@
           </div>
 
           <div class="frozenFoods grid">
-            <img class="icon milk" src="/Assets/milk.png" alt="">
+            <img class="icon milk" src="/Assets/frozenFood.png" alt="">
             <p>Frozen Foods</p>         
             <p class='slider subinformation'>% of total revenue</p>
             <input type="range" min="0" max="100" value="0" step="1" class="slider frozenFood" id="frozenFood" name="frozenFood" 
@@ -76,7 +76,7 @@
           </div>
 
           <div class="seafood grid">
-            <img class="icon milk" src="/Assets/milk.png" alt="">
+            <img class="icon milk" src="/Assets/fish.png" alt="">
             <p>Seafood</p>
             
             <p class='slider subinformation'>% of total revenue</p>
@@ -95,7 +95,7 @@
           </div>
 
           <div class="fruitsAndVegetables grid">
-            <img class="icon milk" src="/Assets/milk.png" alt="">
+            <img class="icon milk" src="/Assets/fruitAndVegetables.png" alt="">
             <p>Fruits & Vegetables</p>
             
             <p class='slider subinformation'>% of total revenue</p>
@@ -133,7 +133,7 @@
           </div>
 
           <div class="meatAndPoultry grid">
-            <img class="icon milk" src="/Assets/milk.png" alt="">
+            <img class="icon milk" src="/Assets/meat.png" alt="">
             <p>Meat & Poultry</p>
             
             <p class='slider subinformation'>% of total revenue</p>
@@ -173,6 +173,14 @@
     <div class="simulatebtn">
       <button>SIMULATE</button>
     </div>
+    <div class="results-container">
+      <div class="discarded-products">
+        <h4>Discarded Products</h4>
+      </div>
+      <div class="generated-garbage">
+        <h4>Generated Garbage</h4>
+      </div>
+    </div>
 
     <style>
       #simulation-wrapper {
@@ -191,15 +199,18 @@
         
       }
       .header-section { width: 100%; }
+      
       .slider { 
         width: 50%; 
         margin: 2px 0px;
       }
+      .totalRevenue { width: 80%; }
       .revenueOutput { color: grey; }
       
       .main-calculator-section {
         text-align: left;  
         width: 100%;
+        
       }
 
       .subinformation { 
@@ -213,7 +224,10 @@
         padding-bottom: 20px; 
       }
 
-      img { float: left; }
+      img { 
+        float: left; 
+        width: 10%; 
+        }
       .icon {  
         padding: 20px 10px 56px 0px;
         }
@@ -243,7 +257,7 @@
 
     </style>
 
-    <script>
+    <script type="text/javascript">
 
     </script>
   </body>

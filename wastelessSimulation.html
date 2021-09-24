@@ -23,7 +23,7 @@
 
         <div class="main-calculator-section">
 
-          <div class="packedMeals">
+          <div class="packedMeals grid">
             <p>Packed meals / Deli</p>
             <p class='slider subinformation'>% of total revenue</p>
             <input type="range" min="0" max="100" value="0" step="1" class="slider packedMeals" id="packedMeals" name="packedMeals" 
@@ -39,7 +39,7 @@
             class="packedMeals">0</output><span>%</span>
           </div>
 
-          <div class="bakery">
+          <div class="bakery grid">
             <p>Bakery</p>
             <p class='slider subinformation'>% of total revenue</p>
             <input type="range" min="0" max="100" value="0" step="1" class="slider bakery" id="bakery" name="bakery" 
@@ -55,7 +55,7 @@
             class="bakeryOutputWaste">0</output><span>%</span>
           </div>
 
-          <div class="frozenFoods">
+          <div class="frozenFoods grid">
             <p>Frozen Foods</p>
             <p class='slider subinformation'>% of total revenue</p>
             <input type="range" min="0" max="100" value="0" step="1" class="slider frozenFood" id="frozenFood" name="frozenFood" 
@@ -71,24 +71,85 @@
             class="frozenFoodOutputWaste">0</output><span>%</span>
           </div>
 
-          <div class="">
+          <div class="seafood grid">
             <p>Seafood</p>
+            <p class='slider subinformation'>% of total revenue</p>
+            <input type="range" min="0" max="100" value="0" step="1" class="slider seafood" id="seafood" name="seafood" 
+              oninput="seafoodOutput.value=seafood.value">
+
+            <output id="seafoodOutput" name="seafoodOutput" for="seafoodOutput.value"
+            class="seafoodOutput">0</output><span>%</span>
+
+            <p class='slider subinformation'>Waste %</p>
+            <input type="range" min="0" max="100" value="0" step="1" class="slider seafoodWaste" id="seafoodWaste" name="seafoodWaste" 
+              oninput="seafoodWasteOutput.value=seafoodWaste.value">
+            <output id="seafoodWasteOutput" name="seafoodWasteOutput" for="seafoodWasteOutput.value"
+            class="seafoodWasteOutput">0</output><span>%</span>
+
           </div>
 
-          <div class="">
+          <div class="fruitsAndVegetables grid">
             <p>Fruits & Vegetables</p>
+            <p class='slider subinformation'>% of total revenue</p>
+            <input type="range" min="0" max="100" value="0" step="1" class="slider fruitAndVegetables" id="fruitAndVegetables" name="fruitAndVegetables" 
+              oninput="fruitAndVegetablesOutput.value=fruitAndVegetables.value">
+
+            <output id="fruitAndVegetablesOutput" name="fruitAndVegetablesOutput" for="fruitAndVegetablesOutput.value"
+            class="fruitAndVegetablesOutput">0</output><span>%</span>
+
+            <p class='slider subinformation'>Waste %</p>
+            <input type="range" min="0" max="100" value="0" step="1" class="slider fruitAndVegetablesWaste" id="fruitAndVegetablesWaste" name="fruitAndVegetablesWaste" 
+              oninput="fruitAndVegetablesWasteOutput.value=fruitAndVegetablesWaste.value">
+            <output id="fruitAndVegetablesWasteOutput" name="fruitAndVegetablesWasteOutput" for="fruitAndVegetablesWasteOutput.value"
+            class="fruitAndVegetablesWasteOutput">0</output><span>%</span>
+
           </div>
 
-          <div class="">
+          <div class="dairy grid">
             <p>Dairy</p>
+            <p class='slider subinformation'>% of total revenue</p>
+            <input type="range" min="0" max="100" value="0" step="1" class="slider dairy" id="dairy" name="dairy" 
+              oninput="dairyOutput.value=dairy.value">
+
+            <output id="dairyOutput" name="dairyOutput" for="dairyOutput.value"
+            class="dairyOutput">0</output><span>%</span>
+
+            <p class='slider subinformation'>Waste %</p>
+            <input type="range" min="0" max="100" value="0" step="1" class="slider dairyWaste" id="dairyWaste" name="dairyWaste" 
+              oninput="dairyWasteOutput.value=dairyWaste.value">
+            <output id="dairyWasteOutput" name="dairyWasteOutput" for="dairyWasteOutput.value"
+            class="dairyWasteOutput">0</output><span>%</span>
+
           </div>
 
-          <div class="">
+          <div class="meatAndPoultry grid">
             <p>Meat & Poultry</p>
+            <p class='slider subinformation'>% of total revenue</p>
+            <input type="range" min="0" max="100" value="0" step="1" class="slider meatAndPoultry" id="meatAndPoultry" name="meatAndPoultry" 
+              oninput="meatAndPoultryOutput.value=meatAndPoultry.value">
+
+            <output id="meatAndPoultryOutput" name="meatAndPoultryOutput" for="meatAndPoultryOutput.value"
+            class="meatAndPoultryOutput">0</output><span>%</span>
+
+            <p class='slider subinformation'>Waste %</p>
+            <input type="range" min="0" max="100" value="0" step="1" class="slider meatAndPoultryWaste" id="meatAndPoultryWaste" name="meatAndPoultryWaste" 
+              oninput="meatAndPoultryWasteOutput.value=meatAndPoultryWaste.value">
+            <output id="meatAndPoultryWasteOutput" name="meatAndPoultryWasteOutput" for="meatAndPoultryWasteOutput.value"
+            class="meatAndPoultryWasteOutput">0</output><span>%</span>
+
           </div>
 
-          <div class="">
+          <div class="dryFood grid">
             <p>Dry foods and other products</p>
+            <p class='slider subinformation'>% of store</p>
+            <input type="range" min="0" max="100" value="0" step="1" class="slider dryFoods" id="dryFoods" name="dryFoods" 
+              oninput="dryFoodsOutput.value=dryFoods.value">
+
+            <output id="dryFoodsOutput" name="dryFoodsOutput" for="dryFoodsOutput.value"
+            class="dryFoodsOutput">0</output><span>%</span>
+
+           
+
           </div>
         
         </div>
@@ -125,6 +186,11 @@
       .subinformation { 
         font-size: 14px;
         color: grey;
+      }
+
+      .grid {
+        width: 50%;
+        float: left;
       }
 
     </style>

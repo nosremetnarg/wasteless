@@ -183,27 +183,51 @@
     <div class="simulatebtn">
       <button onClick="calc()" class="simulateBtn" id="simulateBtn">SIMULATE</button>
     </div>
-    <div class="results-container hide">
-      <div class="discarded-products border-bottom">
-        <h4>Discarded Products</h4>
+    <div class="results-container show">
+      <div class="resultsTitle">
+        <h4>This is what you should expect after implementing Wasteless Store solution:</h4>
+        <div class="resultsBtns">
+          <p class="subinformation">Show results for: </p>
+          <button class="btn months">12 Months</button>
+          <button class="btn years">10 Years</button>
+        </div>
+        
       </div>
-      <div class="generated-garbage border-bottom">
-        <h4>Generated Garbage</h4>
+      
+
+      <div class="chart">
+        <h4>chart placehoder </h4>
        
+      </div>
+      <div class="metric_results_container">
+        <div class="totalEconomicValueContainer metricResult">
+          <h4 class="metricTitle">Total Economic Value</h4>
+          <span class="metric">$</span><p class="metric"></p>
+        </div>
+        <div class="totalEconomicValueContainer metricResult">
+          <h4 class="metricTitle">CO2e Reduced</h4>
+          <span class="metric">$</span><p class="metric"></p>
+        </div>
+        <div class="totalEconomicValueContainer metricResult listItem upsale">
+          <h4 class="metricTitle">Total Revenue Upsale</h4>
+          <span>$</span><p class="upsale metric"></p>
+        </div>
+        <div class="totalEconomicValueContainer metricResult listItem value">
+          <h4 class="metricTitle">Waste Reduction Value</h4>
+          <span>$</span><p class="value metric"></p>
+        </div>
       </div>
 
-      <div class="carbon-footprint border-bottom">
-        <h4>Carbon Footprint</h4>
-       
-      </div>
-
-      <div class="h20Consumption border-bottom">
-        <h4>H<sub>2</sub>0 Consumption</h4>
-       
-      </div>
+      
     </div>
 
     <style>
+
+      @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+      * {
+        font-family: 'Roboto', sans-serif;
+      }
       #simulation-wrapper, .results-container {
         background-color: white;
         display: flex;
@@ -254,20 +278,46 @@
         }
         .invisible { opacity: 0;}
 
-      .simulatebtn button {
-        color: white;
-        background-color: purple;
+      .btn {
         border-radius: 10px;
         border: none;
         padding: 1rem 2rem;
         transition: .5s ease-in-out;
         
       }
+      /* puts btns inline */
+      .resultsBtns {
+        display: flex;
+      }
+
+      .btn:hover { 
+        cursor: pointer; 
+        transform: scale(1.02);
+      }
+      .months {
+        background-color: #492FC4;
+        color: white;
+      }
+      .years {
+        color: #492FC4;
+        background-color: #F5F5F5;
+      }
+
+      .simulatebtn button {
+        color: white;
+        background-color: #492FC4;
+        border-radius: 10px;
+        border: none;
+        padding: 1rem 2rem;
+        transition: .5s ease-in-out;
+        
+      }
+      p.subinformation { padding-right: 20px;}
 
       .simulatebtn button:hover { 
         cursor: pointer; 
-        transform: scale(1.1)
-        }
+        transform: scale(1.1);
+      }
 
       .simulatebtn { 
         width: 70.5vw; 
@@ -295,6 +345,25 @@
       .revenueError {
         display:none;
       }
+
+      /* results container */
+
+      .metric_results_container{ display: flex; }
+      .metricResult { 
+        width: 25%; 
+        color: #929292; 
+      }
+
+      /* bullet points to add later */
+      /* 
+      .listItem:before { 
+        content:"• ";
+      }
+       */
+      
+      .upsale { color: #492FC4; }
+      .value { color: #47D71D; }
+      .metric { color: #404040; }
 
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -336,6 +405,7 @@
 
     // Dry foods
     let dryFoodStore = document.querySelector('#dryFoodsOutput');
+    let dryFoodInputSlider = document.querySelector('#dryFoods');
 
     // simulation button
     let simulateBtn = document.querySelector("#simulateBtn");
@@ -345,25 +415,34 @@
 
 
       function calc() {
-        console.log(parseInt(meatAndPoultryRevenue.innerHTML));
-        console.log(parseInt(meatAndPoultryWaste.innerHTML));
-        totalRevenueArr.push(parseInt(fruitsAndVegetableRevenue.innerHTML), parseInt(packedMealsRevenue.innerHTML))
+        totalRevenueArr = [];
+    // push all % of total revenue into array to get total amount
+    totalRevenueArr.push(parseInt(packedMealsRevenue.innerHTML), 
+          parseInt(frozenFoodRevenue.innerHTML), 
+          parseInt(fruitsAndVegetableRevenue.innerHTML), 
+          parseInt(meatAndPoultryRevenue.innerHTML), 
+          parseInt(bakeryRevenue.innerHTML), 
+          parseInt(seafoodRevenue.innerHTML), 
+          parseInt(dairyRevenue.innerHTML)
+        )
         sumTotalRevenue(totalRevenueArr);
-
+        
 
         $(resultsContainer).toggleClass(['show', 'hide'])
         console.log(totalRevenueArr);
+        console.log(totalRevenueArr.length);
       }
 
       function sumTotalRevenue() {
         let sum = totalRevenueArr.reduce(function(a,b) {
           return a+b;
         },0);
-        console.log(sum);
-        if (sum > 100) {
+        console.log('here is the total sum ' + (100 - sum));
+        if (sum > 100 || sum < 0) {
           revenueError.style.display = "block";
         } else {
-          dryFoodStore.innerHTML = sum;
+          dryFoodStore.innerHTML = 100 - sum;
+          dryFoodInputSlider.value = 100 - sum;
           revenueError.style.display = "none";
         }
         

@@ -28,15 +28,15 @@
             <p>Packed meals / Deli</p>
             <p class='slider subinformation'>% of total revenue</p>
             <input type="range" min="0" max="30" value="8" step="1" class="slider packedMeals" id="packedMeals" name="packedMeals" 
-              oninput="packedMealsOutput.value=packedMeals.value">
+              oninput="packedMealsOutput.value=parseInt(packedMealsOutput.value)=parseInt(packedMeals.value)">
             <output id="packedMealsOutput" name="packedMealsOutput" for="packedMealsOutput.value"
             class="packedMealsOutput">8</output><span>%</span>
 
             <p class='slider subinformation'>Waste %</p>
             <input type="range" min="0" max="100" value="0" step="1" class="slider packedMeals" id="packedMealsWaste" name="packedMealsWaste" 
-              oninput="packedMealsOutputWaste.value=packedMealsWaste.value">
+              oninput="packedMealsOutputWaste.value=(parseInt(packedMealsWaste.value))">
             <output id="packedMealsOutputWaste" name="packedMealsOutputWaste" for="packedMealsOutputWaste.value"
-            class="packedMeals"></output>0<span>%</span>
+            class="packedMeals">0</output><span>%</span>
           </div>
 
           <div class="bakery grid">
@@ -50,11 +50,12 @@
             class="bakeryOutput">6</output><span>%</span>
 
             <p class='slider subinformation'>Waste %</p>
-            <input type="range" min="0" max="30" value="0" step="1" class="slider bakeryWaste" id="bakeryWaste" name="bakeryWaste" 
-              oninput="bakeryWasteOutput.value=bakeryWaste.value">
+            <form action="">
+              <input type="range" min="0" max="100" value="0" step="1" class="slider bakeryWaste" id="bakeryWaste" name="bakeryWaste" 
+              oninput="bakeryWasteOutput.value=(parseInt(bakeryWaste.value))">
             <output id="bakeryWasteOutput" name="bakeryWasteOutput" for="bakeryWasteOutput.value"
             class="bakeryWasteOutput">0</output><span>%</span>
-            
+            </form>
           </div>
 
           <div class="frozenFoods grid">
@@ -68,27 +69,34 @@
             class="frozenFoodOutput">5</output><span>%</span>
 
             <p class='slider subinformation'>Waste %</p>
-            <input type="range" min="0" max="100" value="0" step="1" class="slider frozenFoodWaste" id="frozenFoodWaste" name="frozenFoodWaste" 
+            <form action="">
+              <input type="range" min="0" max="100" value="0" step="1" class="slider frozenFoodWaste" id="frozenFoodWaste" name="frozenFoodWaste" 
               oninput="frozenFoodOutputWaste.value=frozenFoodWaste.value">
             <output id="frozenFoodOutputWaste" name="frozenFoodOutputWaste" for="frozenFoodOutputWaste.value"
             class="frozenFoodOutputWaste">0</output><span>%</span>
+            </form>
+            
           </div>
 
           <div class="seafood grid">
             <img class="icon milk" src="/Assets/fish.png" alt="">
             <p>Seafood</p>
-            
+            <!-- seafoodOutput seafoodWasteOutput -->
             <p class='slider subinformation'>% of total revenue</p>
             <input type="range" min="0" max="30" value="1" step="1" class="slider seafood" id="seafood" name="seafood" 
-              oninput="seafoodOutput.value=seafood.value">
+              oninput="seafoodOutput.value=seafood.value"/>
             <output id="seafoodOutput" name="seafoodOutput" for="seafoodOutput.value"
             class="seafoodOutput">1</output><span>%</span>
 
             <p class='slider subinformation'>Waste %</p>
-            <input type="range" min="0" max="100" value="0" step="1" class="slider seafoodWaste" id="seafoodWaste" name="seafoodWaste" 
-              oninput="seafoodWasteOutput.value=seafoodWaste.value">
-            <output id="seafoodWasteOutput" name="seafoodWasteOutput" for="seafoodWasteOutput.value"
-            class="seafoodWasteOutput">0</output><span>%</span>
+            <form action="">
+              <input type="range" min="0" max="100" value="0" step="1" class="slider seafoodWaste" id="seafoodWaste" name="seafoodWaste" 
+              oninput="seafoodWasteOutput.value=seafoodWaste.value"/>
+            <output id="seafoodWasteOutput" name="seafoodWasteOutput" for="seafoodWasteOutput"
+            class="seafoodWasteOutput" >0</output><span>%</span>
+
+            </form>
+            
 
           </div>
 
@@ -103,10 +111,13 @@
             class="fruitAndVegetablesOutput">14</output><span>%</span>
 
             <p class='slider subinformation'>Waste %</p>
-            <input type="range" min="0" max="100" value="14" step="1" class="slider fruitAndVegetablesWaste" id="fruitAndVegetablesWaste" name="fruitAndVegetablesWaste" 
+            <form action="">
+              <input type="range" min="0" max="100" value="0" step="1" class="slider fruitAndVegetablesWaste" id="fruitAndVegetablesWaste" name="fruitAndVegetablesWaste" 
               oninput="fruitAndVegetablesWasteOutput.value=fruitAndVegetablesWaste.value">
             <output id="fruitAndVegetablesWasteOutput" name="fruitAndVegetablesWasteOutput" for="fruitAndVegetablesWasteOutput.value"
-            class="fruitAndVegetablesWasteOutput">14</output><span>%</span>
+            class="fruitAndVegetablesWasteOutput">0</output><span>%</span>
+            </form>
+            
 
           </div>
 
@@ -122,11 +133,12 @@
             class="dairyOutput">10</output><span>%</span>
 
             <p class='slider subinformation'>Waste %</p>
-            <input type="range" min="0" max="100" value="0" step="1" class="slider dairyWaste" id="dairyWaste" name="dairyWaste" 
+            <form action="">
+              <input type="range" min="0" max="100" value="0" step="1" class="slider dairyWaste" id="dairyWaste" name="dairyWaste" 
               oninput="dairyWasteOutput.value=dairyWaste.value">
             <output id="dairyWasteOutput" name="dairyWasteOutput" for="dairyWasteOutput.value"
             class="dairyWasteOutput">0</output><span>%</span>
-
+            </form>
           </div>
 
           <div class="meatAndPoultry grid">
@@ -140,11 +152,13 @@
             class="meatAndPoultryOutput">10</output><span>%</span>
 
             <p class='slider subinformation'>Waste %</p>
-            <input type="range" min="0" max="100" value="0" step="1" class="slider meatAndPoultryWaste" id="meatAndPoultryWaste" name="meatAndPoultryWaste" 
+
+            <form action="">
+              <input type="range" min="0" max="100" value="0" step="1" class="slider meatAndPoultryWaste" id="meatAndPoultryWaste" name="meatAndPoultryWaste" 
               oninput="meatAndPoultryWasteOutput.value=meatAndPoultryWaste.value">
             <output id="meatAndPoultryWasteOutput" name="meatAndPoultryWasteOutput" for="meatAndPoultryWasteOutput.value"
             class="meatAndPoultryWasteOutput">0</output><span>%</span>
-
+            </form>
           </div>
 
           <div class="dryFood grid">
@@ -157,7 +171,7 @@
             <output id="dryFoodsOutput" name="dryFoodsOutput" for="dryFoodsOutput.value"
             class="dryFoodsOutput">0</output><span>%</span>
 
-           
+          <p class="revenueError">% of total revenue cannot exceed 100%</p>
 
           </div>
         
@@ -167,7 +181,7 @@
      
     </div>
     <div class="simulatebtn">
-      <button onClick="calc()">SIMULATE</button>
+      <button onClick="calc()" class="simulateBtn" id="simulateBtn">SIMULATE</button>
     </div>
     <div class="results-container hide">
       <div class="discarded-products border-bottom">
@@ -278,7 +292,9 @@
       #dryFoods {
         pointer-events: none;
       }
-    
+      .revenueError {
+        display:none;
+      }
 
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -321,12 +337,19 @@
     // Dry foods
     let dryFoodStore = document.querySelector('#dryFoodsOutput');
 
+    // simulation button
+    let simulateBtn = document.querySelector("#simulateBtn");
+
+    // Revenue Error Message
+    let revenueError = document.querySelector('.revenueError')
+
 
       function calc() {
         console.log(parseInt(meatAndPoultryRevenue.innerHTML));
         console.log(parseInt(meatAndPoultryWaste.innerHTML));
         totalRevenueArr.push(parseInt(fruitsAndVegetableRevenue.innerHTML), parseInt(packedMealsRevenue.innerHTML))
         sumTotalRevenue(totalRevenueArr);
+
 
         $(resultsContainer).toggleClass(['show', 'hide'])
         console.log(totalRevenueArr);
@@ -338,9 +361,10 @@
         },0);
         console.log(sum);
         if (sum > 100) {
-
+          revenueError.style.display = "block";
         } else {
           dryFoodStore.innerHTML = sum;
+          revenueError.style.display = "none";
         }
         
 

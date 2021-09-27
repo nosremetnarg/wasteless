@@ -11,12 +11,12 @@
 
       <div class="header-section">
         <p>Whats your Total Annual Revenue(gross)?</p>
-        
-        <input type="range" min="0" max="5000000000" value="0" step="1" class="slider totalRevenue" id="totalRevenue" name="totalRevenue" 
-        oninput="revenueOutput.value=totalRevenue.value">
+        <!-- change to a number input -->
         <span>$</span>
-        <output id="revenueOutput" name="revenueOutput" for="revenueOutput.value"
-        class="revenueOutput">0</output>
+        <label for="totalRevenue"></label>
+        <input type="number" id="totalRevenue" name="totalRevenue" min="1" max="5000000000">
+        <input type="submit">
+        
 
         <p>Out of the total revenue, how much each of the following represent and what's their waste %?</p>
       </div>
@@ -24,12 +24,11 @@
         <div class="main-calculator-section">
 
           <div class="packedMeals grid">
-            <img class="icon milk" src="/wasteless/Assets/bread.png" alt="">
+            <img class="icon milk" src="/Assets/bread.png" alt="">
             <p>Packed meals / Deli</p>
             <p class='slider subinformation'>% of total revenue</p>
-            <input type="range" min="0" max="100" value="0" step="1" class="slider packedMeals" id="packedMeals" name="packedMeals" 
+            <input type="range" min="0" max="30" value="0" step="1" class="slider packedMeals" id="packedMeals" name="packedMeals" 
               oninput="packedMealsOutput.value=packedMeals.value">
-
             <output id="packedMealsOutput" name="packedMealsOutput" for="packedMealsOutput.value"
             class="packedMealsOutput">0</output><span>%</span>
 
@@ -41,13 +40,12 @@
           </div>
 
           <div class="bakery grid">
-            <img class="icon milk" src="/wasteless/Assets/milk.png" alt="">
+            <img class="icon milk" src="/Assets/milk.png" alt="">
             <p>Bakery</p>
             
             <p class='slider subinformation'>% of total revenue</p>
-            <input type="range" min="0" max="100" value="0" step="1" class="slider bakery" id="bakery" name="bakery" 
+            <input type="range" min="0" max="30" value="0" step="1" class="slider bakery" id="bakery" name="bakery" 
               oninput="bakeryOutput.value=bakery.value">
-
             <output id="bakeryOutput" name="bakeryOutput" for="bakeryOutput.value"
             class="bakeryOutput">0</output><span>%</span>
 
@@ -55,14 +53,14 @@
             <input type="range" min="0" max="100" value="0" step="1" class="slider bakeryWaste" id="bakeryWaste" name="bakeryWaste" 
               oninput="bakeryOutputWaste.value=bakeryWaste.value">
             <output id="bakeryOutputWaste" name="bakeryOutputWaste" for="bakeryOutputWaste.value"
-            class="bakeryOutputWaste">0</output><span>%</span>
+            class="bakeryWaste">0</output><span>%</span>
           </div>
 
           <div class="frozenFoods grid">
-            <img class="icon milk" src="/wasteless/Assets/frozenFood.png" alt="">
+            <img class="icon milk" src="/Assets/frozenFood.png" alt="">
             <p>Frozen Foods</p>         
             <p class='slider subinformation'>% of total revenue</p>
-            <input type="range" min="0" max="100" value="0" step="1" class="slider frozenFood" id="frozenFood" name="frozenFood" 
+            <input type="range" min="0" max="30" value="0" step="1" class="slider frozenFood" id="frozenFood" name="frozenFood" 
               oninput="frozenFoodOutput.value=frozenFood.value">
 
             <output id="frozenFoodOutput" name="frozenFoodOutput" for="frozenFoodOutput.value"
@@ -76,13 +74,12 @@
           </div>
 
           <div class="seafood grid">
-            <img class="icon milk" src="/wasteless/Assets/fish.png" alt="">
+            <img class="icon milk" src="/Assets/fish.png" alt="">
             <p>Seafood</p>
             
             <p class='slider subinformation'>% of total revenue</p>
-            <input type="range" min="0" max="100" value="0" step="1" class="slider seafood" id="seafood" name="seafood" 
+            <input type="range" min="0" max="30" value="0" step="1" class="slider seafood" id="seafood" name="seafood" 
               oninput="seafoodOutput.value=seafood.value">
-
             <output id="seafoodOutput" name="seafoodOutput" for="seafoodOutput.value"
             class="seafoodOutput">0</output><span>%</span>
 
@@ -95,13 +92,12 @@
           </div>
 
           <div class="fruitsAndVegetables grid">
-            <img class="icon milk" src="/wasteless/Assets/fruitAndVegetables.png" alt="">
+            <img class="icon milk" src="/Assets/fruitAndVegetables.png" alt="">
             <p>Fruits & Vegetables</p>
             
             <p class='slider subinformation'>% of total revenue</p>
-            <input type="range" min="0" max="100" value="0" step="1" class="slider fruitAndVegetables" id="fruitAndVegetables" name="fruitAndVegetables" 
+            <input type="range" min="0" max="30" value="0" step="1" class="slider fruitAndVegetables" id="fruitAndVegetables" name="fruitAndVegetables" 
               oninput="fruitAndVegetablesOutput.value=fruitAndVegetables.value">
-
             <output id="fruitAndVegetablesOutput" name="fruitAndVegetablesOutput" for="fruitAndVegetablesOutput.value"
             class="fruitAndVegetablesOutput">0</output><span>%</span>
 
@@ -114,11 +110,11 @@
           </div>
 
           <div class="dairy grid">
-            <img class="icon milk" src="/wasteless/Assets/milk.png" alt="">
+            <img class="icon milk" src="/Assets/milk.png" alt="">
             <p>Dairy</p>
             
             <p class='slider subinformation'>% of total revenue</p>
-            <input type="range" min="0" max="100" value="0" step="1" class="slider dairy" id="dairy" name="dairy" 
+            <input type="range" min="0" max="30" value="0" step="1" class="slider dairy" id="dairy" name="dairy" 
               oninput="dairyOutput.value=dairy.value">
 
             <output id="dairyOutput" name="dairyOutput" for="dairyOutput.value"
@@ -133,13 +129,12 @@
           </div>
 
           <div class="meatAndPoultry grid">
-            <img class="icon milk" src="/wasteless/Assets/meat.png" alt="">
+            <img class="icon milk" src="/Assets/meat.png" alt="">
             <p>Meat & Poultry</p>
             
             <p class='slider subinformation'>% of total revenue</p>
-            <input type="range" min="0" max="100" value="0" step="1" class="slider meatAndPoultry" id="meatAndPoultry" name="meatAndPoultry" 
+            <input type="range" min="0" max="30" value="0" step="1" class="slider meatAndPoultry" id="meatAndPoultry" name="meatAndPoultry" 
               oninput="meatAndPoultryOutput.value=meatAndPoultry.value">
-
             <output id="meatAndPoultryOutput" name="meatAndPoultryOutput" for="meatAndPoultryOutput.value"
             class="meatAndPoultryOutput">0</output><span>%</span>
 
@@ -152,7 +147,7 @@
           </div>
 
           <div class="dryFood grid">
-            <img class="icon milk invisible" src="/wasteless/Assets/milk.png" alt="">
+            <img class="icon milk invisible" src="/Assets/milk.png" alt="">
             <p>Dry foods and other products</p>
             <p class='slider subinformation'>% of store</p>
             <input type="range" min="0" max="100" value="0" step="1" class="slider dryFoods" id="dryFoods" name="dryFoods" 
@@ -171,15 +166,25 @@
      
     </div>
     <div class="simulatebtn">
-      <button>SIMULATE</button>
+      <button onClick="calc()">SIMULATE</button>
     </div>
-    <div class="results-container">
-      <div class="discarded-products">
+    <div class="results-container hide">
+      <div class="discarded-products border-bottom">
         <h4>Discarded Products</h4>
       </div>
-      <div class="generated-garbage">
+      <div class="generated-garbage border-bottom">
         <h4>Generated Garbage</h4>
-        cheese
+       
+      </div>
+
+      <div class="carbon-footprint border-bottom">
+        <h4>Carbon Footprint</h4>
+       
+      </div>
+
+      <div class="h20Consumption border-bottom">
+        <h4>H<sub>2</sub>0 Consumption</h4>
+       
       </div>
     </div>
 
@@ -240,9 +245,14 @@
         border-radius: 10px;
         border: none;
         padding: 1rem 2rem;
-        
+        transition: .5s ease-in-out;
         
       }
+
+      .simulatebtn button:hover { 
+        cursor: pointer; 
+        transform: scale(1.1)
+        }
 
       .simulatebtn { 
         width: 70.5vw; 
@@ -255,11 +265,65 @@
         padding-right: 0;
         
       }
+      .border-bottom {
+        border-bottom: 1px solid black;
+      }
+      .hide { display: none; }
+      .show { display: block; }
+
+    
 
     </style>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript">
 
+    let resultsContainer = document.querySelector('.results-container');
+
+    // Get numbers from sliders
+    // total revenue output
+    let totalAnnualRevenue = document.querySelector('#revenueOutput');
+    // packed meals and deli number
+    let packedMealsRevenue = document.getElementById('packedMealsOutput');
+    let packedMealWaste = document.querySelector('#packedMealsOutputWaste');
+
+    // frozen foods
+    let frozenFoodRevenue = document.querySelector('#frozenFoodOutput');
+    let frozenFoodWaste = document.querySelector('#frozenFoodOutputWaste');
+
+    // fruits & vegetables
+    let fruitsAndVegetableRevenue = document.querySelector('#fruitAndVegetablesOutput');
+    let fruitsAndVegetableWaste = document.querySelector('#fruitAndVegetablesWasteOutput');
+
+    // Meat & Poultry
+    let meatAndPoultryRevenue = document.querySelector('#meatAndPoultryOutput');
+    let meatAndPoultryWaste = document.querySelector('#meatAndPoultryWasteOutput');
+
+    // Bakery
+    let bakeryRevenue = document.querySelector('#bakeryOutput');
+    let bakeryWaste = document.querySelector('#bakeryOutputWaste');
+
+    // Seafood
+    let seafoodRevenue = document.querySelector('#seafoodOutput');
+    let seafoodWaste = document.querySelector('#seafoodWasteOutput');
+
+    // Dairy
+    let dairyRevenue = document.querySelector('#dairyOutput');
+    let dairyWaste = document.querySelector('#dairyWasteOutput');
+
+    // Dry foods
+    let dryFoodStore = document.querySelector('#dryFoodsOutput');
+
+      function calc() {
+        console.log(meatAndPoultryRevenue.innerHTML);
+        console.log(meatAndPoultryWaste.innerHTML);
+        
+
+
+        $(resultsContainer).toggleClass(['show', 'hide'])
+
+      }
+
     </script>
+    
   </body>
 </html>

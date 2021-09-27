@@ -27,16 +27,16 @@
             <img class="icon milk" src="/Assets/bread.png" alt="">
             <p>Packed meals / Deli</p>
             <p class='slider subinformation'>% of total revenue</p>
-            <input type="range" min="0" max="30" value="0" step="1" class="slider packedMeals" id="packedMeals" name="packedMeals" 
+            <input type="range" min="0" max="30" value="8" step="1" class="slider packedMeals" id="packedMeals" name="packedMeals" 
               oninput="packedMealsOutput.value=packedMeals.value">
             <output id="packedMealsOutput" name="packedMealsOutput" for="packedMealsOutput.value"
-            class="packedMealsOutput">0</output><span>%</span>
+            class="packedMealsOutput">8</output><span>%</span>
 
             <p class='slider subinformation'>Waste %</p>
             <input type="range" min="0" max="100" value="0" step="1" class="slider packedMeals" id="packedMealsWaste" name="packedMealsWaste" 
               oninput="packedMealsOutputWaste.value=packedMealsWaste.value">
             <output id="packedMealsOutputWaste" name="packedMealsOutputWaste" for="packedMealsOutputWaste.value"
-            class="packedMeals">0</output><span>%</span>
+            class="packedMeals"></output>0<span>%</span>
           </div>
 
           <div class="bakery grid">
@@ -44,27 +44,28 @@
             <p>Bakery</p>
             
             <p class='slider subinformation'>% of total revenue</p>
-            <input type="range" min="0" max="30" value="0" step="1" class="slider bakery" id="bakery" name="bakery" 
+            <input type="range" min="0" max="30" value="6" step="1" class="slider bakery" id="bakery" name="bakery" 
               oninput="bakeryOutput.value=bakery.value">
             <output id="bakeryOutput" name="bakeryOutput" for="bakeryOutput.value"
-            class="bakeryOutput">0</output><span>%</span>
+            class="bakeryOutput">6</output><span>%</span>
 
             <p class='slider subinformation'>Waste %</p>
-            <input type="range" min="0" max="100" value="0" step="1" class="slider bakeryWaste" id="bakeryWaste" name="bakeryWaste" 
-              oninput="bakeryOutputWaste.value=bakeryWaste.value">
-            <output id="bakeryOutputWaste" name="bakeryOutputWaste" for="bakeryOutputWaste.value"
-            class="bakeryWaste">0</output><span>%</span>
+            <input type="range" min="0" max="30" value="0" step="1" class="slider bakeryWaste" id="bakeryWaste" name="bakeryWaste" 
+              oninput="bakeryWasteOutput.value=bakeryWaste.value">
+            <output id="bakeryWasteOutput" name="bakeryWasteOutput" for="bakeryWasteOutput.value"
+            class="bakeryWasteOutput">0</output><span>%</span>
+            
           </div>
 
           <div class="frozenFoods grid">
             <img class="icon milk" src="/Assets/frozenFood.png" alt="">
             <p>Frozen Foods</p>         
             <p class='slider subinformation'>% of total revenue</p>
-            <input type="range" min="0" max="30" value="0" step="1" class="slider frozenFood" id="frozenFood" name="frozenFood" 
+            <input type="range" min="0" max="30" value="5" step="1" class="slider frozenFood" id="frozenFood" name="frozenFood" 
               oninput="frozenFoodOutput.value=frozenFood.value">
 
             <output id="frozenFoodOutput" name="frozenFoodOutput" for="frozenFoodOutput.value"
-            class="frozenFoodOutput">0</output><span>%</span>
+            class="frozenFoodOutput">5</output><span>%</span>
 
             <p class='slider subinformation'>Waste %</p>
             <input type="range" min="0" max="100" value="0" step="1" class="slider frozenFoodWaste" id="frozenFoodWaste" name="frozenFoodWaste" 
@@ -78,10 +79,10 @@
             <p>Seafood</p>
             
             <p class='slider subinformation'>% of total revenue</p>
-            <input type="range" min="0" max="30" value="0" step="1" class="slider seafood" id="seafood" name="seafood" 
+            <input type="range" min="0" max="30" value="1" step="1" class="slider seafood" id="seafood" name="seafood" 
               oninput="seafoodOutput.value=seafood.value">
             <output id="seafoodOutput" name="seafoodOutput" for="seafoodOutput.value"
-            class="seafoodOutput">0</output><span>%</span>
+            class="seafoodOutput">1</output><span>%</span>
 
             <p class='slider subinformation'>Waste %</p>
             <input type="range" min="0" max="100" value="0" step="1" class="slider seafoodWaste" id="seafoodWaste" name="seafoodWaste" 
@@ -96,16 +97,16 @@
             <p>Fruits & Vegetables</p>
             
             <p class='slider subinformation'>% of total revenue</p>
-            <input type="range" min="0" max="30" value="0" step="1" class="slider fruitAndVegetables" id="fruitAndVegetables" name="fruitAndVegetables" 
+            <input type="range" min="0" max="30" value="14" step="1" class="slider fruitAndVegetables" id="fruitAndVegetables" name="fruitAndVegetables" 
               oninput="fruitAndVegetablesOutput.value=fruitAndVegetables.value">
             <output id="fruitAndVegetablesOutput" name="fruitAndVegetablesOutput" for="fruitAndVegetablesOutput.value"
-            class="fruitAndVegetablesOutput">0</output><span>%</span>
+            class="fruitAndVegetablesOutput">14</output><span>%</span>
 
             <p class='slider subinformation'>Waste %</p>
-            <input type="range" min="0" max="100" value="0" step="1" class="slider fruitAndVegetablesWaste" id="fruitAndVegetablesWaste" name="fruitAndVegetablesWaste" 
+            <input type="range" min="0" max="100" value="14" step="1" class="slider fruitAndVegetablesWaste" id="fruitAndVegetablesWaste" name="fruitAndVegetablesWaste" 
               oninput="fruitAndVegetablesWasteOutput.value=fruitAndVegetablesWaste.value">
             <output id="fruitAndVegetablesWasteOutput" name="fruitAndVegetablesWasteOutput" for="fruitAndVegetablesWasteOutput.value"
-            class="fruitAndVegetablesWasteOutput">0</output><span>%</span>
+            class="fruitAndVegetablesWasteOutput">14</output><span>%</span>
 
           </div>
 
@@ -114,11 +115,11 @@
             <p>Dairy</p>
             
             <p class='slider subinformation'>% of total revenue</p>
-            <input type="range" min="0" max="30" value="0" step="1" class="slider dairy" id="dairy" name="dairy" 
+            <input type="range" min="0" max="30" value="10" step="1" class="slider dairy" id="dairy" name="dairy" 
               oninput="dairyOutput.value=dairy.value">
 
             <output id="dairyOutput" name="dairyOutput" for="dairyOutput.value"
-            class="dairyOutput">0</output><span>%</span>
+            class="dairyOutput">10</output><span>%</span>
 
             <p class='slider subinformation'>Waste %</p>
             <input type="range" min="0" max="100" value="0" step="1" class="slider dairyWaste" id="dairyWaste" name="dairyWaste" 
@@ -133,10 +134,10 @@
             <p>Meat & Poultry</p>
             
             <p class='slider subinformation'>% of total revenue</p>
-            <input type="range" min="0" max="30" value="0" step="1" class="slider meatAndPoultry" id="meatAndPoultry" name="meatAndPoultry" 
+            <input type="range" min="0" max="30" value="10" step="1" class="slider meatAndPoultry" id="meatAndPoultry" name="meatAndPoultry" 
               oninput="meatAndPoultryOutput.value=meatAndPoultry.value">
             <output id="meatAndPoultryOutput" name="meatAndPoultryOutput" for="meatAndPoultryOutput.value"
-            class="meatAndPoultryOutput">0</output><span>%</span>
+            class="meatAndPoultryOutput">10</output><span>%</span>
 
             <p class='slider subinformation'>Waste %</p>
             <input type="range" min="0" max="100" value="0" step="1" class="slider meatAndPoultryWaste" id="meatAndPoultryWaste" name="meatAndPoultryWaste" 
@@ -270,7 +271,13 @@
       }
       .hide { display: none; }
       .show { display: block; }
-
+      input {
+        cursor: pointer;
+      }
+      /* disable user from moving slider */
+      #dryFoods {
+        pointer-events: none;
+      }
     
 
     </style>
@@ -278,6 +285,7 @@
     <script type="text/javascript">
 
     let resultsContainer = document.querySelector('.results-container');
+    let totalRevenueArr = []; 
 
     // Get numbers from sliders
     // total revenue output
@@ -313,17 +321,32 @@
     // Dry foods
     let dryFoodStore = document.querySelector('#dryFoodsOutput');
 
-      function calc() {
-        console.log(meatAndPoultryRevenue.innerHTML);
-        console.log(meatAndPoultryWaste.innerHTML);
-        
 
+      function calc() {
+        console.log(parseInt(meatAndPoultryRevenue.innerHTML));
+        console.log(parseInt(meatAndPoultryWaste.innerHTML));
+        totalRevenueArr.push(parseInt(fruitsAndVegetableRevenue.innerHTML), parseInt(packedMealsRevenue.innerHTML))
+        sumTotalRevenue(totalRevenueArr);
 
         $(resultsContainer).toggleClass(['show', 'hide'])
+        console.log(totalRevenueArr);
+      }
+
+      function sumTotalRevenue() {
+        let sum = totalRevenueArr.reduce(function(a,b) {
+          return a+b;
+        },0);
+        console.log(sum);
+        if (sum > 100) {
+
+        } else {
+          dryFoodStore.innerHTML = sum;
+        }
+        
 
       }
 
+
     </script>
-    
   </body>
 </html>

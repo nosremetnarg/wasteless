@@ -8,229 +8,438 @@
   <body>
     <!-- wasteless simulations -->
     <div id="simulation-wrapper" class="simulation-wrapper">
-
       <div class="header-section">
         <p>Whats your Total Annual Revenue(gross)?</p>
         <!-- change to a number input -->
         <span>$</span>
         <label for="totalRevenue"></label>
-        <input type="number" id="totalRevenue" name="totalRevenue" min="1" max="5000000000">
-        <input type="submit" id="submit">
-        
+        <input
+          type="number"
+          id="totalRevenue"
+          name="totalRevenue"
+          min="1"
+          max="5000000000"
+        />
+        <input type="submit" id="submit" />
 
-        <p>Out of the total revenue, how much each of the following represent and what's their waste %?</p>
+        <p>
+          Out of the total revenue, how much each of the following represent and
+          what's their waste %?
+        </p>
       </div>
 
-        <div class="main-calculator-section">
+      <div class="main-calculator-section">
+        <div class="packedMeals grid">
+          <img class="icon" src="/Assets/bread.png" alt="" />
+          <p>Packed meals / Deli</p>
+          <p class="slider subinformation">% of total revenue</p>
+          <input
+            type="range"
+            min="0"
+            max="30"
+            value="8"
+            step="1"
+            class="slider packedMeals"
+            id="packedMeals"
+            name="packedMeals"
+            oninput="packedMealsOutput.value=parseInt(packedMeals.value)"
+          />
+          <output
+            id="packedMealsOutput"
+            name="packedMealsOutput"
+            for="packedMealsOutput.value"
+            class="packedMealsOutput"
+            >8</output
+          ><span>%</span>
 
-          <div class="packedMeals grid">
-            <img class="icon " src="/Assets/bread.png" alt="">
-            <p>Packed meals / Deli</p>
-            <p class='slider subinformation'>% of total revenue</p>
-            <input type="range" min="0" max="30" value="8" step="1" class="slider packedMeals" id="packedMeals" name="packedMeals" 
-              oninput="packedMealsOutput.value=parseInt(packedMeals.value)">
-            <output id="packedMealsOutput" name="packedMealsOutput" for="packedMealsOutput.value"
-            class="packedMealsOutput">8</output><span>%</span>
-
-            <p class='slider subinformation'>Waste %</p>
-            <form action="">
-              <input type="range" min="0" max="100" value="10" step="1" class="slider packedMeals" id="packedMealsWaste" name="packedMealsWaste" 
-              oninput="packedMealsOutputWaste.value=(parseInt(packedMealsWaste.value))">
-            <output id="packedMealsOutputWaste" name="packedMealsOutputWaste" for="packedMealsOutputWaste.value"
-            class="packedMeals">10</output><span>%</span>
-            </form>    
-          </div>
-
-          <div class="bakery grid">
-            <img class="icon milk" src="/Assets/milk.png" alt="">
-            <p>Bakery</p>
-            
-            <p class='slider subinformation'>% of total revenue</p>
-            <input type="range" min="0" max="30" value="6" step="1" class="slider bakery" id="bakery" name="bakery" 
-              oninput="bakeryOutput.value=bakery.value">
-            <output id="bakeryOutput" name="bakeryOutput" for="bakeryOutput.value"
-            class="bakeryOutput">6</output><span>%</span>
-
-            <p class='slider subinformation'>Waste %</p>
-            <form action="">
-              <input type="range" min="0" max="100" value="15" step="1" class="slider bakeryWaste" id="bakeryWaste" name="bakeryWaste" 
-              oninput="bakeryWasteOutput.value=(parseInt(bakeryWaste.value))">
-            <output id="bakeryWasteOutput" name="bakeryWasteOutput" for="bakeryWasteOutput.value"
-            class="bakeryWasteOutput">15</output><span>%</span>
-            </form>
-          </div>
-
-          <div class="frozenFoods grid">
-            <img class="icon milk" src="/Assets/frozenFood.png" alt="">
-            <p>Frozen Foods</p>         
-            <p class='slider subinformation'>% of total revenue</p>
-            <input type="range" min="0" max="30" value="5" step="1" class="slider frozenFood" id="frozenFood" name="frozenFood" 
-              oninput="frozenFoodOutput.value=frozenFood.value">
-
-            <output id="frozenFoodOutput" name="frozenFoodOutput" for="frozenFoodOutput.value"
-            class="frozenFoodOutput">5</output><span>%</span>
-
-            <p class='slider subinformation'>Waste %</p>
-            <form action="">
-              <input type="range" min="0" max="100" value="1" step="1" class="slider frozenFoodWaste" id="frozenFoodWaste" name="frozenFoodWaste" 
-              oninput="frozenFoodOutputWaste.value=frozenFoodWaste.value">
-            <output id="frozenFoodOutputWaste" name="frozenFoodOutputWaste" for="frozenFoodOutputWaste.value"
-            class="frozenFoodOutputWaste">1</output><span>%</span>
-            </form>
-            
-          </div>
-
-          <div class="seafood grid">
-            <img class="icon milk" src="/Assets/fish.png" alt="">
-            <p>Seafood</p>
-            <!-- seafoodOutput seafoodWasteOutput -->
-            <p class='slider subinformation'>% of total revenue</p>
-            <input type="range" min="0" max="30" value="1" step="1" class="slider seafood" id="seafood" name="seafood" 
-              oninput="seafoodOutput.value=seafood.value"/>
-            <output id="seafoodOutput" name="seafoodOutput" for="seafoodOutput.value"
-            class="seafoodOutput">1</output><span>%</span>
-
-            <p class='slider subinformation'>Waste %</p>
-            <form action="">
-              <input type="range" min="0" max="100" value="12" step="1" class="slider seafoodWaste" id="seafoodWaste" name="seafoodWaste" 
-              oninput="seafoodWasteOutput.value=seafoodWaste.value"/>
-            <output id="seafoodWasteOutput" name="seafoodWasteOutput" for="seafoodWasteOutput"
-            class="seafoodWasteOutput" >12</output><span>%</span>
-
-            </form>
-            
-
-          </div>
-
-          <div class="fruitsAndVegetables grid">
-            <img class="icon milk" src="/Assets/fruitAndVegetables.png" alt="">
-            <p>Fruits & Vegetables</p>
-            
-            <p class='slider subinformation'>% of total revenue</p>
-            <input type="range" min="0" max="30" value="14" step="1" class="slider fruitAndVegetables" id="fruitAndVegetables" name="fruitAndVegetables" 
-              oninput="fruitAndVegetablesOutput.value=fruitAndVegetables.value">
-            <output id="fruitAndVegetablesOutput" name="fruitAndVegetablesOutput" for="fruitAndVegetablesOutput.value"
-            class="fruitAndVegetablesOutput">14</output><span>%</span>
-
-            <p class='slider subinformation'>Waste %</p>
-            <form action="">
-              <input type="range" min="0" max="100" value="14" step="1" class="slider fruitAndVegetablesWaste" id="fruitAndVegetablesWaste" name="fruitAndVegetablesWaste" 
-              oninput="fruitAndVegetablesWasteOutput.value=fruitAndVegetablesWaste.value">
-            <output id="fruitAndVegetablesWasteOutput" name="fruitAndVegetablesWasteOutput" for="fruitAndVegetablesWasteOutput.value"
-            class="fruitAndVegetablesWasteOutput">14</output><span>%</span>
-            </form>
-            
-
-          </div>
-
-          <div class="dairy grid">
-            <img class="icon milk" src="/Assets/milk.png" alt="">
-            <p>Dairy</p>
-            
-            <p class='slider subinformation'>% of total revenue</p>
-            <input type="range" min="0" max="30" value="10" step="1" class="slider dairy" id="dairy" name="dairy" 
-              oninput="dairyOutput.value=dairy.value">
-
-            <output id="dairyOutput" name="dairyOutput" for="dairyOutput.value"
-            class="dairyOutput">10</output><span>%</span>
-
-            <p class='slider subinformation'>Waste %</p>
-            <form action="">
-              <input type="range" min="0" max="100" value="5" step="1" class="slider dairyWaste" id="dairyWaste" name="dairyWaste" 
-              oninput="dairyWasteOutput.value=dairyWaste.value">
-            <output id="dairyWasteOutput" name="dairyWasteOutput" for="dairyWasteOutput.value"
-            class="dairyWasteOutput">5</output><span>%</span>
-            </form>
-          </div>
-
-          <div class="meatAndPoultry grid">
-            <img class="icon milk" src="/Assets/meat.png" alt="">
-            <p>Meat & Poultry</p>
-            
-            <p class='slider subinformation'>% of total revenue</p>
-            <input type="range" min="0" max="30" value="10" step="1" class="slider meatAndPoultry" id="meatAndPoultry" name="meatAndPoultry" 
-              oninput="meatAndPoultryOutput.value=meatAndPoultry.value">
-            <output id="meatAndPoultryOutput" name="meatAndPoultryOutput" for="meatAndPoultryOutput.value"
-            class="meatAndPoultryOutput">10</output><span>%</span>
-
-            <p class='slider subinformation'>Waste %</p>
-
-            <form action="">
-              <input type="range" min="0" max="100" value="6" step="1" class="slider meatAndPoultryWaste" id="meatAndPoultryWaste" name="meatAndPoultryWaste" 
-              oninput="meatAndPoultryWasteOutput.value=meatAndPoultryWaste.value">
-            <output id="meatAndPoultryWasteOutput" name="meatAndPoultryWasteOutput" for="meatAndPoultryWasteOutput.value"
-            class="meatAndPoultryWasteOutput">6</output><span>%</span>
-            </form>
-          </div>
-
-          <div class="dryFood grid">
-            <img class="icon milk invisible" src="/Assets/milk.png" alt="">
-            <p>Dry foods and other products</p>
-            <p class='slider subinformation'>% of store</p>
-            <input type="range" min="0" max="100" value="0" step="1" class="slider dryFoods" id="dryFoods" name="dryFoods" 
-              oninput="dryFoodsOutput.value=dryFoods.value">
-
-            <output id="dryFoodsOutput" name="dryFoodsOutput" for="dryFoodsOutput.value"
-            class="dryFoodsOutput">0</output><span>%</span>
-
-          <p class="revenueError">% of total revenue cannot exceed 100%</p>
-
-          </div>
-        
+          <p class="slider subinformation">Waste %</p>
+          <form action="">
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="10"
+              step="1"
+              class="slider packedMeals"
+              id="packedMealsWaste"
+              name="packedMealsWaste"
+              oninput="packedMealsOutputWaste.value=(parseInt(packedMealsWaste.value))"
+            />
+            <output
+              id="packedMealsOutputWaste"
+              name="packedMealsOutputWaste"
+              for="packedMealsOutputWaste.value"
+              class="packedMeals"
+              >10</output
+            ><span>%</span>
+          </form>
         </div>
 
+        <div class="bakery grid">
+          <img class="icon milk" src="/Assets/milk.png" alt="" />
+          <p>Bakery</p>
+
+          <p class="slider subinformation">% of total revenue</p>
+          <input
+            type="range"
+            min="0"
+            max="30"
+            value="6"
+            step="1"
+            class="slider bakery"
+            id="bakery"
+            name="bakery"
+            oninput="bakeryOutput.value=bakery.value"
+          />
+          <output
+            id="bakeryOutput"
+            name="bakeryOutput"
+            for="bakeryOutput.value"
+            class="bakeryOutput"
+            >6</output
+          ><span>%</span>
+
+          <p class="slider subinformation">Waste %</p>
+          <form action="">
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="15"
+              step="1"
+              class="slider bakeryWaste"
+              id="bakeryWaste"
+              name="bakeryWaste"
+              oninput="bakeryWasteOutput.value=(parseInt(bakeryWaste.value))"
+            />
+            <output
+              id="bakeryWasteOutput"
+              name="bakeryWasteOutput"
+              for="bakeryWasteOutput.value"
+              class="bakeryWasteOutput"
+              >15</output
+            ><span>%</span>
+          </form>
+        </div>
+
+        <div class="frozenFoods grid">
+          <img class="icon milk" src="/Assets/frozenFood.png" alt="" />
+          <p>Frozen Foods</p>
+          <p class="slider subinformation">% of total revenue</p>
+          <input
+            type="range"
+            min="0"
+            max="30"
+            value="5"
+            step="1"
+            class="slider frozenFood"
+            id="frozenFood"
+            name="frozenFood"
+            oninput="frozenFoodOutput.value=frozenFood.value"
+          />
+
+          <output
+            id="frozenFoodOutput"
+            name="frozenFoodOutput"
+            for="frozenFoodOutput.value"
+            class="frozenFoodOutput"
+            >5</output
+          ><span>%</span>
+
+          <p class="slider subinformation">Waste %</p>
+          <form action="">
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="1"
+              step="1"
+              class="slider frozenFoodWaste"
+              id="frozenFoodWaste"
+              name="frozenFoodWaste"
+              oninput="frozenFoodOutputWaste.value=frozenFoodWaste.value"
+            />
+            <output
+              id="frozenFoodOutputWaste"
+              name="frozenFoodOutputWaste"
+              for="frozenFoodOutputWaste.value"
+              class="frozenFoodOutputWaste"
+              >1</output
+            ><span>%</span>
+          </form>
+        </div>
+
+        <div class="seafood grid">
+          <img class="icon milk" src="/Assets/fish.png" alt="" />
+          <p>Seafood</p>
+          <!-- seafoodOutput seafoodWasteOutput -->
+          <p class="slider subinformation">% of total revenue</p>
+          <input
+            type="range"
+            min="0"
+            max="30"
+            value="1"
+            step="1"
+            class="slider seafood"
+            id="seafood"
+            name="seafood"
+            oninput="seafoodOutput.value=seafood.value"
+          />
+          <output
+            id="seafoodOutput"
+            name="seafoodOutput"
+            for="seafoodOutput.value"
+            class="seafoodOutput"
+            >1</output
+          ><span>%</span>
+
+          <p class="slider subinformation">Waste %</p>
+          <form action="">
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="12"
+              step="1"
+              class="slider seafoodWaste"
+              id="seafoodWaste"
+              name="seafoodWaste"
+              oninput="seafoodWasteOutput.value=seafoodWaste.value"
+            />
+            <output
+              id="seafoodWasteOutput"
+              name="seafoodWasteOutput"
+              for="seafoodWasteOutput"
+              class="seafoodWasteOutput"
+              >12</output
+            ><span>%</span>
+          </form>
+        </div>
+
+        <div class="fruitsAndVegetables grid">
+          <img class="icon milk" src="/Assets/fruitAndVegetables.png" alt="" />
+          <p>Fruits & Vegetables</p>
+
+          <p class="slider subinformation">% of total revenue</p>
+          <input
+            type="range"
+            min="0"
+            max="30"
+            value="14"
+            step="1"
+            class="slider fruitAndVegetables"
+            id="fruitAndVegetables"
+            name="fruitAndVegetables"
+            oninput="fruitAndVegetablesOutput.value=fruitAndVegetables.value"
+          />
+          <output
+            id="fruitAndVegetablesOutput"
+            name="fruitAndVegetablesOutput"
+            for="fruitAndVegetablesOutput.value"
+            class="fruitAndVegetablesOutput"
+            >14</output
+          ><span>%</span>
+
+          <p class="slider subinformation">Waste %</p>
+          <form action="">
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="14"
+              step="1"
+              class="slider fruitAndVegetablesWaste"
+              id="fruitAndVegetablesWaste"
+              name="fruitAndVegetablesWaste"
+              oninput="fruitAndVegetablesWasteOutput.value=fruitAndVegetablesWaste.value"
+            />
+            <output
+              id="fruitAndVegetablesWasteOutput"
+              name="fruitAndVegetablesWasteOutput"
+              for="fruitAndVegetablesWasteOutput.value"
+              class="fruitAndVegetablesWasteOutput"
+              >14</output
+            ><span>%</span>
+          </form>
+        </div>
+
+        <div class="dairy grid">
+          <img class="icon milk" src="/Assets/milk.png" alt="" />
+          <p>Dairy</p>
+
+          <p class="slider subinformation">% of total revenue</p>
+          <input
+            type="range"
+            min="0"
+            max="30"
+            value="10"
+            step="1"
+            class="slider dairy"
+            id="dairy"
+            name="dairy"
+            oninput="dairyOutput.value=dairy.value"
+          />
+
+          <output
+            id="dairyOutput"
+            name="dairyOutput"
+            for="dairyOutput.value"
+            class="dairyOutput"
+            >10</output
+          ><span>%</span>
+
+          <p class="slider subinformation">Waste %</p>
+          <form action="">
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="5"
+              step="1"
+              class="slider dairyWaste"
+              id="dairyWaste"
+              name="dairyWaste"
+              oninput="dairyWasteOutput.value=dairyWaste.value"
+            />
+            <output
+              id="dairyWasteOutput"
+              name="dairyWasteOutput"
+              for="dairyWasteOutput.value"
+              class="dairyWasteOutput"
+              >5</output
+            ><span>%</span>
+          </form>
+        </div>
+
+        <div class="meatAndPoultry grid">
+          <img class="icon milk" src="/Assets/meat.png" alt="" />
+          <p>Meat & Poultry</p>
+
+          <p class="slider subinformation">% of total revenue</p>
+          <input
+            type="range"
+            min="0"
+            max="30"
+            value="10"
+            step="1"
+            class="slider meatAndPoultry"
+            id="meatAndPoultry"
+            name="meatAndPoultry"
+            oninput="meatAndPoultryOutput.value=meatAndPoultry.value"
+          />
+          <output
+            id="meatAndPoultryOutput"
+            name="meatAndPoultryOutput"
+            for="meatAndPoultryOutput.value"
+            class="meatAndPoultryOutput"
+            >10</output
+          ><span>%</span>
+
+          <p class="slider subinformation">Waste %</p>
+
+          <form action="">
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="6"
+              step="1"
+              class="slider meatAndPoultryWaste"
+              id="meatAndPoultryWaste"
+              name="meatAndPoultryWaste"
+              oninput="meatAndPoultryWasteOutput.value=meatAndPoultryWaste.value"
+            />
+            <output
+              id="meatAndPoultryWasteOutput"
+              name="meatAndPoultryWasteOutput"
+              for="meatAndPoultryWasteOutput.value"
+              class="meatAndPoultryWasteOutput"
+              >6</output
+            ><span>%</span>
+          </form>
+        </div>
+
+        <div class="dryFood grid">
+          <img class="icon milk invisible" src="/Assets/milk.png" alt="" />
+          <p>Dry foods and other products</p>
+          <p class="slider subinformation">% of store</p>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value="0"
+            step="1"
+            class="slider dryFoods"
+            id="dryFoods"
+            name="dryFoods"
+            oninput="dryFoodsOutput.value=dryFoods.value"
+          />
+
+          <output
+            id="dryFoodsOutput"
+            name="dryFoodsOutput"
+            for="dryFoodsOutput.value"
+            class="dryFoodsOutput"
+            >0</output
+          ><span>%</span>
+
+          <p class="revenueError">% of total revenue cannot exceed 100%</p>
+        </div>
       </div>
-     
     </div>
     <div class="simulatebtn">
-      <button onClick="calc()" class="simulateBtn" id="simulateBtn">SIMULATE</button>
+      <button onClick="calc()" class="simulateBtn" id="simulateBtn">
+        SIMULATE
+      </button>
     </div>
     <div class="results-container show">
       <div class="resultsTitle">
-        <h4>This is what you should expect after implementing Wasteless Store solution:</h4>
+        <h4>
+          This is what you should expect after implementing Wasteless Store
+          solution:
+        </h4>
         <div class="resultsBtns">
-          <p class="subinformation">Show results for: </p>
+          <p class="subinformation">Show results for:</p>
           <button class="btn months">12 Months</button>
           <button class="btn years">10 Years</button>
         </div>
-        
       </div>
-      
 
       <div class="chart">
-        <h4>chart placehoder </h4>
-       
+        <h4>chart placehoder</h4>
       </div>
       <div class="metric_results_container">
         <div class="totalEconomicValueContainer metricResult">
           <h4 class="metricTitle">Total Economic Value</h4>
-          <span class="metric">$</span><p class="metric"></p>
+          <span class="metric">$</span>
+          <p class="metric"></p>
         </div>
         <div class="totalEconomicValueContainer metricResult">
           <h4 class="metricTitle">CO2e Reduced</h4>
-          <span class="metric">$</span><p class="metric"></p>
+          <span class="metric">$</span>
+          <p class="metric"></p>
         </div>
         <div class="totalEconomicValueContainer metricResult listItem upsale">
           <h4 class="metricTitle">Total Revenue Upsale</h4>
-          <span>$</span><p class="upsale metric"></p>
+          <span>$</span>
+          <p class="upsale metric"></p>
         </div>
         <div class="totalEconomicValueContainer metricResult listItem value">
           <h4 class="metricTitle">Waste Reduction Value</h4>
-          <span>$</span><p class="value metric"></p>
+          <span>$</span>
+          <p class="value metric"></p>
         </div>
       </div>
-
-      
     </div>
 
     <style>
-
-      @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
       * {
-        font-family: 'Roboto', sans-serif;
+        font-family: "Roboto", sans-serif;
       }
-      #simulation-wrapper, .results-container {
+      #simulation-wrapper,
+      .results-container {
         background-color: white;
         display: flex;
         align-items: center;
@@ -243,24 +452,28 @@
       }
       body {
         background-color: black;
-        
       }
-      .header-section { width: 100%; }
-      
-      .slider { 
-        width: 50%; 
-        margin: 2px 0px;
-      }
-      .totalRevenue { width: 80%; }
-      .revenueOutput { color: grey; }
-      
-      .main-calculator-section {
-        text-align: left;  
+      .header-section {
         width: 100%;
-        
       }
 
-      .subinformation { 
+      .slider {
+        width: 50%;
+        margin: 2px 0px;
+      }
+      .totalRevenue {
+        width: 80%;
+      }
+      .revenueOutput {
+        color: grey;
+      }
+
+      .main-calculator-section {
+        text-align: left;
+        width: 100%;
+      }
+
+      .subinformation {
         font-size: 14px;
         color: grey;
       }
@@ -268,61 +481,63 @@
       .grid {
         width: 50%;
         float: left;
-        padding-bottom: 20px; 
+        padding-bottom: 20px;
       }
 
-      img { 
-        float: left; 
-        width: 10%; 
-        }
-      .icon {  
+      img {
+        float: left;
+        width: 10%;
+      }
+      .icon {
         padding: 20px 10px 56px 0px;
-        }
-        .invisible { opacity: 0;}
+      }
+      .invisible {
+        opacity: 0;
+      }
 
       .btn {
         border-radius: 10px;
         border: none;
         padding: 1rem 2rem;
-        transition: .5s ease-in-out;
-        
+        transition: 0.5s ease-in-out;
       }
       /* puts btns inline */
       .resultsBtns {
         display: flex;
       }
 
-      .btn:hover { 
-        cursor: pointer; 
+      .btn:hover {
+        cursor: pointer;
         transform: scale(1.02);
       }
       .months {
-        background-color: #492FC4;
+        background-color: #492fc4;
         color: white;
       }
       .years {
-        color: #492FC4;
-        background-color: #F5F5F5;
+        color: #492fc4;
+        background-color: #f5f5f5;
       }
 
       .simulatebtn button {
         color: white;
-        background-color: #492FC4;
+        background-color: #492fc4;
         border-radius: 10px;
         border: none;
         padding: 1rem 2rem;
-        transition: .5s ease-in-out;
-        
+        transition: 0.5s ease-in-out;
       }
-      p.subinformation { padding-right: 20px;}
+      p.subinformation {
+        padding-right: 20px;
+      }
 
-      .simulatebtn button:hover { 
-        cursor: pointer; 
+      .simulatebtn button:hover {
+        cursor: pointer;
         transform: scale(1.1);
       }
 
-      .simulatebtn { 
-        width: 70.5vw; 
+      .simulatebtn {
+        width: 70.5vw;
         display: flex;
         align-items: flex-end;
         justify-content: center;
@@ -330,13 +545,16 @@
         margin: 0 auto;
         padding: 10px;
         padding-right: 0;
-        
       }
       .border-bottom {
         border-bottom: 1px solid black;
       }
-      .hide { display: none; }
-      .show { display: block; }
+      .hide {
+        display: none;
+      }
+      .show {
+        display: block;
+      }
       input {
         cursor: pointer;
       }
@@ -345,15 +563,17 @@
         pointer-events: none;
       }
       .revenueError {
-        display:none;
+        display: none;
       }
 
       /* results container */
 
-      .metric_results_container{ display: flex; }
-      .metricResult { 
-        width: 25%; 
-        color: #929292; 
+      .metric_results_container {
+        display: flex;
+      }
+      .metricResult {
+        width: 25%;
+        color: #929292;
       }
 
       /* bullet points to add later */
@@ -362,110 +582,133 @@
         content:"• ";
       }
        */
-      
-      .upsale { color: #492FC4; }
-      .value { color: #47D71D; }
-      .metric { color: #404040; }
 
+      .upsale {
+        color: #492fc4;
+      }
+      .value {
+        color: #47d71d;
+      }
+      .metric {
+        color: #404040;
+      }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript">
-    let resultsContainer = document.querySelector('.results-container');
-    let totalRevenueArr = []; 
-    let totalWasteArr = []
+      let resultsContainer = document.querySelector(".results-container");
+      let totalRevenueArr = [];
+      let totalWasteArr = [];
+      let calcRevArr = [];
+      let totalWasteArrPercentage = [];
+      let totalWasteSavinggsArr = [];
 
-    // Get Total Revenue
-    let totalRevenue = document.querySelector('#totalRevenue');
-    // Get numbers from sliders
-    // total revenue output
-    let totalAnnualRevenue = document.querySelector('#revenueOutput');
-    // packed meals and deli number
-    let packedMealsRevenue = document.getElementById('packedMealsOutput');
-    let packedMealWaste = document.querySelector('#packedMealsOutputWaste');
+      // Get Total Revenue
+      let totalRevenue = document.querySelector("#totalRevenue");
+      // Get numbers from sliders
+      // total revenue output
+      let totalAnnualRevenue = document.querySelector("#revenueOutput");
+      // packed meals and deli number
+      let packedMealsRevenue = document.getElementById("packedMealsOutput");
+      let packedMealWaste = document.querySelector("#packedMealsOutputWaste");
 
-    // frozen foods
-    let frozenFoodRevenue = document.querySelector('#frozenFoodOutput');
-    let frozenFoodWaste = document.querySelector('#frozenFoodOutputWaste');
+      // frozen foods
+      let frozenFoodRevenue = document.querySelector("#frozenFoodOutput");
+      let frozenFoodWaste = document.querySelector("#frozenFoodOutputWaste");
 
-    // fruits & vegetables
-    let fruitsAndVegetableRevenue = document.querySelector('#fruitAndVegetablesOutput');
-    let fruitsAndVegetableWaste = document.querySelector('#fruitAndVegetablesWasteOutput');
+      // fruits & vegetables
+      let fruitsAndVegetableRevenue = document.querySelector(
+        "#fruitAndVegetablesOutput"
+      );
+      let fruitsAndVegetableWaste = document.querySelector(
+        "#fruitAndVegetablesWasteOutput"
+      );
 
-    // Meat & Poultry
-    let meatAndPoultryRevenue = document.querySelector('#meatAndPoultryOutput');
-    let meatAndPoultryWaste = document.querySelector('#meatAndPoultryWasteOutput');
+      // Meat & Poultry
+      let meatAndPoultryRevenue = document.querySelector(
+        "#meatAndPoultryOutput"
+      );
+      let meatAndPoultryWaste = document.querySelector(
+        "#meatAndPoultryWasteOutput"
+      );
 
-    // Bakery
-    let bakeryRevenue = document.querySelector('#bakeryOutput');
-    let bakeryWaste = document.querySelector('#bakeryWasteOutput');
+      // Bakery
+      let bakeryRevenue = document.querySelector("#bakeryOutput");
+      let bakeryWaste = document.querySelector("#bakeryWasteOutput");
 
-    // Seafood
-    let seafoodRevenue = document.querySelector('#seafoodOutput');
-    let seafoodWaste = document.querySelector('#seafoodWasteOutput');
+      // Seafood
+      let seafoodRevenue = document.querySelector("#seafoodOutput");
+      let seafoodWaste = document.querySelector("#seafoodWasteOutput");
 
-    // Dairy
-    let dairyRevenue = document.querySelector('#dairyOutput');
-    let dairyWaste = document.querySelector('#dairyWasteOutput');
+      // Dairy
+      let dairyRevenue = document.querySelector("#dairyOutput");
+      let dairyWaste = document.querySelector("#dairyWasteOutput");
 
-    // Dry foods
-    let dryFoodStore = document.querySelector('#dryFoodsOutput');
-    let dryFoodInputSlider = document.querySelector('#dryFoods');
+      // Dry foods
+      let dryFoodStore = document.querySelector("#dryFoodsOutput");
+      let dryFoodInputSlider = document.querySelector("#dryFoods");
 
-    // simulation button
-    let simulateBtn = document.querySelector("#simulateBtn");
+      // simulation button
+      let simulateBtn = document.querySelector("#simulateBtn");
 
-    // Revenue Error Message
-    let revenueError = document.querySelector('.revenueError')
+      // Revenue Error Message
+      let revenueError = document.querySelector(".revenueError");
 
+      // Get revenue number
+      var btn = document.getElementById("submit");
+      btn.addEventListener("click", getTotalRevenue);
 
-// Get revenue number
-var btn = document.getElementById('submit');
-btn.addEventListener('click', getTotalRevenue);
-
-function getTotalRevenue() {
-  let totalRevenue = document.getElementById("totalRevenue").value
-  console.log(totalRevenue);
- 
-}
-
+      function getTotalRevenue() {
+        let totalRevenue = document.getElementById("totalRevenue").value;
+        console.log(totalRevenue);
+      }
 
       function calc() {
-      totalRevenueArr = [];
-      totalWasteArr = [];
-      // push all % of total revenue into array to get total amount
-      totalRevenueArr.push(parseInt(packedMealsRevenue.innerHTML), 
-          parseInt(frozenFoodRevenue.innerHTML), 
-          parseInt(fruitsAndVegetableRevenue.innerHTML), 
-          parseInt(meatAndPoultryRevenue.innerHTML), 
-          parseInt(bakeryRevenue.innerHTML), 
-          parseInt(seafoodRevenue.innerHTML), 
+        totalRevenueArr = [];
+        totalWasteArr = [];
+        // push all % of total revenue into array to get total amount
+        totalRevenueArr.push(
+          parseInt(packedMealsRevenue.innerHTML),
+          parseInt(frozenFoodRevenue.innerHTML),
+          parseInt(fruitsAndVegetableRevenue.innerHTML),
+          parseInt(meatAndPoultryRevenue.innerHTML),
+          parseInt(bakeryRevenue.innerHTML),
+          parseInt(seafoodRevenue.innerHTML),
           parseInt(dairyRevenue.innerHTML)
-        )
+        );
         sumTotalRevenue();
         calcRevenueByCategory(totalRevenue);
 
         // calculate waste savings
         calcWasteSavings(parseInt(totalRevenue.value), totalRevenueArr);
         // toggle the view of the results box
-        $(resultsContainer).toggleClass(['show', 'hide']);
-        
-        totalWasteArr.push(parseInt(packedMealWaste.innerHTML), 
-          parseInt(frozenFoodWaste.innerHTML), 
-          parseInt(fruitsAndVegetableWaste.innerHTML), 
-          parseInt(meatAndPoultryWaste.innerHTML), 
-          parseInt(bakeryWaste.innerHTML), 
-          parseInt(seafoodWaste.innerHTML), 
+        $(resultsContainer).toggleClass(["show", "hide"]);
+
+        totalWasteArr.push(
+          parseInt(packedMealWaste.innerHTML),
+          parseInt(frozenFoodWaste.innerHTML),
+          parseInt(fruitsAndVegetableWaste.innerHTML),
+          parseInt(meatAndPoultryWaste.innerHTML),
+          parseInt(bakeryWaste.innerHTML),
+          parseInt(seafoodWaste.innerHTML),
           parseInt(dairyWaste.innerHTML)
-        )
+        );
         console.log(totalWasteArr);
-       
+
+        for (let i = 0; i < totalWasteArr.length; i++) {
+          totalWasteArrPercentage.push(totalWasteArr[i] / 100);
+        }
+        console.log(totalWasteArrPercentage);
+        Arrays_sum(calcRevArr, totalWasteArrPercentage);
+
+        // gettotalWasteSavings();
       }
+      // end of calc Func
 
       function sumTotalRevenue() {
-        let sum = totalRevenueArr.reduce(function(a,b) {
-          return a+b;
-        },0);
-        console.log('here is the total sum ' + (100 - sum));
+        let sum = totalRevenueArr.reduce(function (a, b) {
+          return a + b;
+        }, 0);
+        console.log("here is the total sum " + (100 - sum));
         if (sum > 100 || sum < 0) {
           revenueError.style.display = "block";
         } else {
@@ -477,31 +720,68 @@ function getTotalRevenue() {
 
       function calcRevenueByCategory() {
         let calcRevenueByCategory = [];
-        
       }
 
       function calcPackedMeals(revenue, waste) {
-        let packedMeals = revenue * waste * .5;
+        let packedMeals = revenue * waste * 0.5;
         console.log(packedMeals);
-
       }
 
       function calcWasteSavings(revenue, totalRevenueArr) {
         // this gets revenue/category calculated
-        let calcRevArr = []
+
         console.log(totalRevenueArr, revenue);
-        for (let i = 0; i < totalRevenueArr.length; i++) {  
-            calcRevArr.push((totalRevenueArr[i] / 100) * revenue);
+        for (let i = 0; i < totalRevenueArr.length; i++) {
+          calcRevArr.push((totalRevenueArr[i] / 100) * revenue);
         }
         console.log(calcRevArr);
-        
-       
+        return calcRevArr;
         // this gets waste savings calculated
-        
-
       }
 
+      function Arrays_sum(array1, array2) {
+        const result = [];
+        let result2 = [];
+        let ctr = 0;
+        let x = 0;
 
+        if (array1.length === 0) return "array1 is empty";
+        if (array2.length === 0) return "array2 is empty";
+
+        while (ctr < array1.length && ctr < array2.length) {
+          result.push(array1[ctr] * array2[ctr]);
+          ctr++;
+        }
+
+        if (ctr === array1.length) {
+          for (x = ctr; x < array2.length; x++) {
+            result.push(array2[x]);
+          }
+        } else {
+          for (x = ctr; x < array1.length; x++) {
+            result.push(array1[x]);
+          }
+        }
+        // console.log(result);
+        // return result;
+
+        for (let q = 0; q < result.length; q++) {
+          result2.push(result[q] * 0.5);
+        }
+        
+
+        function gettotalWasteSavings(result2) {
+          for (let j = 0; j < result2.length; j++) {
+            totalWasteSavinggsArr.push(result2[j] * 0.5);
+          }
+          console.log(totalWasteSavinggsArr);
+        }
+        console.log(result2);
+        gettotalWasteSavings(result2);
+        return result2;
+      }
+
+      // console.log(Arrays_sum(calcRevArr, totalWasteArr));
     </script>
   </body>
 </html>

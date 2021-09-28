@@ -416,8 +416,8 @@
         </div>
         <div class="totalEconomicValueContainer metricResult">
           <h4 class="metricTitle">CO2e Reduced</h4>
-          <span class="metric">$</span>
-          <span class="metric revenueUpsale"></span>
+          <span class="metric"></span>
+          <span class="metric co2reduced"></span><span> Kg</span>
         </div>
         <div class="totalEconomicValueContainer metricResult listItem upsale">
           <h4 class="metricTitle">Total Revenue Upsale</h4>
@@ -427,7 +427,7 @@
         <div class="totalEconomicValueContainer metricResult listItem value">
           <h4 class="metricTitle">Waste Reduction Value</h4>
           <span>$</span>
-          <span class="value metric"></span>
+          <span class="value wasteReductionValue metric"></span>
         </div>
       </div>
     </div>
@@ -661,7 +661,9 @@
 
       // Results
       let totalEconomicValue = document.querySelector(".economicValue");
-      let totalRevenueUpsale = document.querySelector('.totalUpsale')
+      let totalRevenueUpsale = document.querySelector('.totalUpsale');
+      let co2eReduced = document.querySelector('.co2reduced');
+      let wasteReductionValue = document.querySelector('.wasteReductionValue');
 
       function getTotalRevenue() {
         let totalRevenue = document.getElementById("totalRevenue").value;
@@ -822,6 +824,7 @@
           const reducer = (val1, val2) => val1 + val2;
           let reducedArr = arr.reduce(reducer);
           wasteSavingsResult.push(reducedArr);
+          wasteReductionValue.innerHTML = reducedArr;
           console.log(reducedArr);
         }
         
@@ -872,12 +875,12 @@
           // finish writing this reducer func
           console.log(co2result);
           
-          totalEconomicValue.innerHTML = 0;
+          
           const reduceCO2 = (val1, val2) => val1 + val2;
           let reducedArr = co2result.reduce(reduceCO2);
-          totalEconomicValue.innerHTML = reducedArr;
+          co2eReduced.innerHTML = Math.round(reducedArr);
           console.log(reducedArr);
-        }
+        
           return co2result;
         }
       

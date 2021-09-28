@@ -126,7 +126,11 @@
 
         <div class="frozenFoods grid">
           <!-- <img class="icon milk" src="/Assets/frozenFood.png" alt="" /> -->
-          <img class="icon milk" src="/wasteless/Assets/frozenFood.png" alt="" />
+          <img
+            class="icon milk"
+            src="/wasteless/Assets/frozenFood.png"
+            alt=""
+          />
           <p>Frozen Foods</p>
           <p class="slider subinformation">% of total revenue</p>
           <input
@@ -223,7 +227,11 @@
 
         <div class="fruitsAndVegetables grid">
           <!-- <img class="icon milk" src="/Assets/fruitAndVegetables.png" alt="" /> -->
-          <img class="icon milk" src="/wasteless/Assets/fruitAndVegetables.png" alt="" />
+          <img
+            class="icon milk"
+            src="/wasteless/Assets/fruitAndVegetables.png"
+            alt=""
+          />
           <p>Fruits & Vegetables</p>
 
           <p class="slider subinformation">% of total revenue</p>
@@ -371,7 +379,11 @@
 
         <div class="dryFood grid">
           <!-- <img class="icon milk invisible" src="/Assets/milk.png" alt="" /> -->
-          <img class="icon milk invisible" src="/wasteless/Assets/milk.png" alt="" />
+          <img
+            class="icon milk invisible"
+            src="/wasteless/Assets/milk.png"
+            alt=""
+          />
 
           <p>Dry foods and other products</p>
           <p class="slider subinformation">% of store</p>
@@ -398,10 +410,7 @@
           <p class="revenueError">% of total revenue cannot exceed 100%</p>
         </div>
       </div>
-      
     </div>
-
-
 
     <div class="simulatebtn">
       <button onClick="calc()" class="simulateBtn" id="simulateBtn">
@@ -448,7 +457,6 @@
         </div>
       </div>
     </div>
-    
 
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
@@ -622,75 +630,25 @@
       let totalWasteSavingsArr = [];
       let wasteSavingsResult = [];
       let avgCostArr = [10, 6, 1.2, 5, 3, 12, 4];
+      let totalRevUpsale = {};
+      let totalWasteRevValue = {};
       // Chart variable
-      let myChart = document.getElementById('myChart').getContext('2d');
-      let labels = ['jan', 'feb', 'march', "april", 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
-  //     let savingsChart = new Chart(myChart, {
-  //       type: 'line', 
-  //       data: {
-  //         labels: labels,
-  //         datasets: [{
-            
-  //           data: [
-  //           0,
-  //           400000
-  //           ],
-  //           fill: true,
-  //           borderColor: 'rgb(75, 192, 192)',
-  //           tension: 0.1
-  //         }]
-  //       },
-  //       options: {
-  //   title: {
-  //     display: true,
-  //     text: 'World population per region (in millions)'
-  //   }
-  // }
-  //     });
-  new Chart(document.getElementById("myChart"), {
-  type: 'line',
-  data: {
-    labels: [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050],
-    datasets: [{ 
-        data: [86,114,106,106,107,111,133,221,783,2478],
-        label: "Africa",
-        borderColor: "#3e95cd",
-        fill: false
-      }, { 
-        data: [282,350,411,502,635,809,947,1402,3700,5267],
-        label: "Asia",
-        borderColor: "#8e5ea2",
-        fill: false
-      }, { 
-        data: [168,170,178,190,203,276,408,547,675,734],
-        label: "Europe",
-        borderColor: "#3cba9f",
-        fill: false
-      }, { 
-        data: [40,20,10,16,24,38,74,167,508,784],
-        label: "Latin America",
-        borderColor: "#e8c3b9",
-        fill: false
-      }, { 
-        data: [6,3,2,2,7,26,82,172,312,433],
-        label: "North America",
-        borderColor: "#c45850",
-        fill: false
-      }
-    ]
-  },
-  options: {
-    
-    plugins: {
-      title: {
-        display: true,
-                text: 'Sample Chart Title'
-      },
-      legend: false 
-      
-    }
-  }
-});
+      let myChart = document.getElementById("myChart").getContext("2d");
+      let labels = [
+        "jan",
+        "feb",
+        "march",
+        "april",
+        "may",
+        "june",
+        "july",
+        "august",
+        "september",
+        "october",
+        "november",
+        "december",
+      ];
+
       
 
       // Get Total Revenue
@@ -750,9 +708,9 @@
 
       // Results
       let totalEconomicValue = document.querySelector(".economicValue");
-      let totalRevenueUpsale = document.querySelector('.totalUpsale');
-      let co2eReduced = document.querySelector('.co2reduced');
-      let wasteReductionValue = document.querySelector('.wasteReductionValue');
+      let totalRevenueUpsale = document.querySelector(".totalUpsale");
+      let co2eReduced = document.querySelector(".co2reduced");
+      let wasteReductionValue = document.querySelector(".wasteReductionValue");
 
       function getTotalRevenue() {
         let totalRevenue = document.getElementById("totalRevenue").value;
@@ -796,7 +754,6 @@
         }
         Arrays_sum(calcRevArr, totalWasteArrPercentage);
         
-
       }
       // end of calc Func
 
@@ -863,7 +820,7 @@
         let wasteReductionValArr = [0.5, 0.5, 0.24, 0.5, 0.09, 0.5, 0.5];
 
         Arrays_multi(wasteReductionValArr, result);
-        
+
         return result;
 
         function Arrays_multi(array1, array2) {
@@ -905,24 +862,29 @@
           console.log(revenueUpsaleArr);
           arrSum(revenueUpsaleArr);
           arrSum2(revenueUpsaleArr);
-       
-          
         }
         function arrSum(arr) {
-          
           const reducer = (val1, val2) => val1 + val2;
           let reducedArr = arr.reduce(reducer);
           wasteSavingsResult.push(reducedArr);
           wasteReductionValue.innerHTML = reducedArr;
-          console.log(reducedArr);
+          totalWasteRevValue.downsale = reducedArr;
+          // this writes the waste reduction value number
+          console.log(reducedArr, totalWasteRevValue);
         }
-        
+
         // this writes the total rev update onto the page
         function arrSum2(arr) {
           let revReducer = (val1, val2) => val1 + val2;
           let reducedArr = arr.reduce(revReducer);
-          console.log(reducedArr);
-          totalRevenueUpsale.innerHTML = reducedArr
+
+          // this is total revenue upsale number
+
+          totalRevenueUpsale.innerHTML = reducedArr;
+          totalRevUpsale.upsale = reducedArr;
+          makeChart(totalRevUpsale, totalWasteRevValue)
+          console.log(totalRevUpsale, totalWasteRevValue);
+          return totalRevUpsale;
         }
 
         function reduceRevenueUpsale(arr) {
@@ -934,48 +896,79 @@
           totalEconomicValue.innerHTML = reducedArr;
           console.log(reducedArr);
         }
-
-
-        
-        
       }
       function Arrays_divide(array1, array2) {
-          const result = [];
-          const co2result = [];
-          let ctr = 0;
-          let x = 0;
+        const result = [];
+        const co2result = [];
+        let ctr = 0;
+        let x = 0;
 
-          if (array1.length === 0) return "array1 is empty";
-          if (array2.length === 0) return "array2 is empty";
+        if (array1.length === 0) return "array1 is empty";
+        if (array2.length === 0) return "array2 is empty";
 
-          while (ctr < array1.length && ctr < array2.length) {
-            co2result.push(array1[ctr] / array2[ctr]);
-            ctr++;
-          }
-
-          if (ctr === array1.length) {
-            for (x = ctr; x < array2.length; x++) {
-              co2result.push(array2[x]);
-            }
-          } else {
-            for (x = ctr; x < array1.length; x++) {
-              co2result.push(array1[x]);
-            }
-          }
-
-          // finish writing this reducer func
-          console.log(co2result);
-          
-          
-          const reduceCO2 = (val1, val2) => val1 + val2;
-          let reducedArr = co2result.reduce(reduceCO2);
-          co2eReduced.innerHTML = Math.round(reducedArr);
-          console.log(reducedArr);
-        
-          return co2result;
+        while (ctr < array1.length && ctr < array2.length) {
+          co2result.push(array1[ctr] / array2[ctr]);
+          ctr++;
         }
-      
+
+        if (ctr === array1.length) {
+          for (x = ctr; x < array2.length; x++) {
+            co2result.push(array2[x]);
+          }
+        } else {
+          for (x = ctr; x < array1.length; x++) {
+            co2result.push(array1[x]);
+          }
+        }
+
+        // finish writing this reducer func
+        console.log(co2result);
+
+        const reduceCO2 = (val1, val2) => val1 + val2;
+        let reducedArr = co2result.reduce(reduceCO2);
+        co2eReduced.innerHTML = Math.round(reducedArr);
+        console.log(reducedArr);
+
+        return co2result;
+      }
+
       Arrays_sum(calcRevArr, totalWasteArr);
+      
+
+      function makeChart(totalRevUpsale) {
+        new Chart(document.getElementById("myChart"), {
+        type: "line",
+        data: {
+          labels: ["Day 0", "Day 365"],
+          datasets: [
+            {
+              data: [0,  totalWasteRevValue.upsale],
+              label: "Africa",
+              borderColor: "#47D71D",
+              fill: false,
+            },
+            {
+              data: [0, totalRevUpsale.upsale],
+              label: "Total Revenue Upsale",
+              borderColor: "#492FC4",
+              fill: false,
+            },
+            
+          ],
+        },
+        options: {
+          plugins: {
+            title: {
+              display: true,
+              text: "Sample Chart Title",
+            },
+            legend: false,
+          },
+        },
+      });
+      }
+      
+      console.log(totalRevUpsale);
     </script>
   </body>
 </html>

@@ -398,7 +398,11 @@
           <p class="revenueError">% of total revenue cannot exceed 100%</p>
         </div>
       </div>
+      
     </div>
+
+
+
     <div class="simulatebtn">
       <button onClick="calc()" class="simulateBtn" id="simulateBtn">
         SIMULATE
@@ -419,6 +423,7 @@
 
       <div class="chart">
         <h4>chart placehoder</h4>
+        <canvas id="myChart" width="800" height="450"></canvas>
       </div>
       <div class="metric_results_container">
         <div class="totalEconomicValueContainer metricResult">
@@ -443,6 +448,7 @@
         </div>
       </div>
     </div>
+    
 
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
@@ -606,6 +612,7 @@
       }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
     <script type="text/javascript">
       let resultsContainer = document.querySelector(".results-container");
       let totalRevenueArr = [];
@@ -614,7 +621,76 @@
       let totalWasteArrPercentage = [];
       let totalWasteSavingsArr = [];
       let wasteSavingsResult = [];
-      let avgCostArr = [10, 6, 1.2, 5, 3, 12, 4]
+      let avgCostArr = [10, 6, 1.2, 5, 3, 12, 4];
+      // Chart variable
+      let myChart = document.getElementById('myChart').getContext('2d');
+      let labels = ['jan', 'feb', 'march', "april", 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
+  //     let savingsChart = new Chart(myChart, {
+  //       type: 'line', 
+  //       data: {
+  //         labels: labels,
+  //         datasets: [{
+            
+  //           data: [
+  //           0,
+  //           400000
+  //           ],
+  //           fill: true,
+  //           borderColor: 'rgb(75, 192, 192)',
+  //           tension: 0.1
+  //         }]
+  //       },
+  //       options: {
+  //   title: {
+  //     display: true,
+  //     text: 'World population per region (in millions)'
+  //   }
+  // }
+  //     });
+  new Chart(document.getElementById("myChart"), {
+  type: 'line',
+  data: {
+    labels: [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050],
+    datasets: [{ 
+        data: [86,114,106,106,107,111,133,221,783,2478],
+        label: "Africa",
+        borderColor: "#3e95cd",
+        fill: false
+      }, { 
+        data: [282,350,411,502,635,809,947,1402,3700,5267],
+        label: "Asia",
+        borderColor: "#8e5ea2",
+        fill: false
+      }, { 
+        data: [168,170,178,190,203,276,408,547,675,734],
+        label: "Europe",
+        borderColor: "#3cba9f",
+        fill: false
+      }, { 
+        data: [40,20,10,16,24,38,74,167,508,784],
+        label: "Latin America",
+        borderColor: "#e8c3b9",
+        fill: false
+      }, { 
+        data: [6,3,2,2,7,26,82,172,312,433],
+        label: "North America",
+        borderColor: "#c45850",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'World population per region (in millions)'
+    },
+    plugins: {
+      legend: false,
+      title: true
+    }
+  }
+});
+      
 
       // Get Total Revenue
       let totalRevenue = document.querySelector("#totalRevenue");

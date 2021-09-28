@@ -602,6 +602,7 @@
       let totalWasteArrPercentage = [];
       let totalWasteSavingsArr = [];
       let wasteSavingsResult = [];
+      let avgCostArr = [10, 6, 1.2, 5, 3, 12, 4]
 
       // Get Total Revenue
       let totalRevenue = document.querySelector("#totalRevenue");
@@ -702,10 +703,9 @@
         for (let i = 0; i < totalWasteArr.length; i++) {
           totalWasteArrPercentage.push(totalWasteArr[i] / 100);
         }
-        console.log(totalWasteArrPercentage);
         Arrays_sum(calcRevArr, totalWasteArrPercentage);
+        
 
-        // gettotalWasteSavings();
       }
       // end of calc Func
 
@@ -772,6 +772,7 @@
         let wasteReductionValArr = [0.5, 0.5, 0.24, 0.5, 0.09, 0.5, 0.5];
 
         Arrays_multi(wasteReductionValArr, result);
+        
         return result;
 
         function Arrays_multi(array1, array2) {
@@ -801,7 +802,8 @@
           // return result;
           revenueUpsale(calcRevArr);
           arrSum(result2);
-          reduceRevenueUpsale(wasteSavingsResult)
+          reduceRevenueUpsale(wasteSavingsResult);
+          Arrays_divide(result2, avgCostArr);
         }
         function revenueUpsale(arr) {
           let revenueUpsaleArr = [];
@@ -838,9 +840,47 @@
           totalEconomicValue.innerHTML = reducedArr;
           console.log(reducedArr);
         }
+
+
+        
         
       }
+      function Arrays_divide(array1, array2) {
+          const result = [];
+          const co2result = [];
+          let ctr = 0;
+          let x = 0;
 
+          if (array1.length === 0) return "array1 is empty";
+          if (array2.length === 0) return "array2 is empty";
+
+          while (ctr < array1.length && ctr < array2.length) {
+            co2result.push(array1[ctr] / array2[ctr]);
+            ctr++;
+          }
+
+          if (ctr === array1.length) {
+            for (x = ctr; x < array2.length; x++) {
+              co2result.push(array2[x]);
+            }
+          } else {
+            for (x = ctr; x < array1.length; x++) {
+              co2result.push(array1[x]);
+            }
+          }
+
+          // finish writing this reducer func
+          console.log(co2result);
+          
+          totalEconomicValue.innerHTML = 0;
+          const reduceCO2 = (val1, val2) => val1 + val2;
+          let reducedArr = co2result.reduce(reduceCO2);
+          totalEconomicValue.innerHTML = reducedArr;
+          console.log(reducedArr);
+        }
+          return co2result;
+        }
+      
       Arrays_sum(calcRevArr, totalWasteArr);
     </script>
   </body>

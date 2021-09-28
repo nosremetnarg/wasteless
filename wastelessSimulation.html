@@ -412,22 +412,22 @@
         <div class="totalEconomicValueContainer metricResult">
           <h4 class="metricTitle">Total Economic Value</h4>
           <span class="metric">$</span>
-          <p class="metric"></p>
+          <span class="metric economicValue"></span>
         </div>
         <div class="totalEconomicValueContainer metricResult">
           <h4 class="metricTitle">CO2e Reduced</h4>
           <span class="metric">$</span>
-          <p class="metric"></p>
+          <span class="metric"></span>
         </div>
         <div class="totalEconomicValueContainer metricResult listItem upsale">
           <h4 class="metricTitle">Total Revenue Upsale</h4>
           <span>$</span>
-          <p class="upsale metric"></p>
+          <span class="upsale metric"></span>
         </div>
         <div class="totalEconomicValueContainer metricResult listItem value">
           <h4 class="metricTitle">Waste Reduction Value</h4>
           <span>$</span>
-          <p class="value metric"></p>
+          <span class="value metric"></span>
         </div>
       </div>
     </div>
@@ -600,7 +600,8 @@
       let totalWasteArr = [];
       let calcRevArr = [];
       let totalWasteArrPercentage = [];
-      let totalWasteSavinggsArr = [];
+      let totalWasteSavingsArr = [];
+      let wasteSavingsResult = [];
 
       // Get Total Revenue
       let totalRevenue = document.querySelector("#totalRevenue");
@@ -657,6 +658,9 @@
       var btn = document.getElementById("submit");
       btn.addEventListener("click", getTotalRevenue);
 
+      // Results
+      let totalEconomicValue = document.querySelector(".economicValue");
+
       function getTotalRevenue() {
         let totalRevenue = document.getElementById("totalRevenue").value;
         console.log(totalRevenue);
@@ -681,7 +685,7 @@
         // calculate waste savings
         calcWasteSavings(parseInt(totalRevenue.value), totalRevenueArr);
         // toggle the view of the results box
-        $(resultsContainer).toggleClass(["show", "hide"]);
+        // $(resultsContainer).toggleClass(["show", "hide"]);
 
         totalWasteArr.push(
           parseInt(packedMealWaste.innerHTML),
@@ -708,7 +712,7 @@
         let sum = totalRevenueArr.reduce(function (a, b) {
           return a + b;
         }, 0);
-        console.log("here is the total sum " + (100 - sum));
+        // console.log("here is the total sum " + (100 - sum));
         if (sum > 100 || sum < 0) {
           revenueError.style.display = "block";
         } else {
@@ -762,26 +766,72 @@
             result.push(array1[x]);
           }
         }
-        // console.log(result);
-        // return result;
+        console.log(result);
+        // FIXED WASTE REDUCTION VALUES
+        let wasteReductionValArr = [0.5, 0.5, 0.24, 0.5, 0.09, 0.5, 0.5];
 
-        for (let q = 0; q < result.length; q++) {
-          result2.push(result[q] * 0.5);
+        Arrays_multi(wasteReductionValArr, result);
+        return result;
+
+        function Arrays_multi(array1, array2) {
+          const result = [];
+          const result2 = [];
+          let ctr = 0;
+          let x = 0;
+
+          if (array1.length === 0) return "array1 is empty";
+          if (array2.length === 0) return "array2 is empty";
+
+          while (ctr < array1.length && ctr < array2.length) {
+            result2.push(array1[ctr] * array2[ctr]);
+            ctr++;
+          }
+
+          if (ctr === array1.length) {
+            for (x = ctr; x < array2.length; x++) {
+              result2.push(array2[x]);
+            }
+          } else {
+            for (x = ctr; x < array1.length; x++) {
+              result2.push(array1[x]);
+            }
+          }
+          console.log(result2);
+          // return result;
+          revenueUpsale(calcRevArr);
+          arrSum(result2);
+          reduceRevenueUpsale(wasteSavingsResult)
+        }
+        function revenueUpsale(arr) {
+          let revenueUpsaleArr = [];
+          for (let i = 0; i < arr.length; i++) {
+            revenueUpsaleArr.push(arr[i] * 0.18);
+          }
+          //
+          console.log(revenueUpsaleArr);
+          arrSum(revenueUpsaleArr);
+          
+        }
+        function arrSum(arr) {
+          
+          const reducer = (val1, val2) => val1 + val2;
+          let reducedArr = arr.reduce(reducer);
+          wasteSavingsResult.push(reducedArr);
+          console.log(reducedArr);
+          
+        }
+
+        function reduceRevenueUpsale(arr) {
+          totalEconomicValue.innerHTML = 0;
+          const reduce = (val1, val2) => val1 + val2;
+          let reducedArr = arr.reduce(reduce);
+          totalEconomicValue.innerHTML = reducedArr;
+          console.log(reducedArr);
         }
         
-
-        function gettotalWasteSavings(result2) {
-          for (let j = 0; j < result2.length; j++) {
-            totalWasteSavinggsArr.push(result2[j] * 0.5);
-          }
-          console.log(totalWasteSavinggsArr);
-        }
-        console.log(result2);
-        gettotalWasteSavings(result2);
-        return result2;
       }
 
-      // console.log(Arrays_sum(calcRevArr, totalWasteArr));
+      Arrays_sum(calcRevArr, totalWasteArr);
     </script>
   </body>
 </html>

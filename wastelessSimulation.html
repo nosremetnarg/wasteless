@@ -123,7 +123,8 @@
         </div>
 
         <div class="frozenFoods grid">
-          <img class="icon milk" src="/Assets/frozenFood.png" alt="" />
+          <!-- <img class="icon milk" src="/Assets/frozenFood.png" alt="" /> -->
+          <img class="icon milk" src="wasteless/Assets/frozenFood.png" alt="" />
           <p>Frozen Foods</p>
           <p class="slider subinformation">% of total revenue</p>
           <input
@@ -840,6 +841,8 @@
           totalEconomicValue.innerHTML = 0;
           const reduce = (val1, val2) => val1 + val2;
           let reducedArr = arr.reduce(reduce);
+
+          // this writes to the page
           totalEconomicValue.innerHTML = reducedArr;
           console.log(reducedArr);
         }

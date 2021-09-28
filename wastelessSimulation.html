@@ -417,12 +417,12 @@
         <div class="totalEconomicValueContainer metricResult">
           <h4 class="metricTitle">CO2e Reduced</h4>
           <span class="metric">$</span>
-          <span class="metric"></span>
+          <span class="metric revenueUpsale"></span>
         </div>
         <div class="totalEconomicValueContainer metricResult listItem upsale">
           <h4 class="metricTitle">Total Revenue Upsale</h4>
           <span>$</span>
-          <span class="upsale metric"></span>
+          <span class="upsale totalUpsale metric"></span>
         </div>
         <div class="totalEconomicValueContainer metricResult listItem value">
           <h4 class="metricTitle">Waste Reduction Value</h4>
@@ -660,6 +660,7 @@
 
       // Results
       let totalEconomicValue = document.querySelector(".economicValue");
+      let totalRevenueUpsale = document.querySelector('.totalUpsale')
 
       function getTotalRevenue() {
         let totalRevenue = document.getElementById("totalRevenue").value;
@@ -810,6 +811,8 @@
           //
           console.log(revenueUpsaleArr);
           arrSum(revenueUpsaleArr);
+          arrSum2(revenueUpsaleArr);
+       
           
         }
         function arrSum(arr) {
@@ -818,7 +821,14 @@
           let reducedArr = arr.reduce(reducer);
           wasteSavingsResult.push(reducedArr);
           console.log(reducedArr);
-          
+        }
+        
+        // this writes the total rev update onto the page
+        function arrSum2(arr) {
+          let revReducer = (val1, val2) => val1 + val2;
+          let reducedArr = arr.reduce(revReducer);
+          console.log(reducedArr);
+          totalRevenueUpsale.innerHTML = reducedArr
         }
 
         function reduceRevenueUpsale(arr) {

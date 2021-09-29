@@ -632,6 +632,7 @@
       let avgCostArr = [10, 6, 1.2, 5, 3, 12, 4];
       let totalRevUpsale = {};
       let totalWasteRevValue = {};
+      let totalWasteRevenue;
       // Chart variable
       let myChart = document.getElementById("myChart").getContext("2d");
       let labels = [
@@ -711,6 +712,7 @@
       let totalRevenueUpsale = document.querySelector(".totalUpsale");
       let co2eReduced = document.querySelector(".co2reduced");
       let wasteReductionValue = document.querySelector(".wasteReductionValue");
+      let reducedArr;
 
       function getTotalRevenue() {
         let totalRevenue = document.getElementById("totalRevenue").value;
@@ -848,44 +850,55 @@
           }
           console.log(result2);
           // return result;
-          revenueUpsale(calcRevArr);
+          revenueUpsale(calcRevArr,totalWasteRevenue);
           arrSum(result2);
           reduceRevenueUpsale(wasteSavingsResult);
           Arrays_divide(result2, avgCostArr);
         }
-        function revenueUpsale(arr) {
+        function revenueUpsale(arr, totalWasteRevenue) {
           let revenueUpsaleArr = [];
           for (let i = 0; i < arr.length; i++) {
             revenueUpsaleArr.push(arr[i] * 0.18);
           }
           //
           console.log(revenueUpsaleArr);
-          arrSum(revenueUpsaleArr);
-          arrSum2(revenueUpsaleArr);
+          arrSum3(revenueUpsaleArr);
+          arrSum2(revenueUpsaleArr, totalWasteRevValue);
         }
+        
         function arrSum(arr) {
           const reducer = (val1, val2) => val1 + val2;
-          let reducedArr = arr.reduce(reducer);
+          reducedArr = arr.reduce(reducer);
           wasteSavingsResult.push(reducedArr);
           wasteReductionValue.innerHTML = reducedArr;
           totalWasteRevValue.downsale = reducedArr;
           // this writes the waste reduction value number
-          console.log(reducedArr, totalWasteRevValue);
+          totalWasteRevenue = reducedArr;
+          console.log(reducedArr, totalWasteRevValue.downsale);
+          return totalWasteRevValue;
         }
-
         // this writes the total rev update onto the page
-        function arrSum2(arr) {
+        function arrSum2(arr, totalWasteRevValue) {
           let revReducer = (val1, val2) => val1 + val2;
           let reducedArr = arr.reduce(revReducer);
 
           // this is total revenue upsale number
-
           totalRevenueUpsale.innerHTML = reducedArr;
           totalRevUpsale.upsale = reducedArr;
-          makeChart(totalRevUpsale, totalWasteRevValue)
           console.log(totalRevUpsale, totalWasteRevValue);
+          makeChart(totalRevUpsale, totalWasteRevValue)
+          
           return totalRevUpsale;
         }
+        function arrSum3(arr) {
+          const reducer = (val1, val2) => val1 + val2;
+          let reducedArr = arr.reduce(reducer);
+          wasteSavingsResult.push(reducedArr);
+          // wasteReductionValue.innerHTML = reducedArr;
+          totalWasteRevValue.downsale = reducedArr;
+          console.log(totalWasteRevValue);
+        }
+        
 
         function reduceRevenueUpsale(arr) {
           totalEconomicValue.innerHTML = 0;
@@ -935,22 +948,23 @@
       Arrays_sum(calcRevArr, totalWasteArr);
       
 
-      function makeChart(totalRevUpsale) {
+      function makeChart(totalRevUpsale, totalWasteRevValue) {
+        console.log(totalWasteRevValue, totalRevUpsale);
         new Chart(document.getElementById("myChart"), {
         type: "line",
         data: {
           labels: ["Day 0", "Day 365"],
           datasets: [
             {
-              data: [0,  totalWasteRevValue.upsale],
-              label: "Africa",
-              borderColor: "#47D71D",
+              data: [0,  500000],
+              label: "Total Waste Revenue",
+              borderColor: "#492FC4",
               fill: false,
             },
             {
               data: [0, totalRevUpsale.upsale],
               label: "Total Revenue Upsale",
-              borderColor: "#492FC4",
+              borderColor: "#47D71D",
               fill: false,
             },
             
@@ -968,7 +982,6 @@
       });
       }
       
-      console.log(totalRevUpsale);
     </script>
   </body>
 </html>

@@ -1025,6 +1025,7 @@
             }
             console.log('hi');
             document.querySelector(".revenueError").style.display = "none";
+            document.querySelector("#simulateBtn").style.display = "block";
         } 
         if (tooHigh) {
           var TextElements = document.querySelectorAll(".sliderRev");
@@ -1033,6 +1034,7 @@
               TextElements[i].style.opacity = 0.2;
           }
           document.querySelector(".revenueError").style.display = "block";
+          document.querySelector("#simulateBtn").style.display = "none";
           
           console.log('bye');
         } 

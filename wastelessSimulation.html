@@ -20,7 +20,7 @@
           min="1"
           max="5000000000"
         />
-        <input type="submit" id="submit" />
+        <!-- <input type="submit" id="submit" /> -->
 
         <p>
           Out of the total revenue, how much each of the following represent and
@@ -33,14 +33,14 @@
           <!-- <img class="icon" src="/Assets/bread.png" alt="" /> -->
           <img class="icon" src="/wasteless/Assets/bread.png" alt="" />
           <p>Packed meals / Deli</p>
-          <p class="slider subinformation">% of total revenue</p>
+          <p class="slider sliderRev subinformation">% of total revenue</p>
           <input
             type="range"
             min="0"
             max="30"
             value="8"
             step="1"
-            class="slider packedMeals"
+            class="slider sliderRev packedMeals"
             id="packedMeals"
             name="packedMeals"
             oninput="packedMealsOutput.value=parseInt(packedMeals.value)"
@@ -81,14 +81,14 @@
           <img class="icon milk" src="/wasteless/Assets/milk.png" alt="" />
           <p>Bakery</p>
 
-          <p class="slider subinformation">% of total revenue</p>
+          <p class="slider sliderRev subinformation">% of total revenue</p>
           <input
             type="range"
             min="0"
             max="30"
             value="6"
             step="1"
-            class="slider bakery"
+            class="slider sliderRev bakery"
             id="bakery"
             name="bakery"
             oninput="bakeryOutput.value=bakery.value"
@@ -132,14 +132,14 @@
             alt=""
           />
           <p>Frozen Foods</p>
-          <p class="slider subinformation">% of total revenue</p>
+          <p class="slider sliderRev subinformation">% of total revenue</p>
           <input
             type="range"
             min="0"
             max="30"
             value="5"
             step="1"
-            class="slider frozenFood"
+            class="slider sliderRev frozenFood"
             id="frozenFood"
             name="frozenFood"
             oninput="frozenFoodOutput.value=frozenFood.value"
@@ -182,14 +182,14 @@
 
           <p>Seafood</p>
           <!-- seafoodOutput seafoodWasteOutput -->
-          <p class="slider subinformation">% of total revenue</p>
+          <p class="slider sliderRev subinformation">% of total revenue</p>
           <input
             type="range"
             min="0"
             max="30"
             value="1"
             step="1"
-            class="slider seafood"
+            class="slider sliderRev seafood"
             id="seafood"
             name="seafood"
             oninput="seafoodOutput.value=seafood.value"
@@ -234,14 +234,14 @@
           />
           <p>Fruits & Vegetables</p>
 
-          <p class="slider subinformation">% of total revenue</p>
+          <p class="slider sliderRev subinformation">% of total revenue</p>
           <input
             type="range"
             min="0"
             max="30"
             value="14"
             step="1"
-            class="slider fruitAndVegetables"
+            class="slider sliderRev fruitAndVegetables"
             id="fruitAndVegetables"
             name="fruitAndVegetables"
             oninput="fruitAndVegetablesOutput.value=fruitAndVegetables.value"
@@ -283,14 +283,14 @@
 
           <p>Dairy</p>
 
-          <p class="slider subinformation">% of total revenue</p>
+          <p class="slider sliderRev subinformation">% of total revenue</p>
           <input
             type="range"
             min="0"
             max="30"
             value="10"
             step="1"
-            class="slider dairy"
+            class="slider sliderRev dairy"
             id="dairy"
             name="dairy"
             oninput="dairyOutput.value=dairy.value"
@@ -333,14 +333,14 @@
 
           <p>Meat & Poultry</p>
 
-          <p class="slider subinformation">% of total revenue</p>
+          <p class="slider sliderRev subinformation">% of total revenue</p>
           <input
             type="range"
             min="0"
             max="30"
             value="10"
             step="1"
-            class="slider meatAndPoultry"
+            class="slider sliderRev meatAndPoultry"
             id="meatAndPoultry"
             name="meatAndPoultry"
             oninput="meatAndPoultryOutput.value=meatAndPoultry.value"
@@ -386,14 +386,14 @@
           />
 
           <p>Dry foods and other products</p>
-          <p class="slider subinformation">% of store</p>
+          <p class="slider sliderRev subinformation">% of store</p>
           <input
             type="range"
             min="0"
             max="100"
             value="0"
             step="1"
-            class="slider dryFoods"
+            class="slider sliderRev dryFoods"
             id="dryFoods"
             name="dryFoods"
             oninput="dryFoodsOutput.value=dryFoods.value"
@@ -413,7 +413,7 @@
     </div>
 
     <div class="simulatebtn">
-      <button onClick="calc()" class="simulateBtn" id="simulateBtn">
+      <button onClick="calc()" class="simulateBtn submit" id="simulateBtn">
         SIMULATE
       </button>
     </div>
@@ -618,6 +618,14 @@
       .metric {
         color: #404040;
       }
+
+      .grey {
+        opacity: 0.2;
+      }
+      .noClick {
+        pointer-events: none;
+      }
+
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
@@ -704,7 +712,7 @@
       let revenueError = document.querySelector(".revenueError");
 
       // Get revenue number
-      var btn = document.getElementById("submit");
+      var btn = document.querySelector(".submit");
       btn.addEventListener("click", getTotalRevenue);
 
       // Results
@@ -716,9 +724,9 @@
 
       function getTotalRevenue() {
         let totalRevenue = document.getElementById("totalRevenue").value;
-        console.log(totalRevenue);
+        console.log(`total Revenue ${totalRevenue}`);
       }
-
+/// this is the first function to fire
       function calc() {
         totalRevenueArr = [];
         totalWasteArr = [];
@@ -852,8 +860,9 @@
           // return result;
           revenueUpsale(calcRevArr,totalWasteRevenue);
           arrSum(result2);
-          reduceRevenueUpsale(wasteSavingsResult);
+          
           Arrays_divide(result2, avgCostArr);
+          reduceRevenueUpsale(wasteSavingsResult);
         }
         function revenueUpsale(arr, totalWasteRevenue) {
           let revenueUpsaleArr = [];
@@ -862,7 +871,7 @@
           }
           //
           console.log(revenueUpsaleArr);
-          arrSum3(revenueUpsaleArr);
+          // arrSum3(revenueUpsaleArr);
           arrSum2(revenueUpsaleArr, totalWasteRevValue);
         }
         
@@ -871,10 +880,10 @@
           reducedArr = arr.reduce(reducer);
           wasteSavingsResult.push(reducedArr);
           wasteReductionValue.innerHTML = reducedArr;
-          totalWasteRevValue.downsale = reducedArr;
+          // totalWasteRevValue.downsale = reducedArr;
           // this writes the waste reduction value number
-          totalWasteRevenue = reducedArr;
-          console.log(reducedArr, totalWasteRevValue.downsale);
+          // totalWasteRevenue = reducedArr;
+          console.log(reducedArr);
           return totalWasteRevValue;
         }
         // this writes the total rev update onto the page
@@ -886,7 +895,7 @@
           totalRevenueUpsale.innerHTML = reducedArr;
           totalRevUpsale.upsale = reducedArr;
           console.log(totalRevUpsale, totalWasteRevValue);
-          makeChart(totalRevUpsale, totalWasteRevValue)
+          // makeChart(totalRevUpsale, totalWasteRevValue) /////// make chart here
           
           return totalRevUpsale;
         }
@@ -895,8 +904,7 @@
           let reducedArr = arr.reduce(reducer);
           wasteSavingsResult.push(reducedArr);
           // wasteReductionValue.innerHTML = reducedArr;
-          totalWasteRevValue.downsale = reducedArr;
-          console.log(totalWasteRevValue);
+          
         }
         
 
@@ -907,7 +915,8 @@
 
           // this writes to the page
           totalEconomicValue.innerHTML = reducedArr;
-          console.log(reducedArr);
+          totalWasteRevValue.downsale = reducedArr;
+          console.log(reducedArr, totalWasteRevValue.downsale);
         }
       }
       function Arrays_divide(array1, array2) {
@@ -982,6 +991,54 @@
       });
       }
       
+      function resetData() {
+
+      }
+      let listeningData = [];
+      let listeningDataReducer = (x,y) => x + y;
+      let inputEl = document.querySelectorAll('input');
+      let tooHigh = false;
+      // let simulateButton = document.querySelector('.submit')
+      
+      window.addEventListener("click", listen)
+      function listen() {
+        console.log(inputEl);
+        listeningData[0] = (parseInt(document.getElementById('packedMealsOutput').innerHTML));
+        listeningData[1] = (parseInt(document.getElementById('bakeryOutput').innerHTML));
+        listeningData[2] = (parseInt(document.getElementById('frozenFoodOutput').innerHTML));
+        listeningData[3] = (parseInt(document.getElementById('seafoodOutput').innerHTML));
+        listeningData[4] = (parseInt(document.getElementById('fruitAndVegetablesOutput').innerHTML));
+        listeningData[5] = (parseInt(document.getElementById('dairyOutput').innerHTML));
+        listeningData[6] = (parseInt(document.getElementById('meatAndPoultryOutput').innerHTML));
+        console.log(listeningData);
+        let listeningDataSum = listeningData.reduce(listeningDataReducer)
+        if (listeningDataSum > 100 ) {
+          console.log('Sum is too high');
+          
+          tooHigh = true;
+        } else {
+          console.log("Sum is under 100");
+          tooHigh = false;
+          var TextEl = document.querySelectorAll(".sliderRev");
+            for (var i = 0, max = TextEl.length; i < max; i++) {
+                TextEl[i].style.opacity = 1;
+            }
+            console.log('hi');
+            document.querySelector(".revenueError").style.display = "none";
+        } 
+        if (tooHigh) {
+          var TextElements = document.querySelectorAll(".sliderRev");
+
+          for (var i = 0, max = TextElements.length; i < max; i++) {
+              TextElements[i].style.opacity = 0.2;
+          }
+          document.querySelector(".revenueError").style.display = "block";
+          
+          console.log('bye');
+        } 
+        
+      };
+
     </script>
   </body>
 </html>

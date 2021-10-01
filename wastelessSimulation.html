@@ -721,6 +721,7 @@
       let co2eReduced = document.querySelector(".co2reduced");
       let wasteReductionValue = document.querySelector(".wasteReductionValue");
       let reducedArr;
+      let totalWasteSave;
 
       function getTotalRevenue() {
         let totalRevenue = document.getElementById("totalRevenue").value;
@@ -858,8 +859,9 @@
           }
           console.log(result2);
           // return result;
-          revenueUpsale(calcRevArr,totalWasteRevenue);
           arrSum(result2);
+          revenueUpsale(calcRevArr,totalWasteRevenue);
+          
           
           Arrays_divide(result2, avgCostArr);
           reduceRevenueUpsale(wasteSavingsResult);
@@ -880,10 +882,8 @@
           reducedArr = arr.reduce(reducer);
           wasteSavingsResult.push(reducedArr);
           wasteReductionValue.innerHTML = reducedArr;
-          // totalWasteRevValue.downsale = reducedArr;
-          // this writes the waste reduction value number
-          // totalWasteRevenue = reducedArr;
-          console.log(reducedArr);
+          totalWasteSave = reducedArr
+          console.log(reducedArr, totalWasteSave);
           return totalWasteRevValue;
         }
         // this writes the total rev update onto the page
@@ -895,7 +895,7 @@
           totalRevenueUpsale.innerHTML = reducedArr;
           totalRevUpsale.upsale = reducedArr;
           console.log(totalRevUpsale, totalWasteRevValue);
-          // makeChart(totalRevUpsale, totalWasteRevValue) /////// make chart here
+          makeChart(totalRevUpsale, totalWasteRevValue, totalWasteSave) /////// make chart here
           
           return totalRevUpsale;
         }
@@ -957,18 +957,18 @@
       Arrays_sum(calcRevArr, totalWasteArr);
       
 
-      function makeChart(totalRevUpsale, totalWasteRevValue) {
-        console.log(totalWasteRevValue, totalRevUpsale);
+      function makeChart(totalRevUpsale, totalWasteRevValue, totalWasteSave) {
+        console.log(totalRevUpsale, totalWasteSave);
         new Chart(document.getElementById("myChart"), {
         type: "line",
         data: {
           labels: ["Day 0", "Day 365"],
           datasets: [
             {
-              data: [0,  50000000],
-              label: "Total Waste Revenue",
+              data: [0,  totalWasteSave],
+              label: "Total Waste Reduction Revenue",
               borderColor: "#492FC4",
-              fill: false,
+              fill: true,
             },
             {
               data: [0, totalRevUpsale.upsale],
@@ -998,11 +998,9 @@
       let listeningDataReducer = (x,y) => x + y;
       let inputEl = document.querySelectorAll('input');
       let tooHigh = false;
-      // let simulateButton = document.querySelector('.submit')
       
       window.addEventListener("click", listen)
       function listen() {
-        console.log(inputEl);
         listeningData[0] = (parseInt(document.getElementById('packedMealsOutput').innerHTML));
         listeningData[1] = (parseInt(document.getElementById('bakeryOutput').innerHTML));
         listeningData[2] = (parseInt(document.getElementById('frozenFoodOutput').innerHTML));

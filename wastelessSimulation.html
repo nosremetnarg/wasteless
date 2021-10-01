@@ -626,6 +626,19 @@
         pointer-events: none;
       }
 
+      @media only screen and (max-width: 480px)
+    {
+      .grid {
+        width: 100%;
+      }
+
+      .slider {
+        width: 70%;
+       
+      }
+    }
+
+
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
@@ -969,12 +982,14 @@
               label: "Total Waste Reduction Revenue",
               borderColor: "#492FC4",
               fill: true,
+              backgroundColor: "#492FC4"
             },
             {
               data: [0, totalRevUpsale.upsale],
               label: "Total Revenue Upsale",
               borderColor: "#47D71D",
-              fill: false,
+              fill: true,
+              backgroundColor: "#47D71D"
             },
             
           ],

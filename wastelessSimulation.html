@@ -915,7 +915,7 @@
               result2.push(array1[x]);
             }
           }
-          console.log(result2);
+          
           // return result;
           arrSum(result2);
           revenueUpsale(calcRevArr, totalWasteRevenue);
@@ -929,7 +929,7 @@
             revenueUpsaleArr.push(arr[i] * 0.18);
           }
           //
-          console.log(revenueUpsaleArr);
+         
           // arrSum3(revenueUpsaleArr);
           arrSum2(revenueUpsaleArr, totalWasteRevValue);
         }
@@ -940,7 +940,7 @@
           wasteSavingsResult.push(reducedArr);
           wasteReductionValue.innerHTML = reducedArr;
           totalWasteSave = reducedArr;
-          console.log(reducedArr, totalWasteSave);
+          
           return totalWasteRevValue;
         }
         // this writes the total rev update onto the page
@@ -951,7 +951,7 @@
           // this is total revenue upsale number
           totalRevenueUpsale.innerHTML = reducedArr;
           totalRevUpsale.upsale = reducedArr;
-          console.log(totalRevUpsale, totalWasteRevValue);
+          
           makeChart(totalRevUpsale, totalWasteRevValue, totalWasteSave); /////// make chart here
 
           return totalRevUpsale;
@@ -972,7 +972,7 @@
           totalEconomicValue.innerHTML = reducedArr;
           totalWasteRevValue.downsale = reducedArr;
           tenYear.push(reducedArr);
-          console.log(reducedArr, totalWasteRevValue.downsale);
+          
         }
       }
       function Arrays_divide(array1, array2) {
@@ -1000,13 +1000,13 @@
         }
 
         // finish writing this reducer func
-        console.log(co2result);
+        
 
         const reduceCO2 = (val1, val2) => val1 + val2;
         let reducedArr = co2result.reduce(reduceCO2);
         co2eReduced.innerHTML = Math.round(reducedArr);
         tenYear.push(reducedArr);
-        console.log(reducedArr);
+       
 
         return co2result;
       }
@@ -1015,11 +1015,12 @@
       let myChartCanvas;
       // var myChart = new Chart(ctx, config);
       function makeChart(totalRevUpsale, totalWasteRevValue, totalWasteSave) {
-        // myChartTen.style.display = "none";
+        
           
            
-         
-            console.log(totalRevUpsale, totalWasteSave);
+         console.log(myChartTenCanvas); // this is the ten year chart object
+        //  myChartTenCanvas.style.display = "none";
+          console.log(totalRevUpsale, totalWasteSave);
           myChartCanvas = new Chart(document.getElementById("myChart"), {
             type: "line",
             data: {
@@ -1132,17 +1133,18 @@
         makeChartTenYear(answer[0], answer[1]);
         console.log("new chart made");
       }
-
-      function makeChartTenYear(var1, var2, myChartCanvas, myChartFirst) {
+      let myChartTenCanvas;
+      function makeChartTenYear(var1, var2) {
         console.log(myChartCanvas, myChartFirst);
-        myChartFirst.style.display = 'none';
-        
+        document.getElementById('myChart').style.display = "none";
         // myChart.style.display = "none";
+        myChartFirst.style.display = 'none';
+        myChartCanvas.destroy();
         document.querySelector('.totalUpsale').innerHTML = Math.round(var1);
         document.querySelector('.wasteReductionValue').innerHTML = var2;
         
         console.log(var1, var2);
-        new Chart(document.getElementById("myChartTenYear"), {
+        myChartTenCanvas = new Chart(document.getElementById("myChartTenYear"), {
           type: "line",
           data: {
             labels: ["Day 0", "Day 365"],
@@ -1173,7 +1175,11 @@
             },
           },
         });
+        console.log(myChartTenCanvas);
         myChartTenYear.style.display = "block";
+        
+      
+        return myChartTenCanvas;
       }
       // function destroyChart() {
       //   console.log('begin destroy');

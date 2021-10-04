@@ -426,13 +426,15 @@
         <div class="resultsBtns">
           <p class="subinformation">Show results for:</p>
           <button class="btn months">12 Months</button>
-          <button onClick="tenYear()"class="btn years">10 Years</button>
+          <button onClick="tenYearFunc(tenYear)" class="btn years">
+            10 Years
+          </button>
         </div>
       </div>
 
       <div class="chart">
-        
         <canvas id="myChart" width="800" height="450"></canvas>
+        <canvas id="myChartTenYear" width="800" height="450"></canvas>
       </div>
       <div class="metric_results_container">
         <div class="totalEconomicValueContainer metricResult">
@@ -625,37 +627,48 @@
       .noClick {
         pointer-events: none;
       }
-      #myChart {
-        width: 100%
-      }
-      @media only screen and (max-width: 580px)
-    {
-      body { 
-        width: 100vw;
-        margin: 0 auto;
-           }
-      #simulation-wrapper { width: 85%; }
-      .grid {
+      #myChart,
+      #myChartTenYear {
         width: 100%;
       }
 
-      .slider {
-        width: 65%;
-      }
-      .icon {
-    padding: 20px 10px 90px 0px;
+      #myChartTenYear {
+        display: none;
       }
 
-      .btn {
-        padding: .2rem .4rem;
+      @media only screen and (max-width: 580px) {
+        body {
+          width: 100vw;
+          margin: 0 auto;
+        }
+        #simulation-wrapper {
+          width: 85%;
+        }
+        .grid {
+          width: 100%;
+        }
+
+        .slider {
+          width: 65%;
+        }
+        .icon {
+          padding: 20px 10px 90px 0px;
+        }
+
+        .btn {
+          padding: 0.2rem 0.4rem;
+        }
+
+        .metricTitle,
+        .metric,
+        .metricTitle > span,
+        .co2reduced > span {
+          font-size: 12px;
+        }
+        .metricTitle {
+          min-height: 100px;
+        }
       }
-      
-
-      .metricTitle, .metric, .metricTitle > span, .co2reduced > span { font-size: 12px; }
-      .metricTitle { min-height: 100px; }
-    }
-
-
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
@@ -671,8 +684,13 @@
       let totalRevUpsale = {};
       let totalWasteRevValue = {};
       let totalWasteRevenue;
+      let tenYear = [];
       // Chart variable
       let myChart = document.getElementById("myChart").getContext("2d");
+      let myChartTenYear = document
+        .getElementById("myChartTenYear")
+        .getContext("2d");
+
       let labels = [
         "jan",
         "feb",
@@ -687,8 +705,6 @@
         "november",
         "december",
       ];
-
-      
 
       // Get Total Revenue
       let totalRevenue = document.querySelector("#totalRevenue");
@@ -757,7 +773,7 @@
         let totalRevenue = document.getElementById("totalRevenue").value;
         console.log(`total Revenue ${totalRevenue}`);
       }
-/// this is the first function to fire
+      /// this is the first function to fire
       function calc() {
         totalRevenueArr = [];
         totalWasteArr = [];
@@ -794,7 +810,6 @@
           totalWasteArrPercentage.push(totalWasteArr[i] / 100);
         }
         Arrays_sum(calcRevArr, totalWasteArrPercentage);
-        
       }
       // end of calc Func
 
@@ -890,9 +905,8 @@
           console.log(result2);
           // return result;
           arrSum(result2);
-          revenueUpsale(calcRevArr,totalWasteRevenue);
-          
-          
+          revenueUpsale(calcRevArr, totalWasteRevenue);
+
           Arrays_divide(result2, avgCostArr);
           reduceRevenueUpsale(wasteSavingsResult);
         }
@@ -906,13 +920,13 @@
           // arrSum3(revenueUpsaleArr);
           arrSum2(revenueUpsaleArr, totalWasteRevValue);
         }
-        
+
         function arrSum(arr) {
           const reducer = (val1, val2) => val1 + val2;
           reducedArr = arr.reduce(reducer);
           wasteSavingsResult.push(reducedArr);
           wasteReductionValue.innerHTML = reducedArr;
-          totalWasteSave = reducedArr
+          totalWasteSave = reducedArr;
           console.log(reducedArr, totalWasteSave);
           return totalWasteRevValue;
         }
@@ -925,8 +939,8 @@
           totalRevenueUpsale.innerHTML = reducedArr;
           totalRevUpsale.upsale = reducedArr;
           console.log(totalRevUpsale, totalWasteRevValue);
-          makeChart(totalRevUpsale, totalWasteRevValue, totalWasteSave) /////// make chart here
-          
+          makeChart(totalRevUpsale, totalWasteRevValue, totalWasteSave); /////// make chart here
+
           return totalRevUpsale;
         }
         function arrSum3(arr) {
@@ -934,9 +948,7 @@
           let reducedArr = arr.reduce(reducer);
           wasteSavingsResult.push(reducedArr);
           // wasteReductionValue.innerHTML = reducedArr;
-          
         }
-        
 
         function reduceRevenueUpsale(arr) {
           totalEconomicValue.innerHTML = 0;
@@ -946,6 +958,7 @@
           // this writes to the page
           totalEconomicValue.innerHTML = reducedArr;
           totalWasteRevValue.downsale = reducedArr;
+          tenYear.push(reducedArr);
           console.log(reducedArr, totalWasteRevValue.downsale);
         }
       }
@@ -979,101 +992,166 @@
         const reduceCO2 = (val1, val2) => val1 + val2;
         let reducedArr = co2result.reduce(reduceCO2);
         co2eReduced.innerHTML = Math.round(reducedArr);
+        tenYear.push(reducedArr);
         console.log(reducedArr);
 
         return co2result;
       }
 
       Arrays_sum(calcRevArr, totalWasteArr);
-      
 
+      // var myChart = new Chart(ctx, config);
       function makeChart(totalRevUpsale, totalWasteRevValue, totalWasteSave) {
-        console.log(totalRevUpsale, totalWasteSave);
-        new Chart(document.getElementById("myChart"), {
-        type: "line",
-        data: {
-          labels: ["Day 0", "Day 365"],
-          datasets: [
-            {
-              data: [0,  totalWasteSave],
-              label: "Total Waste Reduction Revenue",
-              borderColor: "#492FC4",
-              fill: true,
-              backgroundColor: "#492FC4"
+        
+          console.log(totalRevUpsale, totalWasteSave);
+          new Chart(document.getElementById("myChart"), {
+            type: "line",
+            data: {
+              labels: ["Day 0", "Day 365"],
+              datasets: [
+                {
+                  data: [0, totalWasteSave],
+                  label: "Total Waste Reduction Revenue",
+                  borderColor: "#492FC4",
+                  fill: true,
+                  backgroundColor: "#492FC4",
+                },
+                {
+                  data: [0, totalRevUpsale.upsale],
+                  label: "Total Revenue Upsale",
+                  borderColor: "#47D71D",
+                  fill: true,
+                  backgroundColor: "#47D71D",
+                },
+              ],
             },
-            {
-              data: [0, totalRevUpsale.upsale],
-              label: "Total Revenue Upsale",
-              borderColor: "#47D71D",
-              fill: true,
-              backgroundColor: "#47D71D"
+            options: {
+              plugins: {
+                title: {
+                  display: true,
+                  text: "Sample Chart Title",
+                },
+                legend: false,
+              },
             },
-            
-          ],
-        },
-        options: {
-          plugins: {
-            title: {
-              display: true,
-              text: "Sample Chart Title",
-            },
-            legend: false,
-          },
-        },
-      });
-      }
-      
-      function resetData() {
+          });
+        }
 
-      }
+      function resetData() {}
+
       let listeningData = [];
-      let listeningDataReducer = (x,y) => x + y;
-      let inputEl = document.querySelectorAll('input');
+      let listeningDataReducer = (x, y) => x + y;
+      let inputEl = document.querySelectorAll("input");
       let tooHigh = false;
-      
-      window.addEventListener("click", listen)
+
+      window.addEventListener("click", listen);
       function listen() {
-        listeningData[0] = (parseInt(document.getElementById('packedMealsOutput').innerHTML));
-        listeningData[1] = (parseInt(document.getElementById('bakeryOutput').innerHTML));
-        listeningData[2] = (parseInt(document.getElementById('frozenFoodOutput').innerHTML));
-        listeningData[3] = (parseInt(document.getElementById('seafoodOutput').innerHTML));
-        listeningData[4] = (parseInt(document.getElementById('fruitAndVegetablesOutput').innerHTML));
-        listeningData[5] = (parseInt(document.getElementById('dairyOutput').innerHTML));
-        listeningData[6] = (parseInt(document.getElementById('meatAndPoultryOutput').innerHTML));
+        listeningData[0] = parseInt(
+          document.getElementById("packedMealsOutput").innerHTML
+        );
+        listeningData[1] = parseInt(
+          document.getElementById("bakeryOutput").innerHTML
+        );
+        listeningData[2] = parseInt(
+          document.getElementById("frozenFoodOutput").innerHTML
+        );
+        listeningData[3] = parseInt(
+          document.getElementById("seafoodOutput").innerHTML
+        );
+        listeningData[4] = parseInt(
+          document.getElementById("fruitAndVegetablesOutput").innerHTML
+        );
+        listeningData[5] = parseInt(
+          document.getElementById("dairyOutput").innerHTML
+        );
+        listeningData[6] = parseInt(
+          document.getElementById("meatAndPoultryOutput").innerHTML
+        );
         console.log(listeningData);
-        let listeningDataSum = listeningData.reduce(listeningDataReducer)
-        if (listeningDataSum > 100 ) {
-          console.log('Sum is too high');
-          
+        let listeningDataSum = listeningData.reduce(listeningDataReducer);
+        if (listeningDataSum > 100) {
+          console.log("Sum is too high");
+
           tooHigh = true;
         } else {
           console.log("Sum is under 100");
           tooHigh = false;
           var TextEl = document.querySelectorAll(".sliderRev");
-            for (var i = 0, max = TextEl.length; i < max; i++) {
-                TextEl[i].style.opacity = 1;
-            }
-            console.log('hi');
-            document.querySelector(".revenueError").style.display = "none";
-            document.querySelector("#simulateBtn").style.display = "block";
-        } 
+          for (var i = 0, max = TextEl.length; i < max; i++) {
+            TextEl[i].style.opacity = 1;
+          }
+          console.log("hi");
+          document.querySelector(".revenueError").style.display = "none";
+          document.querySelector("#simulateBtn").style.display = "block";
+        }
         if (tooHigh) {
           var TextElements = document.querySelectorAll(".sliderRev");
 
           for (var i = 0, max = TextElements.length; i < max; i++) {
-              TextElements[i].style.opacity = 0.2;
+            TextElements[i].style.opacity = 0.2;
           }
           document.querySelector(".revenueError").style.display = "block";
           document.querySelector("#simulateBtn").style.display = "none";
-          
-          console.log('bye');
-        } 
-        
-      };
 
+          console.log("bye");
+        }
+      }
+
+      // 982 and 949
+      // function destroyChart() {
+      //   console.log('chart destroyed');
+      //   console.log(myChart);
+      //   myChart.destroy();
+      // }
       
-      function tenYear(val1, val2) {
+      function tenYearFunc(arr) {
+        tenYearClick = true;
+        console.log("ten years");
+        console.log(arr);
+        let answer = arr.map((x) => x * 10);
+        console.log(answer);
 
+        makeChartTenYear(answer[0], answer[1]);
+        console.log("new chart made");
+      }
+
+      function makeChartTenYear(var1, var2) {
+
+        // myChart.style.display = "none";
+        
+        console.log(var1, var2);
+        new Chart(document.getElementById("myChartTenYear"), {
+          type: "line",
+          data: {
+            labels: ["Day 0", "Day 365"],
+            datasets: [
+              {
+                data: [0, var1],
+                label: "Total Waste Reduction Revenue",
+                borderColor: "#492FC4",
+                fill: true,
+                backgroundColor: "#492FC4",
+              },
+              {
+                data: [0, var2],
+                label: "Total Revenue Upsale",
+                borderColor: "#47D71D",
+                fill: true,
+                backgroundColor: "#47D71D",
+              },
+            ],
+          },
+          options: {
+            plugins: {
+              title: {
+                display: true,
+                text: "Sample Chart Title",
+              },
+              legend: false,
+            },
+          },
+        });
+        myChartTenYear.style.display = "block";
       }
     </script>
   </body>

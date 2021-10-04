@@ -428,7 +428,7 @@
         <div class="resultsBtns">
           <p class="subinformation">Show results for:</p>
           <button onClick="calc()" class="btn months">12 Months</button>
-          <button onClick="tenYearFunc(tenYear)" class="btn years">
+          <button onClick="tenYearFunc(tenYear, myChartFirst, myChartCanvas)" class="btn years">
             10 Years
           </button>
         </div>
@@ -1012,13 +1012,15 @@
       }
 
       Arrays_sum(calcRevArr, totalWasteArr);
-
+      let myChartCanvas;
       // var myChart = new Chart(ctx, config);
       function makeChart(totalRevUpsale, totalWasteRevValue, totalWasteSave) {
         // myChartTen.style.display = "none";
-        destroyChart();
-          console.log(totalRevUpsale, totalWasteSave);
-          new Chart(document.getElementById("myChart"), {
+          
+           
+         
+            console.log(totalRevUpsale, totalWasteSave);
+          myChartCanvas = new Chart(document.getElementById("myChart"), {
             type: "line",
             data: {
               labels: ["Day 0", "Day 365"],
@@ -1049,6 +1051,8 @@
               },
             },
           });
+          console.log(myChartCanvas);
+          return myChartCanvas
         }
 
       function resetData() {}
@@ -1129,8 +1133,10 @@
         console.log("new chart made");
       }
 
-      function makeChartTenYear(var1, var2) {
+      function makeChartTenYear(var1, var2, myChartCanvas, myChartFirst) {
+        console.log(myChartCanvas, myChartFirst);
         myChartFirst.style.display = 'none';
+        
         // myChart.style.display = "none";
         document.querySelector('.totalUpsale').innerHTML = Math.round(var1);
         document.querySelector('.wasteReductionValue').innerHTML = var2;
@@ -1169,14 +1175,17 @@
         });
         myChartTenYear.style.display = "block";
       }
-      function destroyChart() {
-        console.log('begin destroy');
-        if (myChartFirst) {
-          myChartFirst.destroy();
-        }
-        console.log('destroyed');
-      }
-      
+      // function destroyChart() {
+      //   console.log('begin destroy');
+      //   if (myChartFirst) {
+      //     myChartFirst.destroy();
+      //   }
+      //   console.log('destroyed');
+      // }
+      // function destroy(myChart) {
+      //   myChart.destroy();
+      //   calc();
+      // }
  
     </script>
   </body>

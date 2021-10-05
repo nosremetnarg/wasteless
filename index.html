@@ -522,6 +522,9 @@
         width: 270px;
         font-size: 30px;
       }
+      #totalRevenue:focus {
+          outline: 2px solid #47d71d;
+      }
       .revenueOutput {
         color: grey;
       }
@@ -674,6 +677,7 @@
       #myChartTenYear {
         width: 100%;
       }
+     
 
       #myChart {
         display: block;
@@ -855,6 +859,51 @@
 
         makeChart();
       }
+
+      function calc2() {
+        console.log(document.getElementById("totalRevenue").value);
+        totalAnnualRevenueGross = document.getElementById("totalRevenue").value;
+        totalRevenueArr = [];
+        totalWasteArr = [];
+        // push all % of total revenue into array to get total amount
+        totalRevenueArr.push(
+          parseInt(packedMealsRevenue.innerHTML),
+          parseInt(frozenFoodRevenue.innerHTML),
+          parseInt(fruitsAndVegetableRevenue.innerHTML),
+          parseInt(meatAndPoultryRevenue.innerHTML),
+          parseInt(bakeryRevenue.innerHTML),
+          parseInt(seafoodRevenue.innerHTML),
+          parseInt(dairyRevenue.innerHTML)
+        );
+
+        totalWasteArr.push(
+          parseInt(packedMealWaste.innerHTML),
+          parseInt(frozenFoodWaste.innerHTML),
+          parseInt(fruitsAndVegetableWaste.innerHTML),
+          parseInt(meatAndPoultryWaste.innerHTML),
+          parseInt(bakeryWaste.innerHTML),
+          parseInt(seafoodWaste.innerHTML),
+          parseInt(dairyWaste.innerHTML)
+        );
+        console.log(totalWasteArr);
+        console.log(totalRevenueArr);
+
+        for (let i = 0; i < totalWasteArr.length; i++) {
+          totalWasteArrPercentage.push(totalWasteArr[i] / 100);
+        }
+        console.log(totalWasteArrPercentage);
+        getCalculatedRevenueByCategory(
+          totalAnnualRevenueGross,
+          userInputPercentages
+        );
+        console.log(masterDataArr);
+        getMonthlyBreakdown(masterDataArr);
+        getMonthlyNumbers(monthlyTotalRevenueUpsale);
+        getMonthlyNumbersWaste(monthlyTotalWasteReductionValue);
+
+        
+      }
+      
 
       // end of calc Func $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
       //   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -1201,6 +1250,7 @@
       let monthlyRevenueArr = [];
       let monthlyRevenueArrWaste = [];
       function getMonthlyNumbers(x) {
+        monthlyRevenueArr = [];
         for (let i = 0; i < 13; i++) {
           if (i < 13) {
             monthlyRevenueArr.push(x * i);
@@ -1209,8 +1259,10 @@
           }
         }
         console.log(monthlyRevenueArr);
+        return monthlyRevenueArr
       }
       function getMonthlyNumbersWaste(x) {
+        monthlyRevenueArrWaste = [];
         for (let i = 0; i < 13; i++) {
           if (i < 13) {
             monthlyRevenueArrWaste.push(x * i);
@@ -1218,7 +1270,9 @@
             return;
           }
         }
+
         console.log(monthlyRevenueArr);
+        return monthlyRevenueArr
       }
 
       //   function checkChart() {
@@ -1231,10 +1285,16 @@
       // }
 
       function updateChart() {
+       
+        // getMonthlyNumbers(monthlyTotalRevenueUpsale);
+        // getMonthlyNumbersWaste(monthlyTotalWasteReductionValue);
+        // sumOfTotalRevenueArray(listeningData);
+        // sumOfArray(wasteListenData);
+
         console.log(myChart.data.datasets[0].data);
-        console.log(myChart.data.datasets[0].data[0]);
+        console.log(myChart.data.datasets[1].data);
         console.log(monthlyRevenueArr, monthlyRevenueArrWaste);
-        myChart.data.datasets[0].data[0] = [
+        myChart.data.datasets[0].data = [
           monthlyRevenueArr[1],
           monthlyRevenueArr[2],
           monthlyRevenueArr[3],
@@ -1249,7 +1309,7 @@
           monthlyRevenueArr[12],
         ];
 
-        myChart.data.datasets[0].data[1] = [
+        myChart.data.datasets[1].data = [
         monthlyRevenueArrWaste[1],
                   monthlyRevenueArrWaste[2],
                   monthlyRevenueArrWaste[3],

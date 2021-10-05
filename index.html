@@ -699,7 +699,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
     <script type="text/javascript">
-
+    let masterDataArr = [];
     // this holds % total revenue range input data
       let listeningData = [];
     //   this holds Waste % range input data
@@ -816,6 +816,7 @@
         }
         console.log(totalWasteArrPercentage);
         getCalculatedRevenueByCategory(totalAnnualRevenueGross, userInputPercentages)
+        console.log(masterDataArr);
         // revenueUpsale()
       }
       // end of calc Func
@@ -883,6 +884,8 @@
         totalWasteSavingsArr.push(totalWasteSavings)
         console.log(totalWasteSavings, totalWasteSavingsArr);
         // this writes total revenue upsale and waste reduction value to the page ******************
+        masterDataArr.push(totalWasteSavingsArr[0])
+        masterDataArr.push(totalWasteSavingsArr[1])
         document.querySelector('.totalUpsale').innerHTML = totalWasteSavingsArr[0];
         document.querySelector('.wasteReductionValue').innerHTML = totalWasteSavingsArr[1];
         sumOfArrayThree(totalWasteSavingsArr)
@@ -902,7 +905,7 @@
         let reducer = (x, y) => x + y;
         let reducedArr = arr.reduce(reducer);
         console.log(reducedArr);
-
+        masterDataArr.push(reducedArr)
         // this writes total Economic value to the page ***********************
         document.querySelector('.economicValue').innerHTML = reducedArr
       }
@@ -911,6 +914,7 @@
         let reducedArr = arr.reduce(reducer);
         console.log(Math.round(reducedArr));
         let rounded = Math.round(reducedArr)
+        masterDataArr.push(reducedArr)
         // this writes total Co2 value to the page ***********************
         document.querySelector('.co2reduced').innerHTML = rounded
       }

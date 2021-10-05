@@ -628,16 +628,16 @@
         content:"• ";
       }
        */
-
-      .upsale {
-        color: #492fc4;
-      }
-      .value {
-        color: #47d71d;
-      }
-      .metric {
+       .metric {
         color: #404040;
       }
+      .upsale, .totalUpsale {
+        color: #492fc4;
+      }
+      .value, .wasteReductionValue  {
+        color: #47d71d;
+      }
+     
 
       .grey {
         opacity: 0.2;
@@ -880,6 +880,9 @@
         totalWasteSavings = reducedArr;
         totalWasteSavingsArr.push(totalWasteSavings)
         console.log(totalWasteSavings, totalWasteSavingsArr);
+        // this writes total revenue upsale and waste reduction value to the page ******************
+        document.querySelector('.totalUpsale').innerHTML = totalWasteSavingsArr[0];
+        document.querySelector('.wasteReductionValue').innerHTML = totalWasteSavingsArr[1];
         sumOfArrayThree(totalWasteSavingsArr)
         return totalWasteSavingsArr // returns purple total in spreadsheet
       }

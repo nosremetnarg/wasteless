@@ -704,15 +704,20 @@
       let listeningData = [];
     //   this holds Waste % range input data
       let wasteListenData = [];
-
+      let totalAnnualRevenueGross;
       let resultsContainer = document.querySelector(".results-container");
       let totalRevenueArr;
       let totalWasteArr;
       let calcRevArr = [];
+    //   column D in spreadsheet
       let totalWasteArrPercentage = [];
+
       let totalWasteSavingsArr = [];
       let wasteSavingsResult = [];
-      let avgCostArr = [10, 6, 1.2, 5, 3, 12, 4];
+      let avgCostKgFixedAverageArr = [10, 6, 1.2, 5, 3, 12, 4];
+    //   column b in spreadsheet
+      let userInputPercentages = [.08, .05, .14, .10, .06, .01, .1];
+      let totalWasteSavings;
       
     
       
@@ -762,6 +767,10 @@
       var btn = document.querySelector(".submit");
     //   btn.addEventListener("click", getTotalRevenue);
 
+    // WASTE REDUCTION FIXED VALUES
+    let wasteReductionValArr = [0.5, 0.5, 0.24, 0.5, 0.09, 0.5, 0.5];
+    let wastePercentages = [.1, .01, .14, .06, .15, .12, .05];
+
       // Results
       let totalEconomicValue = document.querySelector(".economicValue");
       let totalRevenueUpsale = document.querySelector(".totalUpsale");
@@ -769,10 +778,12 @@
       let wasteReductionValue = document.querySelector(".wasteReductionValue");
       let reducedArr = [];
       let totalWasteSave;
-
+      
       
       /// this is the first function to fire
       function calc() {
+        console.log(document.getElementById('totalRevenue').value);
+        totalAnnualRevenueGross = document.getElementById('totalRevenue').value
         totalRevenueArr = [];
         totalWasteArr = [];
         // push all % of total revenue into array to get total amount
@@ -801,7 +812,9 @@
         for (let i = 0; i < totalWasteArr.length; i++) {
           totalWasteArrPercentage.push(totalWasteArr[i] / 100);
         }
-       
+        console.log(totalWasteArrPercentage);
+        getCalculatedRevenueByCategory(totalAnnualRevenueGross, userInputPercentages)
+        // revenueUpsale()
       }
       // end of calc Func
 
@@ -863,10 +876,33 @@
       function sumOfArray(arr) {
         let reducer = (x, y) => x + y;
         let reducedArr = arr.reduce(reducer);
-        console.log(reducedArr);
-        return reducedArr;
+        
+        totalWasteSavings = reducedArr;
+        totalWasteSavingsArr.push(totalWasteSavings)
+        console.log(totalWasteSavings, totalWasteSavingsArr);
+        sumOfArrayThree(totalWasteSavingsArr)
+        return totalWasteSavingsArr // returns purple total in spreadsheet
       }
+      function sumOfArrayTwo(arr) {
+        let reducer = (x, y) => x + y;
+        let reducedArr = arr.reduce(reducer);
+        
+        totalWasteSavings = reducedArr;
+        totalWasteSavingsArr.push(totalWasteSavings)
+        console.log(totalWasteSavings, totalWasteSavingsArr);
+        
+        return totalWasteSavingsArr
+      }
+      function sumOfArrayThree(arr) {
+        let reducer = (x, y) => x + y;
+        let reducedArr = arr.reduce(reducer);
+        console.log(reducedArr);
 
+        // this writes total Economic value to the page ***********************
+        document.querySelector('.economicValue').innerHTML = reducedArr
+      }
+// Getting Sum of Total Revenue Sliders and triggering greyOutSimulation
+// Checking that Total sum isnt above 100
       function sumOfTotalRevenueArray(arr) {
         let reducer = (x, y) => x + y;
         reducedArr = arr.reduce(reducer);
@@ -902,7 +938,94 @@
           }
       }
 
+// Combine two Arrays and Multiply them by a value
+      function Arrays_multi(array1, array2) {
+          console.log(array1, array2);
+        revenueUpsaleTwo(array1)
+          const result = [];
+          const result2 = [];
+          let ctr = 0;
+          let x = 0;
 
+          if (array1.length === 0) return "array1 is empty";
+          if (array2.length === 0) return "array2 is empty";
+
+          while (ctr < array1.length && ctr < array2.length) {
+            result2.push(array1[ctr] * array2[ctr]);
+            ctr++;
+          }
+
+          if (ctr === array1.length) {
+            for (x = ctr; x < array2.length; x++) {
+              result2.push(array2[x]);
+            }
+          } else {
+            for (x = ctr; x < array1.length; x++) {
+              result2.push(array1[x]);
+            }
+          }
+          Arrays_multi_wasteReduction(result2, wasteReductionValArr);
+          
+          console.log(result2);
+        }
+        let revenueByCategory = [];
+        function getCalculatedRevenueByCategory(val, arr) {
+            console.log(val, arr);
+            for (let i = 0; i < arr.length; i++) {
+                revenueByCategory.push(Math.round(arr[i] * val))
+            }
+            Arrays_multi(revenueByCategory, wastePercentages)
+            return revenueByCategory;
+
+        }
+
+        function Arrays_multi_wasteReduction(array1, array2) {
+          const result = [];
+          const result2 = [];
+          let ctr = 0;
+          let x = 0;
+
+          if (array1.length === 0) return "array1 is empty";
+          if (array2.length === 0) return "array2 is empty";
+
+          while (ctr < array1.length && ctr < array2.length) {
+            result2.push(array1[ctr] * array2[ctr]);
+            ctr++;
+          }
+
+          if (ctr === array1.length) {
+            for (x = ctr; x < array2.length; x++) {
+              result2.push(array2[x]);
+            }
+          } else {
+            for (x = ctr; x < array1.length; x++) {
+              result2.push(array1[x]);
+            }
+          }
+          sumOfArray(result2)
+          console.log(result2);
+        }
+        // Get total revenue upsale 18% of revenue
+        
+        function revenueUpsale(arr) {
+            console.log(arr);
+            let revenueUpsaleArr = [];
+            for (let i = 0; i < arr.length; i++) {
+                revenueUpsaleArr.push(arr[i] * .18)
+                
+            }
+            sumOfArray(revenueUpsaleArr)
+        }
+        function revenueUpsaleTwo(arr) {
+            console.log(arr);
+            let revenueUpsaleArr = [];
+            for (let i = 0; i < arr.length; i++) {
+                revenueUpsaleArr.push(arr[i] * .18)
+                
+            }
+            sumOfArrayTwo(revenueUpsaleArr)
+        }
+     
       
     </script>
   </body>

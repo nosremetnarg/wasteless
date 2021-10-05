@@ -717,6 +717,7 @@
       let avgCostKgFixedAverageArr = [10, 6, 1.2, 5, 3, 12, 4];
     //   column b in spreadsheet
       let userInputPercentages = [.08, .05, .14, .10, .06, .01, .1];
+      let fixedKgAvg = [11, 11, 1.8, 23, 1.22, 8 ,4 ];
       let totalWasteSavings;
       
     
@@ -778,6 +779,7 @@
       let wasteReductionValue = document.querySelector(".wasteReductionValue");
       let reducedArr = [];
       let totalWasteSave;
+      let estWeightSavedArr = [];
       
       
       /// this is the first function to fire
@@ -904,6 +906,14 @@
         // this writes total Economic value to the page ***********************
         document.querySelector('.economicValue').innerHTML = reducedArr
       }
+      function sumOfArrayFour(arr) {
+        let reducer = (x, y) => x + y;
+        let reducedArr = arr.reduce(reducer);
+        console.log(Math.round(reducedArr));
+        let rounded = Math.round(reducedArr)
+        // this writes total Co2 value to the page ***********************
+        document.querySelector('.co2reduced').innerHTML = rounded
+      }
 // Getting Sum of Total Revenue Sliders and triggering greyOutSimulation
 // Checking that Total sum isnt above 100
       function sumOfTotalRevenueArray(arr) {
@@ -971,6 +981,66 @@
           
           console.log(result2);
         }
+        function Arrays_divide_Kg(array1, array2) {
+          console.log(array1, array2);
+        
+          const result = [];
+          const result2 = [];
+          let ctr = 0;
+          let x = 0;
+
+          if (array1.length === 0) return "array1 is empty";
+          if (array2.length === 0) return "array2 is empty";
+
+          while (ctr < array1.length && ctr < array2.length) {
+            result2.push(array1[ctr] / array2[ctr]);
+            ctr++;
+          }
+
+          if (ctr === array1.length) {
+            for (x = ctr; x < array2.length; x++) {
+              result2.push(array2[x]);
+            }
+          } else {
+            for (x = ctr; x < array1.length; x++) {
+              result2.push(array1[x]);
+            }
+          }
+         
+          estWeightSavedArr = result2;
+          Arrays_multi_Kg(estWeightSavedArr, fixedKgAvg)
+          console.log(result2);
+        }
+        function Arrays_multi_Kg(array1, array2) {
+          console.log(array1, array2);
+          const result = [];
+          const result2 = [];
+          let ctr = 0;
+          let x = 0;
+
+          if (array1.length === 0) return "array1 is empty";
+          if (array2.length === 0) return "array2 is empty";
+
+          while (ctr < array1.length && ctr < array2.length) {
+            result2.push(array1[ctr] * array2[ctr]);
+            ctr++;
+          }
+
+          if (ctr === array1.length) {
+            for (x = ctr; x < array2.length; x++) {
+              result2.push(array2[x]);
+            }
+          } else {
+            for (x = ctr; x < array1.length; x++) {
+              result2.push(array1[x]);
+            }
+          }
+          
+          console.log(result2);
+        //   reduce array here **********************************************
+        sumOfArrayFour(result2);
+
+        }
         let revenueByCategory = [];
         function getCalculatedRevenueByCategory(val, arr) {
             console.log(val, arr);
@@ -1007,6 +1077,9 @@
           }
           sumOfArray(result2)
           console.log(result2);
+        //   put avg cost KG func call here *******************************************
+        getEstimatedWeightSave(result2, avgCostKgFixedAverageArr);
+        Arrays_divide_Kg(result2, avgCostKgFixedAverageArr)
         }
         // Get total revenue upsale 18% of revenue
         
@@ -1027,6 +1100,11 @@
                 
             }
             sumOfArrayTwo(revenueUpsaleArr)
+        }
+
+        function getEstimatedWeightSave(arr, arr2) {
+            console.log(arr, arr2);
+            
         }
      
       

@@ -424,7 +424,7 @@
             >0</output
           ><span>%</span>
 
-          <p class="revenueError">% of total revenue cannot exceed 100%</p>
+          <p class="revenueError">The sum of % of total revenue cannot exceed 100% please adjust</p>
         </div>
       </div>
     </div>
@@ -780,6 +780,11 @@
       let reducedArr = [];
       let totalWasteSave;
       let estWeightSavedArr = [];
+
+    //   Chart variables
+    
+    var ctx = document.getElementById('myChart').getContext('2d');
+    
       
       
       /// this is the first function to fire
@@ -817,6 +822,7 @@
         console.log(totalWasteArrPercentage);
         getCalculatedRevenueByCategory(totalAnnualRevenueGross, userInputPercentages)
         console.log(masterDataArr);
+        getMonthlyBreakdown(masterDataArr)
         // revenueUpsale()
       }
       // end of calc Func
@@ -1110,8 +1116,72 @@
             console.log(arr, arr2);
             
         }
+        let monthlyTotalRevenueUpsale;
+        let monthlyTotalWasteReductionValue;
+        let tenYearTotalRevenueUpsaleByYear;
+        let tenYearTotalWasteReductionValueByYear;
+        function getMonthlyBreakdown(arr) {
+            console.log(arr);
+
+            // these are the monthly cost of each item on a 1 year timeline
+            monthlyTotalRevenueUpsale = Math.round(arr[0] / 12);
+            monthlyTotalWasteReductionValue = Math.round(arr[1] / 12);
+            // this gets the ten year total
+            tenYearTotalRevenueUpsaleByYear = Math.round((arr[0] * 10)) 
+            tenYearTotalWasteReductionValueByYear = Math.round((arr[1] * 10)) 
+        }
+
+        // Chart scripts
+        let labels = [
+        "jan",
+        "feb",
+        "march",
+        "april",
+        "may",
+        "june",
+        "july",
+        "august",
+        "september",
+        "october",
+        "november",
+        "december",
+      ];
+      let monthlyRevenueArr = []
+    function getMonthlyNumbers(x) {
+        for (let i = 0; i < 12; i++) {
+            monthlyRevenueArr.push()
+            
+        }
+    }
+
+    var myChart = new Chart(ctx,  {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: '# of Votes',
+            data: ,
+            backgroundColor: [
+                
+                'rgba(153, 102, 255, 0.2)'
+                
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)'
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
      
-      
     </script>
   </body>
 </html>

@@ -136,7 +136,7 @@
         <div class="frozenFoods grid">
           <!-- <img class="icon milk" src="/Assets/frozenFood.png" alt="" /> -->
           <img
-            class="icon milk"
+            class="icon milk frozenfoods"
             src="/wasteless/Assets/frozenFood.png"
             alt=""
           />
@@ -549,6 +549,7 @@
       .icon {
         padding: 20px 10px 60px 0px;
       }
+      .icon.frozenfoods { width: 9%; }
       .invisible {
         opacity: 0;
       }
@@ -619,7 +620,13 @@
       /* disable user from moving slider */
       #dryFoods {
         pointer-events: none;
+        
       }
+      .dryFood { 
+          
+          color: #492fc4;
+      }
+      
       .revenueError {
         display: none;
         color: red;

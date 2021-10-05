@@ -20,7 +20,6 @@
           name="totalRevenue"
           min="1"
           max="5000000000"
-          
         />
         <!-- <input type="submit" id="submit" /> -->
 
@@ -69,7 +68,6 @@
               name="packedMealsWaste"
               oninput="packedMealsOutputWaste.value=(parseInt(packedMealsWaste.value))"
               onchange="wasteListen(this.value)"
-              
             />
             <output
               id="packedMealsOutputWaste"
@@ -424,7 +422,9 @@
             >0</output
           ><span>%</span>
 
-          <p class="revenueError">The sum of % of total revenue cannot exceed 100% please adjust</p>
+          <p class="revenueError">
+            The sum of % of total revenue cannot exceed 100% please adjust
+          </p>
         </div>
       </div>
     </div>
@@ -443,7 +443,10 @@
         <div class="resultsBtns">
           <p class="subinformation">Show results for:</p>
           <button onClick="calc()" class="btn months">12 Months</button>
-          <button onClick="tenYearFunc(tenYear, myChartFirst, myChartCanvas)" class="btn years">
+          <button
+            onClick="tenYearFunc(tenYear, myChartFirst, myChartCanvas)"
+            class="btn years"
+          >
             10 Years
           </button>
         </div>
@@ -507,9 +510,7 @@
         margin: 2px 0px;
       }
       .totalRevenue {
-        width: 80%; 
-        
-
+        width: 80%;
       }
       #totalRevenue {
         height: 59px;
@@ -635,16 +636,17 @@
         content:"• ";
       }
        */
-       .metric {
+      .metric {
         color: #404040;
       }
-      .upsale, .totalUpsale {
+      .upsale,
+      .totalUpsale {
         color: #492fc4;
       }
-      .value, .wasteReductionValue  {
+      .value,
+      .wasteReductionValue {
         color: #47d71d;
       }
-     
 
       .grey {
         opacity: 0.2;
@@ -657,16 +659,18 @@
         width: 100%;
       }
 
-      #myChart { display: block; }
+      #myChart {
+        display: block;
+      }
 
       #myChartTenYear {
         display: none;
       }
 
-      .submitWarning { 
+      .submitWarning {
         font-size: 12px;
         color: red;
-        display:none;
+        display: none;
       }
 
       @media only screen and (max-width: 580px) {
@@ -695,7 +699,8 @@
         .metricTitle,
         .metric,
         .metricTitle > span,
-        .co2reduced > span, .metricResult > span {
+        .co2reduced > span,
+        .metricResult > span {
           font-size: 12px;
         }
         .metricTitle {
@@ -706,29 +711,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
     <script type="text/javascript">
-    let masterDataArr = [];
-    // this holds % total revenue range input data
+      let masterDataArr = [];
+      // this holds % total revenue range input data
       let listeningData = [];
-    //   this holds Waste % range input data
+      //   this holds Waste % range input data
       let wasteListenData = [];
       let totalAnnualRevenueGross;
       let resultsContainer = document.querySelector(".results-container");
       let totalRevenueArr;
       let totalWasteArr;
       let calcRevArr = [];
-    //   column D in spreadsheet
+      //   column D in spreadsheet
       let totalWasteArrPercentage = [];
 
       let totalWasteSavingsArr = [];
       let wasteSavingsResult = [];
       let avgCostKgFixedAverageArr = [10, 6, 1.2, 5, 3, 12, 4];
-    //   column b in spreadsheet
-      let userInputPercentages = [.08, .05, .14, .10, .06, .01, .1];
-      let fixedKgAvg = [11, 11, 1.8, 23, 1.22, 8 ,4 ];
+      //   column b in spreadsheet
+      let userInputPercentages = [0.08, 0.05, 0.14, 0.1, 0.06, 0.01, 0.1];
+      let fixedKgAvg = [11, 11, 1.8, 23, 1.22, 8, 4];
       let totalWasteSavings;
-      
-    
-      
+
       // Get Total Revenue
       let totalRevenue = document.querySelector("#totalRevenue");
       // Get numbers from sliders
@@ -754,7 +757,7 @@
       let meatAndPoultryWaste = document.querySelector(
         "#meatAndPoultryWasteOutput"
       );
-      let submitWarning = document.querySelector('.submitWarning');
+      let submitWarning = document.querySelector(".submitWarning");
       // Bakery
       let bakeryRevenue = document.querySelector("#bakeryOutput");
       let bakeryWaste = document.querySelector("#bakeryWasteOutput");
@@ -773,11 +776,11 @@
       let revenueError = document.querySelector(".revenueError");
       // Get revenue number
       var btn = document.querySelector(".submit");
-    //   btn.addEventListener("click", getTotalRevenue);
+      //   btn.addEventListener("click", getTotalRevenue);
 
-    // WASTE REDUCTION FIXED VALUES
-    let wasteReductionValArr = [0.5, 0.5, 0.24, 0.5, 0.09, 0.5, 0.5];
-    let wastePercentages = [.1, .01, .14, .06, .15, .12, .05];
+      // WASTE REDUCTION FIXED VALUES
+      let wasteReductionValArr = [0.5, 0.5, 0.24, 0.5, 0.09, 0.5, 0.5];
+      let wastePercentages = [0.1, 0.01, 0.14, 0.06, 0.15, 0.12, 0.05];
 
       // Results
       let totalEconomicValue = document.querySelector(".economicValue");
@@ -788,16 +791,14 @@
       let totalWasteSave;
       let estWeightSavedArr = [];
 
-    //   Chart variables
-    
-    var ctx = document.getElementById('myChart').getContext('2d');
-    
-      
-      
+      //   Chart variables
+
+      var ctx = document.getElementById("myChart").getContext("2d");
+
       /// this is the first function to fire
       function calc() {
-        console.log(document.getElementById('totalRevenue').value);
-        totalAnnualRevenueGross = document.getElementById('totalRevenue').value
+        console.log(document.getElementById("totalRevenue").value);
+        totalAnnualRevenueGross = document.getElementById("totalRevenue").value;
         totalRevenueArr = [];
         totalWasteArr = [];
         // push all % of total revenue into array to get total amount
@@ -810,7 +811,7 @@
           parseInt(seafoodRevenue.innerHTML),
           parseInt(dairyRevenue.innerHTML)
         );
-        
+
         totalWasteArr.push(
           parseInt(packedMealWaste.innerHTML),
           parseInt(frozenFoodWaste.innerHTML),
@@ -827,21 +828,32 @@
           totalWasteArrPercentage.push(totalWasteArr[i] / 100);
         }
         console.log(totalWasteArrPercentage);
-        getCalculatedRevenueByCategory(totalAnnualRevenueGross, userInputPercentages)
+        getCalculatedRevenueByCategory(
+          totalAnnualRevenueGross,
+          userInputPercentages
+        );
         console.log(masterDataArr);
         getMonthlyBreakdown(masterDataArr);
         getMonthlyNumbers(monthlyTotalRevenueUpsale);
         getMonthlyNumbersWaste(monthlyTotalWasteReductionValue);
-        // revenueUpsale()
-        makeChart();
         
+        makeChart();
       }
-    // end of calc Func $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-    //   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+      
+      // end of calc Func $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+      //   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
-     
+      //  createOrUpdateChart() {
+      //     if(!this.chart) {
+      //         const ctx = (this.chartElement.nativeElement as HTMLCanvasElement).getContext('2d');
+      //         this.chart = new Chart(ctx, )
+      //     } else {
+      //         this.chart.data = chartConfig.data;
+      //         this.chart.update();
+      //     }
+      //  }
 
-    //   this updates the % of total Revenue range inputs
+      //   this updates the % of total Revenue range inputs
       function listen(e) {
         listeningData[0] = parseInt(
           document.getElementById("packedMealsOutput").innerHTML
@@ -897,254 +909,250 @@
       function sumOfArray(arr) {
         let reducer = (x, y) => x + y;
         let reducedArr = arr.reduce(reducer);
-        
+
         totalWasteSavings = reducedArr;
-        totalWasteSavingsArr.push(totalWasteSavings)
+        totalWasteSavingsArr.push(totalWasteSavings);
         console.log(totalWasteSavings, totalWasteSavingsArr);
         // this writes total revenue upsale and waste reduction value to the page ******************
-        masterDataArr.push(totalWasteSavingsArr[0])
-        masterDataArr.push(totalWasteSavingsArr[1])
-        document.querySelector('.totalUpsale').innerHTML = totalWasteSavingsArr[0];
-        document.querySelector('.wasteReductionValue').innerHTML = totalWasteSavingsArr[1];
-        sumOfArrayThree(totalWasteSavingsArr)
-        return totalWasteSavingsArr // returns purple total in spreadsheet
+        masterDataArr.push(totalWasteSavingsArr[0]);
+        masterDataArr.push(totalWasteSavingsArr[1]);
+        document.querySelector(".totalUpsale").innerHTML =
+          totalWasteSavingsArr[0];
+        document.querySelector(".wasteReductionValue").innerHTML =
+          totalWasteSavingsArr[1];
+        sumOfArrayThree(totalWasteSavingsArr);
+        return totalWasteSavingsArr; // returns purple total in spreadsheet
       }
       function sumOfArrayTwo(arr) {
         let reducer = (x, y) => x + y;
         let reducedArr = arr.reduce(reducer);
-        
+
         totalWasteSavings = reducedArr;
-        totalWasteSavingsArr.push(totalWasteSavings)
+        totalWasteSavingsArr.push(totalWasteSavings);
         console.log(totalWasteSavings, totalWasteSavingsArr);
-        
-        return totalWasteSavingsArr
+
+        return totalWasteSavingsArr;
       }
       function sumOfArrayThree(arr) {
         let reducer = (x, y) => x + y;
         let reducedArr = arr.reduce(reducer);
         console.log(reducedArr);
-        masterDataArr.push(reducedArr)
+        masterDataArr.push(reducedArr);
         // this writes total Economic value to the page ***********************
-        document.querySelector('.economicValue').innerHTML = reducedArr
+        document.querySelector(".economicValue").innerHTML = reducedArr;
       }
       function sumOfArrayFour(arr) {
         let reducer = (x, y) => x + y;
         let reducedArr = arr.reduce(reducer);
         console.log(Math.round(reducedArr));
-        let rounded = Math.round(reducedArr)
-        masterDataArr.push(reducedArr)
+        let rounded = Math.round(reducedArr);
+        masterDataArr.push(reducedArr);
         // this writes total Co2 value to the page ***********************
-        document.querySelector('.co2reduced').innerHTML = rounded
+        document.querySelector(".co2reduced").innerHTML = rounded;
       }
-// Getting Sum of Total Revenue Sliders and triggering greyOutSimulation
-// Checking that Total sum isnt above 100
+      // Getting Sum of Total Revenue Sliders and triggering greyOutSimulation
+      // Checking that Total sum isnt above 100
       function sumOfTotalRevenueArray(arr) {
         let reducer = (x, y) => x + y;
         reducedArr = arr.reduce(reducer);
-        let dryFoods = document.getElementById('dryFoodsOutput').innerHTML = 100 - reducedArr;
-        document.getElementById('dryFoods').value = dryFoods
+        let dryFoods = (document.getElementById("dryFoodsOutput").innerHTML =
+          100 - reducedArr);
+        document.getElementById("dryFoods").value = dryFoods;
         console.log(reducedArr);
-        
+
         greyOutSimulation(reducedArr);
         return reducedArr;
       }
 
-// Checking that % of Total Revenue is less than 100
-// If TR is > 100 Grey out sliders and disable Simulation button
+      // Checking that % of Total Revenue is less than 100
+      // If TR is > 100 Grey out sliders and disable Simulation button
       function greyOutSimulation(reducedArr) {
-          console.log(reducedArr);
-          if (reducedArr > 100) {
-              document.querySelector('.simulatebtn').style.display = "none"
-              revenueError.style.display = "flex"
-              var TextElements = document.querySelectorAll(".sliderRev");
+        console.log(reducedArr);
+        if (reducedArr > 100) {
+          document.querySelector(".simulatebtn").style.display = "none";
+          revenueError.style.display = "flex";
+          var TextElements = document.querySelectorAll(".sliderRev");
 
-            for (var i = 0, max = TextElements.length; i < max; i++) {
-                TextElements[i].style.opacity = 0.2;
-            }
-              
-          } else {
-            document.querySelector('.simulatebtn').style.display = "flex"
-            revenueError.style.display = "none"
-            var TextEl = document.querySelectorAll(".sliderRev");
-            for (var i = 0, max = TextEl.length; i < max; i++) {
+          for (var i = 0, max = TextElements.length; i < max; i++) {
+            TextElements[i].style.opacity = 0.2;
+          }
+        } else {
+          document.querySelector(".simulatebtn").style.display = "flex";
+          revenueError.style.display = "none";
+          var TextEl = document.querySelectorAll(".sliderRev");
+          for (var i = 0, max = TextEl.length; i < max; i++) {
             TextEl[i].style.opacity = 1;
           }
-           
-          }
+        }
       }
 
-// Combine two Arrays and Multiply them by a value
+      // Combine two Arrays and Multiply them by a value
       function Arrays_multi(array1, array2) {
-          console.log(array1, array2);
-        revenueUpsaleTwo(array1)
-          const result = [];
-          const result2 = [];
-          let ctr = 0;
-          let x = 0;
+        console.log(array1, array2);
+        revenueUpsaleTwo(array1);
+        const result = [];
+        const result2 = [];
+        let ctr = 0;
+        let x = 0;
 
-          if (array1.length === 0) return "array1 is empty";
-          if (array2.length === 0) return "array2 is empty";
+        if (array1.length === 0) return "array1 is empty";
+        if (array2.length === 0) return "array2 is empty";
 
-          while (ctr < array1.length && ctr < array2.length) {
-            result2.push(array1[ctr] * array2[ctr]);
-            ctr++;
-          }
-
-          if (ctr === array1.length) {
-            for (x = ctr; x < array2.length; x++) {
-              result2.push(array2[x]);
-            }
-          } else {
-            for (x = ctr; x < array1.length; x++) {
-              result2.push(array1[x]);
-            }
-          }
-          Arrays_multi_wasteReduction(result2, wasteReductionValArr);
-          
-          console.log(result2);
+        while (ctr < array1.length && ctr < array2.length) {
+          result2.push(array1[ctr] * array2[ctr]);
+          ctr++;
         }
-        function Arrays_divide_Kg(array1, array2) {
-          console.log(array1, array2);
-        
-          const result = [];
-          const result2 = [];
-          let ctr = 0;
-          let x = 0;
 
-          if (array1.length === 0) return "array1 is empty";
-          if (array2.length === 0) return "array2 is empty";
-
-          while (ctr < array1.length && ctr < array2.length) {
-            result2.push(array1[ctr] / array2[ctr]);
-            ctr++;
+        if (ctr === array1.length) {
+          for (x = ctr; x < array2.length; x++) {
+            result2.push(array2[x]);
           }
-
-          if (ctr === array1.length) {
-            for (x = ctr; x < array2.length; x++) {
-              result2.push(array2[x]);
-            }
-          } else {
-            for (x = ctr; x < array1.length; x++) {
-              result2.push(array1[x]);
-            }
+        } else {
+          for (x = ctr; x < array1.length; x++) {
+            result2.push(array1[x]);
           }
-         
-          estWeightSavedArr = result2;
-          Arrays_multi_Kg(estWeightSavedArr, fixedKgAvg)
-          console.log(result2);
         }
-        function Arrays_multi_Kg(array1, array2) {
-          console.log(array1, array2);
-          const result = [];
-          const result2 = [];
-          let ctr = 0;
-          let x = 0;
+        Arrays_multi_wasteReduction(result2, wasteReductionValArr);
 
-          if (array1.length === 0) return "array1 is empty";
-          if (array2.length === 0) return "array2 is empty";
+        console.log(result2);
+      }
+      function Arrays_divide_Kg(array1, array2) {
+        console.log(array1, array2);
 
-          while (ctr < array1.length && ctr < array2.length) {
-            result2.push(array1[ctr] * array2[ctr]);
-            ctr++;
+        const result = [];
+        const result2 = [];
+        let ctr = 0;
+        let x = 0;
+
+        if (array1.length === 0) return "array1 is empty";
+        if (array2.length === 0) return "array2 is empty";
+
+        while (ctr < array1.length && ctr < array2.length) {
+          result2.push(array1[ctr] / array2[ctr]);
+          ctr++;
+        }
+
+        if (ctr === array1.length) {
+          for (x = ctr; x < array2.length; x++) {
+            result2.push(array2[x]);
           }
-
-          if (ctr === array1.length) {
-            for (x = ctr; x < array2.length; x++) {
-              result2.push(array2[x]);
-            }
-          } else {
-            for (x = ctr; x < array1.length; x++) {
-              result2.push(array1[x]);
-            }
+        } else {
+          for (x = ctr; x < array1.length; x++) {
+            result2.push(array1[x]);
           }
-          
-          console.log(result2);
+        }
+
+        estWeightSavedArr = result2;
+        Arrays_multi_Kg(estWeightSavedArr, fixedKgAvg);
+        console.log(result2);
+      }
+      function Arrays_multi_Kg(array1, array2) {
+        console.log(array1, array2);
+        const result = [];
+        const result2 = [];
+        let ctr = 0;
+        let x = 0;
+
+        if (array1.length === 0) return "array1 is empty";
+        if (array2.length === 0) return "array2 is empty";
+
+        while (ctr < array1.length && ctr < array2.length) {
+          result2.push(array1[ctr] * array2[ctr]);
+          ctr++;
+        }
+
+        if (ctr === array1.length) {
+          for (x = ctr; x < array2.length; x++) {
+            result2.push(array2[x]);
+          }
+        } else {
+          for (x = ctr; x < array1.length; x++) {
+            result2.push(array1[x]);
+          }
+        }
+
+        console.log(result2);
         //   reduce array here **********************************************
         sumOfArrayFour(result2);
-
+      }
+      let revenueByCategory = [];
+      function getCalculatedRevenueByCategory(val, arr) {
+        console.log(val, arr);
+        for (let i = 0; i < arr.length; i++) {
+          revenueByCategory.push(Math.round(arr[i] * val));
         }
-        let revenueByCategory = [];
-        function getCalculatedRevenueByCategory(val, arr) {
-            console.log(val, arr);
-            for (let i = 0; i < arr.length; i++) {
-                revenueByCategory.push(Math.round(arr[i] * val))
-            }
-            Arrays_multi(revenueByCategory, wastePercentages)
-            return revenueByCategory;
+        Arrays_multi(revenueByCategory, wastePercentages);
+        return revenueByCategory;
+      }
 
+      function Arrays_multi_wasteReduction(array1, array2) {
+        const result = [];
+        const result2 = [];
+        let ctr = 0;
+        let x = 0;
+
+        if (array1.length === 0) return "array1 is empty";
+        if (array2.length === 0) return "array2 is empty";
+
+        while (ctr < array1.length && ctr < array2.length) {
+          result2.push(array1[ctr] * array2[ctr]);
+          ctr++;
         }
 
-        function Arrays_multi_wasteReduction(array1, array2) {
-          const result = [];
-          const result2 = [];
-          let ctr = 0;
-          let x = 0;
-
-          if (array1.length === 0) return "array1 is empty";
-          if (array2.length === 0) return "array2 is empty";
-
-          while (ctr < array1.length && ctr < array2.length) {
-            result2.push(array1[ctr] * array2[ctr]);
-            ctr++;
+        if (ctr === array1.length) {
+          for (x = ctr; x < array2.length; x++) {
+            result2.push(array2[x]);
           }
-
-          if (ctr === array1.length) {
-            for (x = ctr; x < array2.length; x++) {
-              result2.push(array2[x]);
-            }
-          } else {
-            for (x = ctr; x < array1.length; x++) {
-              result2.push(array1[x]);
-            }
+        } else {
+          for (x = ctr; x < array1.length; x++) {
+            result2.push(array1[x]);
           }
-          sumOfArray(result2)
-          console.log(result2);
+        }
+        sumOfArray(result2);
+        console.log(result2);
         //   put avg cost KG func call here *******************************************
         getEstimatedWeightSave(result2, avgCostKgFixedAverageArr);
-        Arrays_divide_Kg(result2, avgCostKgFixedAverageArr)
-        }
-        // Get total revenue upsale 18% of revenue
-        
-        function revenueUpsale(arr) {
-            console.log(arr);
-            let revenueUpsaleArr = [];
-            for (let i = 0; i < arr.length; i++) {
-                revenueUpsaleArr.push(arr[i] * .18)
-                
-            }
-            sumOfArray(revenueUpsaleArr)
-        }
-        function revenueUpsaleTwo(arr) {
-            console.log(arr);
-            let revenueUpsaleArr = [];
-            for (let i = 0; i < arr.length; i++) {
-                revenueUpsaleArr.push(arr[i] * .18)
-                
-            }
-            sumOfArrayTwo(revenueUpsaleArr)
-        }
+        Arrays_divide_Kg(result2, avgCostKgFixedAverageArr);
+      }
+      // Get total revenue upsale 18% of revenue
 
-        function getEstimatedWeightSave(arr, arr2) {
-            console.log(arr, arr2);
-            
+      function revenueUpsale(arr) {
+        console.log(arr);
+        let revenueUpsaleArr = [];
+        for (let i = 0; i < arr.length; i++) {
+          revenueUpsaleArr.push(arr[i] * 0.18);
         }
-        let monthlyTotalRevenueUpsale;
-        let monthlyTotalWasteReductionValue;
-        let tenYearTotalRevenueUpsaleByYear;
-        let tenYearTotalWasteReductionValueByYear;
-        function getMonthlyBreakdown(arr) {
-            console.log(arr);
+        sumOfArray(revenueUpsaleArr);
+      }
+      function revenueUpsaleTwo(arr) {
+        console.log(arr);
+        let revenueUpsaleArr = [];
+        for (let i = 0; i < arr.length; i++) {
+          revenueUpsaleArr.push(arr[i] * 0.18);
+        }
+        sumOfArrayTwo(revenueUpsaleArr);
+      }
 
-            // these are the monthly cost of each item on a 1 year timeline
-            monthlyTotalRevenueUpsale = Math.round(arr[0] / 12);
-            monthlyTotalWasteReductionValue = Math.round(arr[1] / 12);
-            // this gets the ten year total
-            tenYearTotalRevenueUpsaleByYear = Math.round((arr[0] * 10)) 
-            tenYearTotalWasteReductionValueByYear = Math.round((arr[1] * 10)) 
-        }
-        
-        // Chart scripts
-        let labels = [
+      function getEstimatedWeightSave(arr, arr2) {
+        console.log(arr, arr2);
+      }
+      let monthlyTotalRevenueUpsale;
+      let monthlyTotalWasteReductionValue;
+      let tenYearTotalRevenueUpsaleByYear;
+      let tenYearTotalWasteReductionValueByYear;
+      function getMonthlyBreakdown(arr) {
+        console.log(arr);
+
+        // these are the monthly cost of each item on a 1 year timeline
+        monthlyTotalRevenueUpsale = Math.round(arr[0] / 12);
+        monthlyTotalWasteReductionValue = Math.round(arr[1] / 12);
+        // this gets the ten year total
+        tenYearTotalRevenueUpsaleByYear = Math.round(arr[0] * 10);
+        tenYearTotalWasteReductionValueByYear = Math.round(arr[1] * 10);
+      }
+
+      // Chart scripts
+      let labels = [
         "jan",
         "feb",
         "march",
@@ -1158,109 +1166,110 @@
         "november",
         "december",
       ];
-      let monthlyRevenueArr = []
-      let monthlyRevenueArrWaste = []
-    function getMonthlyNumbers(x) {
+      let monthlyRevenueArr = [];
+      let monthlyRevenueArrWaste = [];
+      function getMonthlyNumbers(x) {
         for (let i = 0; i < 13; i++) {
-            if (i < 13) {
-                monthlyRevenueArr.push(x * i)
-            } else {
-                return
-            }
-            
+          if (i < 13) {
+            monthlyRevenueArr.push(x * i);
+          } else {
+            return;
+          }
         }
         console.log(monthlyRevenueArr);
-    }
-    function getMonthlyNumbersWaste(x) {
+      }
+      function getMonthlyNumbersWaste(x) {
         for (let i = 0; i < 13; i++) {
-            if (i < 13) {
-                monthlyRevenueArrWaste.push(x * i)
-            } else {
-                return
-            }
-            
+          if (i < 13) {
+            monthlyRevenueArrWaste.push(x * i);
+          } else {
+            return;
+          }
         }
         console.log(monthlyRevenueArr);
-    }
-    function makeChart() {
-    var myChart = new Chart(ctx,  {
-    type: 'line',
-    data: {
-        labels: labels,
-        datasets: [{
-            label: 'Money Saved',
-            
-                data: [monthlyRevenueArr[1], 
-            monthlyRevenueArr[2],
-            monthlyRevenueArr[3],
-            monthlyRevenueArr[4],
-            monthlyRevenueArr[5],
-            monthlyRevenueArr[6],
-            monthlyRevenueArr[7],
-            monthlyRevenueArr[8],
-            monthlyRevenueArr[9],
-            monthlyRevenueArr[10],
-            monthlyRevenueArr[11],
-            monthlyRevenueArr[12],
-            ],
-            backgroundColor: [
-                'rgba(71, 215, 29, 1)',
-                'rgba(71, 215, 29, 0.9)',
-                'rgba(71, 215, 29, 0.8)',
-                'rgba(71, 215, 29, 0.7)',
-                'rgba(71, 215, 29, 0.6)',
-                'rgba(71, 215, 29, 0.5)',
-                'rgba(71, 215, 29, 0.4)',
-                'rgba(71, 215, 29, 0.3)',
-                'rgba(71, 215, 29, 0.2)',
-                'rgba(71, 215, 29, 0.2)',
-                'rgba(71, 215, 29, 0.2)',
-                'rgba(71, 215, 29, 0.1)',  
-            ],
-            borderColor: [
-                "#47D71D"
-                
-            ],
-            fill: false,
-            borderWidth: 1
-        },
-        {
-            label: 'Money Saved',
-            data: [monthlyRevenueArrWaste[1], 
-            monthlyRevenueArrWaste[2],
-            monthlyRevenueArrWaste[3],
-            monthlyRevenueArrWaste[4],
-            monthlyRevenueArrWaste[5],
-            monthlyRevenueArrWaste[6],
-            monthlyRevenueArrWaste[7],
-            monthlyRevenueArrWaste[8],
-            monthlyRevenueArrWaste[9],
-            monthlyRevenueArrWaste[10],
-            monthlyRevenueArrWaste[11],
-            monthlyRevenueArrWaste[12],
-            ],
-            backgroundColor: [
-                '#492FC4'
-            ],
-            borderColor: [
-                "#492FC4"
-                
-            ],
-            fill: false,
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+      }
+
+    //   function checkChart() {
+    //     if (myChart) {
+    //       console.log("chart exists", myChart);
+    //       myChart.destroy();
+    //     } else {
+    //       console.log("chart doesnt not exist");
+    //     }
+    // }
+        function makeChart() {
+          let myChart = new Chart(ctx, {
+            type: "line",
+            data: {
+              labels: labels,
+              datasets: [
+                {
+                  label: "Money Saved",
+
+                  data: [
+                    monthlyRevenueArr[1],
+                    monthlyRevenueArr[2],
+                    monthlyRevenueArr[3],
+                    monthlyRevenueArr[4],
+                    monthlyRevenueArr[5],
+                    monthlyRevenueArr[6],
+                    monthlyRevenueArr[7],
+                    monthlyRevenueArr[8],
+                    monthlyRevenueArr[9],
+                    monthlyRevenueArr[10],
+                    monthlyRevenueArr[11],
+                    monthlyRevenueArr[12],
+                  ],
+                  backgroundColor: [
+                    "rgba(71, 215, 29, 1)",
+                    "rgba(71, 215, 29, 0.9)",
+                    "rgba(71, 215, 29, 0.8)",
+                    "rgba(71, 215, 29, 0.7)",
+                    "rgba(71, 215, 29, 0.6)",
+                    "rgba(71, 215, 29, 0.5)",
+                    "rgba(71, 215, 29, 0.4)",
+                    "rgba(71, 215, 29, 0.3)",
+                    "rgba(71, 215, 29, 0.2)",
+                    "rgba(71, 215, 29, 0.2)",
+                    "rgba(71, 215, 29, 0.2)",
+                    "rgba(71, 215, 29, 0.1)",
+                  ],
+                  borderColor: ["#47D71D"],
+                  fill: false,
+                  borderWidth: 1,
+                },
+                {
+                  label: "Money Saved",
+                  data: [
+                    monthlyRevenueArrWaste[1],
+                    monthlyRevenueArrWaste[2],
+                    monthlyRevenueArrWaste[3],
+                    monthlyRevenueArrWaste[4],
+                    monthlyRevenueArrWaste[5],
+                    monthlyRevenueArrWaste[6],
+                    monthlyRevenueArrWaste[7],
+                    monthlyRevenueArrWaste[8],
+                    monthlyRevenueArrWaste[9],
+                    monthlyRevenueArrWaste[10],
+                    monthlyRevenueArrWaste[11],
+                    monthlyRevenueArrWaste[12],
+                  ],
+                  backgroundColor: ["#492FC4"],
+                  borderColor: ["#492FC4"],
+                  fill: false,
+                  borderWidth: 1,
+                },
+              ],
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true,
+                },
+              },
+            },
+          });
         }
-    }
-});
-    }
-    
-     
     </script>
   </body>
 </html>

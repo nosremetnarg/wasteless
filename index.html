@@ -32,7 +32,11 @@
       <div class="main-calculator-section">
         <div class="packedMeals grid">
           <!-- <img class="icon" src="/Assets/bread.png" alt="" /> -->
-          <img class="icon" src="/wasteless/Assets/bread.png" alt="" />
+          <div class="img-container">
+            <img class="icon" src="/wasteless/Assets/bread.png" alt="" />
+            <!-- <img class="icon" src="/Assets/bread.png" alt="" /> -->
+          </div>
+          
           <p>Packed meals / Deli</p>
           <p class="slider sliderRev subinformation">% of total revenue</p>
           <input
@@ -543,7 +547,7 @@
         width: 10%;
       }
       .icon {
-        padding: 20px 10px 56px 0px;
+        padding: 20px 10px 60px 0px;
       }
       .invisible {
         opacity: 0;
@@ -629,6 +633,10 @@
       .metricResult {
         width: 25%;
         color: #929292;
+      }
+      /* image container */
+      .img-container {
+          height: 100%;
       }
 
       /* bullet points to add later */
@@ -1217,7 +1225,7 @@
 
       function updateChart() {
         console.log(myChart.data.datasets[0].data);
-        console.log(myChart.data.datasets[0].data[1]);
+        console.log(myChart.data.datasets[0].data[0]);
         console.log(monthlyRevenueArr, monthlyRevenueArrWaste);
         myChart.data.datasets[0].data[0] = [
           monthlyRevenueArr[1],

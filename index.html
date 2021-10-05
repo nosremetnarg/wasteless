@@ -449,6 +449,7 @@
           >
             10 Years
           </button>
+          <button onClick="updateChart()" class="btn years">updateChart</button>
         </div>
       </div>
 
@@ -836,10 +837,10 @@
         getMonthlyBreakdown(masterDataArr);
         getMonthlyNumbers(monthlyTotalRevenueUpsale);
         getMonthlyNumbersWaste(monthlyTotalWasteReductionValue);
-        
+
         makeChart();
       }
-      
+
       // end of calc Func $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
       //   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
@@ -852,6 +853,22 @@
       //         this.chart.update();
       //     }
       //  }
+
+      function addData(chart, label, data) {
+        chart.data.labels.push(label);
+        chart.data.datasets.forEach((dataset) => {
+          dataset.data.push(data);
+        });
+        chart.update();
+      }
+
+      function removeData(chart) {
+        chart.data.labels.pop();
+        chart.data.datasets.forEach((dataset) => {
+          dataset.data.pop();
+        });
+        chart.update();
+      }
 
       //   this updates the % of total Revenue range inputs
       function listen(e) {
@@ -958,7 +975,7 @@
         let dryFoods = (document.getElementById("dryFoodsOutput").innerHTML =
           100 - reducedArr);
         document.getElementById("dryFoods").value = dryFoods;
-        console.log(reducedArr);
+        // console.log(reducedArr);
 
         greyOutSimulation(reducedArr);
         return reducedArr;
@@ -967,21 +984,21 @@
       // Checking that % of Total Revenue is less than 100
       // If TR is > 100 Grey out sliders and disable Simulation button
       function greyOutSimulation(reducedArr) {
-        console.log(reducedArr);
+        // console.log(reducedArr);
         if (reducedArr > 100) {
           document.querySelector(".simulatebtn").style.display = "none";
           revenueError.style.display = "flex";
           var TextElements = document.querySelectorAll(".sliderRev");
 
           for (var i = 0, max = TextElements.length; i < max; i++) {
-            TextElements[i].style.opacity = 0.2;
+            TextElements[i].style.color = "red";
           }
         } else {
           document.querySelector(".simulatebtn").style.display = "flex";
           revenueError.style.display = "none";
           var TextEl = document.querySelectorAll(".sliderRev");
           for (var i = 0, max = TextEl.length; i < max; i++) {
-            TextEl[i].style.opacity = 1;
+            TextEl[i].style.color = "grey";
           }
         }
       }
@@ -1189,87 +1206,127 @@
         console.log(monthlyRevenueArr);
       }
 
-    //   function checkChart() {
-    //     if (myChart) {
-    //       console.log("chart exists", myChart);
-    //       myChart.destroy();
-    //     } else {
-    //       console.log("chart doesnt not exist");
-    //     }
-    // }
-        function makeChart() {
-          let myChart = new Chart(ctx, {
-            type: "line",
-            data: {
-              labels: labels,
-              datasets: [
-                {
-                  label: "Money Saved",
+      //   function checkChart() {
+      //     if (myChart) {
+      //       console.log("chart exists", myChart);
+      //       myChart.destroy();
+      //     } else {
+      //       console.log("chart doesnt not exist");
+      //     }
+      // }
 
-                  data: [
-                    monthlyRevenueArr[1],
-                    monthlyRevenueArr[2],
-                    monthlyRevenueArr[3],
-                    monthlyRevenueArr[4],
-                    monthlyRevenueArr[5],
-                    monthlyRevenueArr[6],
-                    monthlyRevenueArr[7],
-                    monthlyRevenueArr[8],
-                    monthlyRevenueArr[9],
-                    monthlyRevenueArr[10],
-                    monthlyRevenueArr[11],
-                    monthlyRevenueArr[12],
-                  ],
-                  backgroundColor: [
-                    "rgba(71, 215, 29, 1)",
-                    "rgba(71, 215, 29, 0.9)",
-                    "rgba(71, 215, 29, 0.8)",
-                    "rgba(71, 215, 29, 0.7)",
-                    "rgba(71, 215, 29, 0.6)",
-                    "rgba(71, 215, 29, 0.5)",
-                    "rgba(71, 215, 29, 0.4)",
-                    "rgba(71, 215, 29, 0.3)",
-                    "rgba(71, 215, 29, 0.2)",
-                    "rgba(71, 215, 29, 0.2)",
-                    "rgba(71, 215, 29, 0.2)",
-                    "rgba(71, 215, 29, 0.1)",
-                  ],
-                  borderColor: ["#47D71D"],
-                  fill: false,
-                  borderWidth: 1,
-                },
-                {
-                  label: "Money Saved",
-                  data: [
-                    monthlyRevenueArrWaste[1],
-                    monthlyRevenueArrWaste[2],
-                    monthlyRevenueArrWaste[3],
-                    monthlyRevenueArrWaste[4],
-                    monthlyRevenueArrWaste[5],
-                    monthlyRevenueArrWaste[6],
-                    monthlyRevenueArrWaste[7],
-                    monthlyRevenueArrWaste[8],
-                    monthlyRevenueArrWaste[9],
-                    monthlyRevenueArrWaste[10],
-                    monthlyRevenueArrWaste[11],
-                    monthlyRevenueArrWaste[12],
-                  ],
-                  backgroundColor: ["#492FC4"],
-                  borderColor: ["#492FC4"],
-                  fill: false,
-                  borderWidth: 1,
-                },
-              ],
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true,
-                },
+      function updateChart() {
+        console.log(myChart.data.datasets[0].data);
+        console.log(myChart.data.datasets[0].data[1]);
+        console.log(monthlyRevenueArr, monthlyRevenueArrWaste);
+        myChart.data.datasets[0].data[0] = [
+          monthlyRevenueArr[1],
+          monthlyRevenueArr[2],
+          monthlyRevenueArr[3],
+          monthlyRevenueArr[4],
+          monthlyRevenueArr[5],
+          monthlyRevenueArr[6],
+          monthlyRevenueArr[7],
+          monthlyRevenueArr[8],
+          monthlyRevenueArr[9],
+          monthlyRevenueArr[10],
+          monthlyRevenueArr[11],
+          monthlyRevenueArr[12],
+        ];
+
+        myChart.data.datasets[0].data[1] = [
+        monthlyRevenueArrWaste[1],
+                  monthlyRevenueArrWaste[2],
+                  monthlyRevenueArrWaste[3],
+                  monthlyRevenueArrWaste[4],
+                  monthlyRevenueArrWaste[5],
+                  monthlyRevenueArrWaste[6],
+                  monthlyRevenueArrWaste[7],
+                  monthlyRevenueArrWaste[8],
+                  monthlyRevenueArrWaste[9],
+                  monthlyRevenueArrWaste[10],
+                  monthlyRevenueArrWaste[11],
+                  monthlyRevenueArrWaste[12],
+        ];
+        myChart.update();
+      }
+      let myChart;
+      let clickCount = 0;
+      function makeChart() {
+        clickCount++;
+        console.log(clickCount);
+        myChart = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: "Money Saved",
+
+                data: [
+                  monthlyRevenueArr[1],
+                  monthlyRevenueArr[2],
+                  monthlyRevenueArr[3],
+                  monthlyRevenueArr[4],
+                  monthlyRevenueArr[5],
+                  monthlyRevenueArr[6],
+                  monthlyRevenueArr[7],
+                  monthlyRevenueArr[8],
+                  monthlyRevenueArr[9],
+                  monthlyRevenueArr[10],
+                  monthlyRevenueArr[11],
+                  monthlyRevenueArr[12],
+                ],
+                backgroundColor: [
+                  "rgba(71, 215, 29, 1)",
+                  "rgba(71, 215, 29, 0.9)",
+                  "rgba(71, 215, 29, 0.8)",
+                  "rgba(71, 215, 29, 0.7)",
+                  "rgba(71, 215, 29, 0.6)",
+                  "rgba(71, 215, 29, 0.5)",
+                  "rgba(71, 215, 29, 0.4)",
+                  "rgba(71, 215, 29, 0.3)",
+                  "rgba(71, 215, 29, 0.2)",
+                  "rgba(71, 215, 29, 0.2)",
+                  "rgba(71, 215, 29, 0.2)",
+                  "rgba(71, 215, 29, 0.1)",
+                ],
+                borderColor: ["#47D71D"],
+                fill: false,
+                borderWidth: 1,
+              },
+              {
+                label: "Money Saved",
+                data: [
+                  monthlyRevenueArrWaste[1],
+                  monthlyRevenueArrWaste[2],
+                  monthlyRevenueArrWaste[3],
+                  monthlyRevenueArrWaste[4],
+                  monthlyRevenueArrWaste[5],
+                  monthlyRevenueArrWaste[6],
+                  monthlyRevenueArrWaste[7],
+                  monthlyRevenueArrWaste[8],
+                  monthlyRevenueArrWaste[9],
+                  monthlyRevenueArrWaste[10],
+                  monthlyRevenueArrWaste[11],
+                  monthlyRevenueArrWaste[12],
+                ],
+                backgroundColor: ["#492FC4"],
+                borderColor: ["#492FC4"],
+                fill: false,
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
               },
             },
-          });
-        }
+          },
+        });
+      }
     </script>
   </body>
 </html>

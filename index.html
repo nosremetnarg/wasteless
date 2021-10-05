@@ -824,8 +824,10 @@
         console.log(masterDataArr);
         getMonthlyBreakdown(masterDataArr);
         getMonthlyNumbers(monthlyTotalRevenueUpsale);
+        getMonthlyNumbersWaste(monthlyTotalWasteReductionValue);
         // revenueUpsale()
         makeChart();
+        
       }
     // end of calc Func $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     //   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -1150,6 +1152,7 @@
         "december",
       ];
       let monthlyRevenueArr = []
+      let monthlyRevenueArrWaste = []
     function getMonthlyNumbers(x) {
         for (let i = 0; i < 13; i++) {
             if (i < 13) {
@@ -1161,14 +1164,26 @@
         }
         console.log(monthlyRevenueArr);
     }
+    function getMonthlyNumbersWaste(x) {
+        for (let i = 0; i < 13; i++) {
+            if (i < 13) {
+                monthlyRevenueArrWaste.push(x * i)
+            } else {
+                return
+            }
+            
+        }
+        console.log(monthlyRevenueArr);
+    }
     function makeChart() {
-        var myChart = new Chart(ctx,  {
+    var myChart = new Chart(ctx,  {
     type: 'line',
     data: {
         labels: labels,
         datasets: [{
             label: 'Money Saved',
-            data: [monthlyRevenueArr[1], 
+            
+                data: [monthlyRevenueArr[1], 
             monthlyRevenueArr[2],
             monthlyRevenueArr[3],
             monthlyRevenueArr[4],
@@ -1182,14 +1197,49 @@
             monthlyRevenueArr[12],
             ],
             backgroundColor: [
-                
-                "#47D71D"
-                
+                'rgba(71, 215, 29, 1)',
+                'rgba(71, 215, 29, 0.9)',
+                'rgba(71, 215, 29, 0.8)',
+                'rgba(71, 215, 29, 0.7)',
+                'rgba(71, 215, 29, 0.6)',
+                'rgba(71, 215, 29, 0.5)',
+                'rgba(71, 215, 29, 0.4)',
+                'rgba(71, 215, 29, 0.3)',
+                'rgba(71, 215, 29, 0.2)',
+                'rgba(71, 215, 29, 0.2)',
+                'rgba(71, 215, 29, 0.2)',
+                'rgba(71, 215, 29, 0.1)',  
             ],
             borderColor: [
                 "#47D71D"
                 
             ],
+            fill: false,
+            borderWidth: 1
+        },
+        {
+            label: 'Money Saved',
+            data: [monthlyRevenueArrWaste[1], 
+            monthlyRevenueArrWaste[2],
+            monthlyRevenueArrWaste[3],
+            monthlyRevenueArrWaste[4],
+            monthlyRevenueArrWaste[5],
+            monthlyRevenueArrWaste[6],
+            monthlyRevenueArrWaste[7],
+            monthlyRevenueArrWaste[8],
+            monthlyRevenueArrWaste[9],
+            monthlyRevenueArrWaste[10],
+            monthlyRevenueArrWaste[11],
+            monthlyRevenueArrWaste[12],
+            ],
+            backgroundColor: [
+                '#492FC4'
+            ],
+            borderColor: [
+                "#492FC4"
+                
+            ],
+            fill: false,
             borderWidth: 1
         }]
     },

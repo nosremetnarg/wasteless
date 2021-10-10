@@ -910,7 +910,8 @@
         console.log(calculatedRevenueUpsale);
         let reducer = (x, y) => x + y;
         let reducedArr = calculatedRevenueUpsale.reduce(reducer);
-        console.log(reducedArr);
+        totalRevenueUpsale.innerHTML = reducedArr.toLocaleString()
+        console.log(reducedArr.toLocaleString());
         return reducedArr
       }
 

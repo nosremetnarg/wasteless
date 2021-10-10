@@ -855,6 +855,27 @@
       }
 
       function calc() {
+        totalWasteUserInputData[0] = parseInt(
+          document.getElementById("packedMealsOutputWaste").innerHTML
+        );
+        totalWasteUserInputData[1] = parseInt(
+          document.getElementById("bakeryWasteOutput").innerHTML
+        );
+        totalWasteUserInputData[2] = parseInt(
+          document.getElementById("frozenFoodOutputWaste").innerHTML
+        );
+        totalWasteUserInputData[3] = parseInt(
+          document.getElementById("seafoodWasteOutput").innerHTML
+        );
+        totalWasteUserInputData[4] = parseInt(
+          document.getElementById("fruitAndVegetablesWasteOutput").innerHTML
+        );
+        totalWasteUserInputData[5] = parseInt(
+          document.getElementById("dairyWasteOutput").innerHTML
+        );
+        totalWasteUserInputData[6] = parseInt(
+          document.getElementById("meatAndPoultryWasteOutput").innerHTML
+        );
         //   Empty Arr before recalculating
         calculatedCategoryRevenueArr = [];
         let totalRevenueNum = parseInt(totalRevenue.value);
@@ -966,6 +987,7 @@
           }
         }
         console.log(result);
+        return result
       }
 
       // GETS DATA ON PAGE LOAD

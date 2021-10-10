@@ -453,7 +453,7 @@
           >
             10 Years
           </button>
-          <button onClick="updateChart()" class="btn years">updateChart</button>
+          <!-- <button onClick="updateChart()" class="btn years">updateChart</button> -->
         </div>
       </div>
 
@@ -1024,7 +1024,7 @@
           }
         }
         console.log(monthlyRevenueArr);
-        return monthlyRevenueArr
+        return monthlyRevenueArr;
       }
       function getMonthlyNumbersWaste(x) {
         monthlyRevenueArrWaste = [];
@@ -1036,7 +1036,7 @@
           }
         }
         console.log(monthlyRevenueArrWaste);
-        return monthlyRevenueArrWaste
+        return monthlyRevenueArrWaste;
       }
 
       // CHART CODE
@@ -1055,17 +1055,49 @@
         "november",
         "december",
       ];
-      
 
       const data = {
         labels: labels,
         datasets: [
           {
             label: "1 Year Chart",
-            data: [65, 59, 80, 81, 56, 55, 40],
+            data: [
+              monthlyRevenueArr[1],
+              monthlyRevenueArr[2],
+              monthlyRevenueArr[3],
+              monthlyRevenueArr[4],
+              monthlyRevenueArr[5],
+              monthlyRevenueArr[6],
+              monthlyRevenueArr[7],
+              monthlyRevenueArr[8],
+              monthlyRevenueArr[9],
+              monthlyRevenueArr[10],
+              monthlyRevenueArr[11],
+              monthlyRevenueArr[12],
+            ],
+            borderColor: ["#47D71D"],
             fill: false,
-            borderColor: "rgb(75, 192, 192)",
-            tension: 0.1,
+            borderWidth: 1,
+          },
+          {
+            label: "1 Year Chart",
+            data: [
+              monthlyRevenueArrWaste[1],
+              monthlyRevenueArrWaste[2],
+              monthlyRevenueArrWaste[3],
+              monthlyRevenueArrWaste[4],
+              monthlyRevenueArrWaste[5],
+              monthlyRevenueArrWaste[6],
+              monthlyRevenueArrWaste[7],
+              monthlyRevenueArrWaste[8],
+              monthlyRevenueArrWaste[9],
+              monthlyRevenueArrWaste[10],
+              monthlyRevenueArrWaste[11],
+              monthlyRevenueArrWaste[12],
+            ],
+            borderColor: ["#492FC4"],
+            fill: false,
+            borderWidth: 1,
           },
         ],
       };

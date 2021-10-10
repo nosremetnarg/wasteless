@@ -799,7 +799,9 @@
       let calculatedCategoryWasteArr = [];
       let calculatedRevenueUpsale = [];
       let resultsObj = {};
-      let resultsArr = []
+      let resultsArr = [];
+      let monthlyRevenue;
+      let monthlyWaste;
 
       // LISTENING FUNCTIONS
       function totalRevenueSliderListenerFunc(e) {
@@ -852,7 +854,7 @@
         totalWasteUserInputData[6] = parseInt(
           document.getElementById("meatAndPoultryWasteOutput").innerHTML
         );
-        console.log(totalWasteUserInputData);
+
         return totalWasteUserInputData;
       }
 
@@ -883,18 +885,17 @@
         let totalRevenueNum = parseInt(totalRevenue.value);
 
         for (let i = 0; i < totalRevenueSliderArr.length; i++) {
-            
           calculatedCategoryRevenueArr.push(
             totalRevenueNum * (totalRevenueSliderArr[i] / 100)
           );
         }
-        console.log(calculatedCategoryRevenueArr);
+
         calculateRevenueUpsale(calculatedCategoryRevenueArr);
         calculateWasteSavings(
           calculatedCategoryRevenueArr,
           totalWasteUserInputData
         );
-        console.log(resultsObj);
+
         return calculatedCategoryRevenueArr;
       }
 
@@ -924,29 +925,26 @@
 
       function calculateRevenueUpsale(arr) {
         calculatedRevenueUpsale = [];
-        console.log(arr);
 
         for (let i = 0; i < arr.length; i++) {
           calculatedRevenueUpsale.push(arr[i] * 0.18);
         }
-        console.log(calculatedRevenueUpsale);
+
         let reducer = (x, y) => x + y;
         let reducedArr = calculatedRevenueUpsale.reduce(reducer);
-        resultsArr[0] = reducedArr
+        resultsArr[0] = reducedArr;
         totalRevenueUpsale.innerHTML = reducedArr.toLocaleString();
-        resultsObj.revenueUpsale = reducedArr.toLocaleString()
+        resultsObj.revenueUpsale = reducedArr.toLocaleString();
         console.log(reducedArr.toLocaleString());
         return reducedArr;
       }
 
       function calculateWasteSavings(array1, array2) {
-        console.log(array1, array2);
         for (let j = 0; j < array2.length; j++) {
-            array2[j] = array2[j] / 100
-            
+          array2[j] = array2[j] / 100;
         }
         console.log(array2);
-        
+
         const result = [];
         const result2 = [];
         let ctr = 0;
@@ -972,13 +970,10 @@
           }
         }
 
-        console.log(result2);
-        console.log(wasteReductionValArr);
         if (result2.length === 0) return "array1 is empty";
         if (wasteReductionValArr.length === 0) return "array2 is empty";
 
         while (ctr2 < result2.length && ctr2 < wasteReductionValArr.length) {
-        
           result.push(result2[ctr2] * wasteReductionValArr[ctr2]);
           ctr2++;
         }
@@ -992,23 +987,92 @@
             result.push(result2[x2]);
           }
         }
-        console.log(result);
+
         let reducer2 = (x, y) => x + y;
         let reducedArr2 = result.reduce(reducer2);
         wasteReductionValue.innerHTML = reducedArr2.toLocaleString();
         resultsObj.wasteReductionValue = reducedArr2.toLocaleString();
-        
-        resultsArr[1] = reducedArr2
+
+        resultsArr[1] = reducedArr2;
         let reducer3 = (a, b) => a + b;
         let reducedArr3 = resultsArr.reduce(reducer3);
-        console.log(reducedArr3, resultsArr);
         totalEconomicValue.innerHTML = reducedArr3.toLocaleString();
         console.log(resultsObj, resultsArr);
-        return result
+        getMonthlyValuesForRevenueAndWaste(resultsArr);
+        return resultsArr;
       }
 
+      function getMonthlyValuesForRevenueAndWaste(arr) {
+        console.log(arr);
+        monthlyRevenue = Math.round(arr[0] / 12);
+        monthlyWaste = Math.round(arr[1] / 12);
 
+        resultsArr.push(monthlyRevenue, monthlyWaste);
+        console.log(resultsArr);
+        getMonthlyNumbers(monthlyRevenue);
+        getMonthlyNumbersWaste(monthlyWaste);
+        return resultsArr;
+      }
 
+      function getMonthlyNumbers(x) {
+        monthlyRevenueArr = [];
+        for (let i = 0; i < 13; i++) {
+          if (i < 13) {
+            monthlyRevenueArr.push(x * i);
+          } else {
+            return;
+          }
+        }
+        console.log(monthlyRevenueArr);
+        return monthlyRevenueArr
+      }
+      function getMonthlyNumbersWaste(x) {
+        monthlyRevenueArrWaste = [];
+        for (let i = 0; i < 13; i++) {
+          if (i < 13) {
+            monthlyRevenueArrWaste.push(x * i);
+          } else {
+            return;
+          }
+        }
+        console.log(monthlyRevenueArrWaste);
+        return monthlyRevenueArrWaste
+      }
+
+      // CHART CODE
+      // Chart scripts
+      let labels = [
+        "jan",
+        "feb",
+        "march",
+        "april",
+        "may",
+        "june",
+        "july",
+        "august",
+        "september",
+        "october",
+        "november",
+        "december",
+      ];
+      
+
+      const data = {
+        labels: labels,
+        datasets: [
+          {
+            label: "1 Year Chart",
+            data: [65, 59, 80, 81, 56, 55, 40],
+            fill: false,
+            borderColor: "rgb(75, 192, 192)",
+            tension: 0.1,
+          },
+        ],
+      };
+      const config = {
+        type: "line",
+        data: data,
+      };
 
       // GETS DATA ON PAGE LOAD
       window.addEventListener("load", (event) => {

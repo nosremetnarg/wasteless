@@ -446,12 +446,7 @@
         </h4>
         <div class="resultsBtns">
           <p class="subinformation">Show results for:</p>
-          <button
-            onClick="calc()"
-            class="btn months"
-          >
-            12 Months
-          </button>
+          <button onClick="calc()" class="btn months">12 Months</button>
           <button
             onClick="tenYearFunc(tenYear, myChartFirst, myChartCanvas)"
             class="btn years"
@@ -798,8 +793,8 @@
       let wasteReductionValue = document.querySelector(".wasteReductionValue");
 
       // VALUE HOLDERS
-      let totalRevenueSliderArr = [8,6,5,1,14,10,10];
-      let totalWasteUserInputData = [10, 1, 14,6,15,12,5]
+      let totalRevenueSliderArr = [8, 6, 5, 1, 14, 10, 10];
+      let totalWasteUserInputData = [10, 1, 14, 6, 15, 12, 5];
       let calculatedCategoryRevenueArr = [];
       let calculatedCategoryWasteArr = [];
       let calculatedRevenueUpsale = [];
@@ -828,7 +823,7 @@
           document.getElementById("meatAndPoultryOutput").innerHTML
         );
         console.log(totalRevenueSliderArr);
-        
+
         // Getting the Sum of the Array
         greyOutSimulation(totalRevenueSliderArr);
         return totalRevenueSliderArr;
@@ -856,29 +851,31 @@
           document.getElementById("meatAndPoultryWasteOutput").innerHTML
         );
         console.log(totalWasteUserInputData);
-       
+        return totalWasteUserInputData;
       }
 
       function calc() {
         //   Empty Arr before recalculating
         calculatedCategoryRevenueArr = [];
-        let totalRevenueNum = parseInt(totalRevenue.value)
-        
+        let totalRevenueNum = parseInt(totalRevenue.value);
+
         for (let i = 0; i < totalRevenueSliderArr.length; i++) {
           calculatedCategoryRevenueArr.push(
-            totalRevenueNum * totalRevenueSliderArr[i]
+            totalRevenueNum * (totalRevenueSliderArr[i] / 100)
           );
         }
         console.log(calculatedCategoryRevenueArr);
         calculateRevenueUpsale(calculatedCategoryRevenueArr);
-        return calculatedCategoryRevenueArr
+        calculateWasteSavings(
+          calculatedCategoryRevenueArr,
+          totalWasteUserInputData
+        );
+        return calculatedCategoryRevenueArr;
       }
-
 
       // Checking that % of Total Revenue is less than 100
       // If TR is > 100 Grey out sliders and disable Simulation button
       function greyOutSimulation(arr) {
-
         let reducer = (x, y) => x + y;
         let reducedArr = arr.reduce(reducer);
 
@@ -905,24 +902,77 @@
         console.log(arr);
 
         for (let i = 0; i < arr.length; i++) {
-            calculatedRevenueUpsale.push(arr[i] * .18)
+          calculatedRevenueUpsale.push(arr[i] * 0.18);
         }
         console.log(calculatedRevenueUpsale);
         let reducer = (x, y) => x + y;
         let reducedArr = calculatedRevenueUpsale.reduce(reducer);
-        totalRevenueUpsale.innerHTML = reducedArr.toLocaleString()
+        totalRevenueUpsale.innerHTML = reducedArr.toLocaleString();
         console.log(reducedArr.toLocaleString());
-        return reducedArr
+        return reducedArr;
       }
 
+      function calculateWasteSavings(array1, array2) {
+        console.log(array1, array2);
+        for (let j = 0; j < array2.length; j++) {
+            array2[j] = array2[j] / 100
+            
+        }
+        console.log(array2);
+        
+        const result = [];
+        const result2 = [];
+        let ctr = 0;
+        let ctr2 = 0;
+        let x = 0;
+        let x2 = 0;
 
-// GETS DATA ON PAGE LOAD
+        if (array1.length === 0) return "array1 is empty";
+        if (array2.length === 0) return "array2 is empty";
+
+        while (ctr < array1.length && ctr < array2.length) {
+          result2.push(array1[ctr] * array2[ctr]);
+          ctr++;
+        }
+
+        if (ctr === array1.length) {
+          for (x = ctr; x < array2.length; x++) {
+            result2.push(array2[x]);
+          }
+        } else {
+          for (x = ctr; x < array1.length; x++) {
+            result2.push(array1[x]);
+          }
+        }
+
+        console.log(result2);
+        console.log(wasteReductionValArr);
+        if (result2.length === 0) return "array1 is empty";
+        if (wasteReductionValArr.length === 0) return "array2 is empty";
+
+        while (ctr2 < result2.length && ctr2 < wasteReductionValArr.length) {
+        
+          result.push(result2[ctr2] * wasteReductionValArr[ctr2]);
+          ctr2++;
+        }
+
+        if (ctr2 === result2.length) {
+          for (x2 = ctr2; x2 < wasteReductionValArr.length; x2++) {
+            result.push(wasteReductionValArr[x2]);
+          }
+        } else {
+          for (x2 = ctr2; x2 < result2.length; x2++) {
+            result.push(result2[x2]);
+          }
+        }
+        console.log(result);
+      }
+
+      // GETS DATA ON PAGE LOAD
       window.addEventListener("load", (event) => {
         totalRevenueSliderListenerFunc();
-        totalWasteUserInput()
+        totalWasteUserInput();
       });
-
-
     </script>
   </body>
 </html>

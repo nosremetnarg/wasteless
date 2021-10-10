@@ -881,6 +881,7 @@
         let totalRevenueNum = parseInt(totalRevenue.value);
 
         for (let i = 0; i < totalRevenueSliderArr.length; i++) {
+            
           calculatedCategoryRevenueArr.push(
             totalRevenueNum * (totalRevenueSliderArr[i] / 100)
           );
@@ -987,6 +988,9 @@
           }
         }
         console.log(result);
+        let reducer2 = (x, y) => x + y;
+        let reducedArr2 = result.reduce(reducer2);
+        wasteReductionValue.innerHTML = reducedArr2.toLocaleString();
         return result
       }
 

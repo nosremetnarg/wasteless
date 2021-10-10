@@ -798,6 +798,8 @@
       let calculatedCategoryRevenueArr = [];
       let calculatedCategoryWasteArr = [];
       let calculatedRevenueUpsale = [];
+      let resultsObj = {};
+      let resultsArr = []
 
       // LISTENING FUNCTIONS
       function totalRevenueSliderListenerFunc(e) {
@@ -892,6 +894,7 @@
           calculatedCategoryRevenueArr,
           totalWasteUserInputData
         );
+        console.log(resultsObj);
         return calculatedCategoryRevenueArr;
       }
 
@@ -929,7 +932,9 @@
         console.log(calculatedRevenueUpsale);
         let reducer = (x, y) => x + y;
         let reducedArr = calculatedRevenueUpsale.reduce(reducer);
+        resultsArr[0] = reducedArr
         totalRevenueUpsale.innerHTML = reducedArr.toLocaleString();
+        resultsObj.revenueUpsale = reducedArr.toLocaleString()
         console.log(reducedArr.toLocaleString());
         return reducedArr;
       }
@@ -991,8 +996,19 @@
         let reducer2 = (x, y) => x + y;
         let reducedArr2 = result.reduce(reducer2);
         wasteReductionValue.innerHTML = reducedArr2.toLocaleString();
+        resultsObj.wasteReductionValue = reducedArr2.toLocaleString();
+        
+        resultsArr[1] = reducedArr2
+        let reducer3 = (a, b) => a + b;
+        let reducedArr3 = resultsArr.reduce(reducer3);
+        console.log(reducedArr3, resultsArr);
+        totalEconomicValue.innerHTML = reducedArr3.toLocaleString();
+        console.log(resultsObj, resultsArr);
         return result
       }
+
+
+
 
       // GETS DATA ON PAGE LOAD
       window.addEventListener("load", (event) => {
